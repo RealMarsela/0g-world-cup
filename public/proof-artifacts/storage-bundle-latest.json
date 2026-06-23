@@ -1,0 +1,23 @@
+{
+  "status": "live",
+  "roomId": "room-human-vs-agent-storage-bundle",
+  "bundleHash": "0xc4be6949db38fa174dde499bf65d682a28775480a63f6b620949252329ff0cf6",
+  "rootHash": "0xd2d4fc1dc70a4f5ed5d89c16758da4e9152c23882cef2bfbe48050f3622c15b1",
+  "txHash": "0x31c55b88753fc2af9566ecdde71c2dfb5b548ebdc11e493cb208f6abfa07b124",
+  "storageUri": "0g://storage/0xd2d4fc1dc70a4f5ed5d89c16758da4e9152c23882cef2bfbe48050f3622c15b1",
+  "indexerRpc": "https://indexer-storage-testnet-turbo.0g.ai",
+  "items": [
+    "player-snapshot",
+    "draft-log",
+    "match-transcript",
+    "share-metadata",
+    "proof-receipt"
+  ],
+  "itemHashes": {
+    "snapshot": "0xa242615c40c18099effb0f9dc2aaf7f4978d5b47e27a3cb8e69885ae6e66468d",
+    "draftLog": "0xee20799b2749014514b1c711cff6ba7d5bb4873a5d103c4a22dbd1d05c60bb65",
+    "matchTranscript": "0x17028a9e70340ce096475372f9c2c9e0e27a7bd5c1b0b4b43a733141e9bc3f6f",
+    "shareMetadata": "0x6c48e71e734eeb91fb6bd354cd9e45f12a36ac0a87e3e703e13b9ce918dd6f9d",
+    "proofReceipt": "0xe571dc4e4388b46acee47730c4e89b4c7b7be525ff3c341e8c65c93cf674ce3c"
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "status": "live",
+  "indexerRpc": "https://indexer-storage-testnet-turbo.0g.ai",
+  "storageRoot": "0xc7620208c2d553b2a12e473548da871536449bf38471f49f3da3bb1b22c84ef5",
+  "bundleRoot": "0xd2d4fc1dc70a4f5ed5d89c16758da4e9152c23882cef2bfbe48050f3622c15b1",
+  "storageUri": "0g://storage/0xc7620208c2d553b2a12e473548da871536449bf38471f49f3da3bb1b22c84ef5",
+  "bundleStorageUri": "0g://storage/0xd2d4fc1dc70a4f5ed5d89c16758da4e9152c23882cef2bfbe48050f3622c15b1",
+  "downloadedRoots": [
+    "0xc7620208c2d553b2a12e473548da871536449bf38471f49f3da3bb1b22c84ef5",
+    "0xd2d4fc1dc70a4f5ed5d89c16758da4e9152c23882cef2bfbe48050f3622c15b1"
+  ],
+  "byteCount": 92166,
+  "contentHash": "0x525a5f791b50b67eba9d029253926b75c5ec70b1fba6f7bc778bd11bf65e71f7",
+  "proofPacket": {
+    "roomId": "room-human-vs-agent-storage",
+    "byteCount": 32488,
+    "contentHash": "0x3cca565dc1568eef0783567366c9c6850b7df85dccb27e3cdc1bf997b989e1cd",
+    "downloadedMerkleRoot": "0xc7620208c2d553b2a12e473548da871536449bf38471f49f3da3bb1b22c84ef5"
+  },
+  "storageBundle": {
+    "roomId": "room-human-vs-agent-storage-bundle",
+    "byteCount": 59678,
+    "contentHash": "0xc4be6949db38fa174dde499bf65d682a28775480a63f6b620949252329ff0cf6",
+    "downloadedMerkleRoot": "0xd2d4fc1dc70a4f5ed5d89c16758da4e9152c23882cef2bfbe48050f3622c15b1",
+    "itemHashMatches": {
+      "snapshot": true,
+      "draftLog": true,
+      "matchTranscript": true,
+      "shareMetadata": true,
+      "proofReceipt": true
+    }
+  },
+  "checks": {
+    "proofMerkleRootMatches": true,
+    "proofRoomMatches": true,
+    "proofHasReceipt": true,
+    "bundleMerkleRootMatches": true,
+    "bundleHashMatches": true,
+    "bundleRoomMatches": true,
+    "bundleItemHashesMatch": true
+  }
+}

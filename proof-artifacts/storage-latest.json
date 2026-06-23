@@ -1,0 +1,9 @@
+{
+  "status": "live",
+  "roomId": "room-human-vs-agent-storage",
+  "rootHash": "0xc7620208c2d553b2a12e473548da871536449bf38471f49f3da3bb1b22c84ef5",
+  "txHash": "0x5d131ab4b60297b51f354798c1766a9bc388a86489b78a1bda475d8085cb214c",
+  "storageUri": "0g://storage/0xc7620208c2d553b2a12e473548da871536449bf38471f49f3da3bb1b22c84ef5",
+  "indexerRpc": "https://indexer-storage-testnet-turbo.0g.ai",
+  "reused": "Existing 0G Storage root is already discoverable; skipped duplicate upload."
+}

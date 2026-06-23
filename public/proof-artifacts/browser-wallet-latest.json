@@ -1,0 +1,86 @@
+{
+  "status": "live",
+  "chainId": 16602,
+  "wallet": "0x23761115c5f38ca51f0d425d00DE6E34029239EC",
+  "roomId": "room-testnet-wager-1v1-e2e",
+  "roomHash": "0x5c8c62397e93ca4a120eb99b8a4cf8447acc469058ca39efb9174fbd47954830",
+  "contracts": {
+    "draft": "0x37AE4f4BA75b203f45137E7d6C2059d0a0F36475",
+    "escrow": "0xeDf443C63A85daFBE7BF673C5b32a0560aCa832d"
+  },
+  "transactions": {
+    "commit": "0xed5c6244d5976be40f2b35d2f7f41d8777864b707b5385eb45cd972d4f37cffe",
+    "deposit": "0x03318f31c16c56f9536a0236d06e4fe64fc978f6501cf3e484f9b44892ce815b"
+  },
+  "blockNumbers": {
+    "commit": "40355951",
+    "deposit": "40356090"
+  },
+  "expected": {
+    "snapshotHash": "0x10083228b84402ab9d2ac1f65629aaeebddd2bcdc20597ac2cca3a44b9d44026",
+    "lineupHash": "0xc9d4161adb32c5201de88ae373ed98baa0ca4b262b0a4d6a78c13b57ff67d8dd",
+    "wagerAmountWei": "10000000000000000",
+    "requiredDeposits": "2"
+  },
+  "events": {
+    "lineupCommitted": {
+      "contract": "0x37ae4f4ba75b203f45137e7d6c2059d0a0f36475",
+      "roomHash": "0x5c8c62397e93ca4a120eb99b8a4cf8447acc469058ca39efb9174fbd47954830",
+      "player": "0x23761115c5f38ca51f0d425d00DE6E34029239EC",
+      "snapshotHash": "0x10083228b84402ab9d2ac1f65629aaeebddd2bcdc20597ac2cca3a44b9d44026",
+      "lineupHash": "0xc9d4161adb32c5201de88ae373ed98baa0ca4b262b0a4d6a78c13b57ff67d8dd",
+      "wagerAmountWei": "10000000000000000"
+    },
+    "deposited": {
+      "contract": "0xedf443c63a85dafbe7bf673c5b32a0560aca832d",
+      "roomHash": "0x5c8c62397e93ca4a120eb99b8a4cf8447acc469058ca39efb9174fbd47954830",
+      "player": "0x23761115c5f38ca51f0d425d00DE6E34029239EC",
+      "amountWei": "10000000000000000"
+    }
+  },
+  "state": {
+    "commitment": {
+      "player": "0x23761115c5f38ca51f0d425d00DE6E34029239EC",
+      "snapshotHash": "0x10083228b84402ab9d2ac1f65629aaeebddd2bcdc20597ac2cca3a44b9d44026",
+      "lineupHash": "0xc9d4161adb32c5201de88ae373ed98baa0ca4b262b0a4d6a78c13b57ff67d8dd",
+      "wagerAmountWei": "10000000000000000",
+      "exists": true
+    },
+    "escrow": {
+      "totalDepositedWei": "20000000000000000",
+      "wagerAmountWei": "10000000000000000",
+      "depositCount": "2",
+      "settled": true,
+      "hasDeposited": true,
+      "canStart": false
+    }
+  },
+  "checks": {
+    "commitTxSucceeded": true,
+    "commitTxToDraft": true,
+    "commitTxFromWallet": true,
+    "commitEventFound": true,
+    "commitEventRoomMatches": true,
+    "commitEventPlayerMatches": true,
+    "commitEventSnapshotMatches": true,
+    "commitEventLineupMatches": true,
+    "commitEventWagerMatches": true,
+    "commitmentExists": true,
+    "commitmentPlayerMatches": true,
+    "commitmentSnapshotMatches": true,
+    "commitmentLineupMatches": true,
+    "commitmentWagerMatches": true,
+    "depositTxSucceeded": true,
+    "depositTxToEscrow": true,
+    "depositTxFromWallet": true,
+    "depositEventFound": true,
+    "depositEventRoomMatches": true,
+    "depositEventPlayerMatches": true,
+    "depositEventAmountMatches": true,
+    "hasDeposited": true,
+    "escrowWagerMatches": true,
+    "escrowContainsDeposit": true,
+    "canStartMatchesContractState": true,
+    "twoDepositsRequired": true
+  }
+}

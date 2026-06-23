@@ -1,0 +1,28 @@
+{
+  "status": "live",
+  "agentId": "agent-zero-nine",
+  "displayName": "ZeroNine Scout",
+  "tokenId": "2",
+  "contract": "0x38Cc945DAB9A0fe2b04E7F70cea3a41B3837A5ab",
+  "indexerRpc": "https://indexer-storage-testnet-turbo.0g.ai",
+  "rootHash": "0x5f7bdadd19e7dd63d84a49c1bb4ee61027e59e21019315f7889fbc194062d90c",
+  "storageUri": "0g://storage/0x5f7bdadd19e7dd63d84a49c1bb4ee61027e59e21019315f7889fbc194062d90c",
+  "encryptedMetadataHash": "0x57ca841db653ecb857f73a76fb694122c11aefc0e7fce617747e87bde7377d3b",
+  "contentHash": "0x57ca841db653ecb857f73a76fb694122c11aefc0e7fce617747e87bde7377d3b",
+  "byteCount": 1907,
+  "downloadedMerkleRoot": "0x5f7bdadd19e7dd63d84a49c1bb4ee61027e59e21019315f7889fbc194062d90c",
+  "decryptedSchema": "0g-world-cup-agentic-id-v1",
+  "decryptedAllowedModes": [
+    "human-vs-agent",
+    "agent-vs-agent",
+    "testnet-wager-1v1"
+  ],
+  "checks": {
+    "merkleRootMatches": true,
+    "encryptedMetadataHashMatches": true,
+    "storageUriMatches": true,
+    "decryptedAgentMatches": true,
+    "decryptedNameMatches": true,
+    "decryptedPolicyMatches": true
+  }
+}

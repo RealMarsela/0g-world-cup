@@ -1,0 +1,29 @@
+services:
+  0g-da-client:
+    image: 0g-da-client:local
+    container_name: 0g-da-client
+    command: ["combined"]
+    env_file:
+      - ../../.da-stack/envfile.env
+    volumes:
+      - ../../.da-stack/client-runtime:/runtime
+    ports:
+      - "51001:51001"
+    depends_on:
+      - 0g-da-encoder
+      - 0g-da-retriever
+
+  0g-da-encoder:
+    image: 0g-da-encoder:local
+    container_name: 0g-da-encoder
+    command: ["server", "--config", "/0g-da-encoder/run/config.toml"]
+    ports:
+      - "34000:34000"
+
+  0g-da-retriever:
+    image: 0g-da-retriever:local
+    container_name: 0g-da-retriever
+    volumes:
+      - ../../.da-stack/retriever-config.toml:/0g-da-retriever/run/config.toml:ro
+    ports:
+      - "34005:34005"

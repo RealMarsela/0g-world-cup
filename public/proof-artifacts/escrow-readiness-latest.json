@@ -1,0 +1,24 @@
+{
+  "status": "live",
+  "chainId": 16602,
+  "blockNumber": "40357643",
+  "contract": "0xeDf443C63A85daFBE7BF673C5b32a0560aCa832d",
+  "roomId": "room-testnet-wager-1v1-e2e",
+  "roomHash": "0x5c8c62397e93ca4a120eb99b8a4cf8447acc469058ca39efb9174fbd47954830",
+  "owner": "0x3D325E51934AE5c7EBf9f37a8Ddf772F48F766Fb",
+  "protocolFeeBps": "250",
+  "requiredDeposits": "2",
+  "canStart": false,
+  "escrow": {
+    "totalDepositedWei": "20000000000000000",
+    "wagerAmountWei": "10000000000000000",
+    "depositCount": "2",
+    "settled": true
+  },
+  "checks": {
+    "escrowHasCode": true,
+    "canStartMatchesContractState": true,
+    "requiresTwoDeposits": true,
+    "notStartReadyWithoutTwoDeposits": true
+  }
+}

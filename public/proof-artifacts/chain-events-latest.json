@@ -1,0 +1,103 @@
+{
+  "status": "live",
+  "chainId": 16602,
+  "blockNumbers": {
+    "result": "40353191",
+    "agentic": "40353244",
+    "registryAgents": [
+      "40353244",
+      "40353365"
+    ]
+  },
+  "transactions": {
+    "result": "0x4e450701f7c69c122e3f9bb81dc6249f4f20077fd521503548767bc210926a3c",
+    "agentic": "0xdc7b52f288a7425f2c1b9b16cf38770a6f1f6dc50bde7d0811df8628ffececb6",
+    "registryAgents": [
+      "0xdc7b52f288a7425f2c1b9b16cf38770a6f1f6dc50bde7d0811df8628ffececb6",
+      "0x4894d2fb8cb6502308d6feabbc4a4f52094d02ed55a95f77863025f61c78045a"
+    ]
+  },
+  "events": {
+    "resultCommitted": {
+      "contract": "0xc90115a1a35a7b2f2741b2683ee122c25a43dbf6",
+      "roomHash": "0x961843ba9f66482dffc702d26eca6b7c455ce0e507252c45b511bc2d6dd13a3b",
+      "snapshotHash": "0x10083228b84402ab9d2ac1f65629aaeebddd2bcdc20597ac2cca3a44b9d44026",
+      "lineupHash": "0x39070ecb5775c4d772598ac31a3657786f24174a7f2b4d49e76b305f0eaf6146",
+      "resultHash": "0x97cb7d1e29ccccf0c745d6b66a048dab6dce566d49f28a64cec5e63e96bbab5f",
+      "storageUri": "0g://storage/0xc7620208c2d553b2a12e473548da871536449bf38471f49f3da3bb1b22c84ef5",
+      "winner": "0x3D325E51934AE5c7EBf9f37a8Ddf772F48F766Fb"
+    },
+    "agentMinted": {
+      "contract": "0x38cc945dab9a0fe2b04e7f70cea3a41b3837a5ab",
+      "tokenId": "2",
+      "owner": "0x3D325E51934AE5c7EBf9f37a8Ddf772F48F766Fb",
+      "encryptedMetadataHash": "0x57ca841db653ecb857f73a76fb694122c11aefc0e7fce617747e87bde7377d3b",
+      "storageUri": "0g://storage/0x5f7bdadd19e7dd63d84a49c1bb4ee61027e59e21019315f7889fbc194062d90c"
+    },
+    "registryAgentMinted": [
+      {
+        "agentId": "agent-zero-nine",
+        "transaction": "0xdc7b52f288a7425f2c1b9b16cf38770a6f1f6dc50bde7d0811df8628ffececb6",
+        "blockNumber": "40353244",
+        "txSucceeded": true,
+        "txToContract": true,
+        "eventFound": true,
+        "tokenMatches": true,
+        "ownerMatches": true,
+        "metadataMatches": true,
+        "storageMatches": true,
+        "event": {
+          "contract": "0x38cc945dab9a0fe2b04e7f70cea3a41b3837a5ab",
+          "tokenId": "2",
+          "owner": "0x3D325E51934AE5c7EBf9f37a8Ddf772F48F766Fb",
+          "encryptedMetadataHash": "0x57ca841db653ecb857f73a76fb694122c11aefc0e7fce617747e87bde7377d3b",
+          "storageUri": "0g://storage/0x5f7bdadd19e7dd63d84a49c1bb4ee61027e59e21019315f7889fbc194062d90c"
+        }
+      },
+      {
+        "agentId": "agent-keepernet",
+        "transaction": "0x4894d2fb8cb6502308d6feabbc4a4f52094d02ed55a95f77863025f61c78045a",
+        "blockNumber": "40353365",
+        "txSucceeded": true,
+        "txToContract": true,
+        "eventFound": true,
+        "tokenMatches": true,
+        "ownerMatches": true,
+        "metadataMatches": true,
+        "storageMatches": true,
+        "event": {
+          "contract": "0x38cc945dab9a0fe2b04e7f70cea3a41b3837a5ab",
+          "tokenId": "3",
+          "owner": "0x3D325E51934AE5c7EBf9f37a8Ddf772F48F766Fb",
+          "encryptedMetadataHash": "0x54b24bd4083a7906b52ea935d387edbd126d46b2c9f76c5358ac8c4dea607935",
+          "storageUri": "0g://storage/0x91d00606b9624a166f6c87b7b019f9550902f99574494157b03953397991ecea"
+        }
+      }
+    ]
+  },
+  "checks": {
+    "resultTxSucceeded": true,
+    "resultTxToContract": true,
+    "resultEventFound": true,
+    "resultRoomMatches": true,
+    "resultSnapshotMatches": true,
+    "resultLineupMatches": true,
+    "resultHashMatches": true,
+    "resultStorageMatches": true,
+    "resultWinnerMatches": true,
+    "agentTxSucceeded": true,
+    "agentTxToContract": true,
+    "agentEventFound": true,
+    "agentTokenMatches": true,
+    "agentOwnerMatches": true,
+    "agentMetadataMatches": true,
+    "agentStorageMatches": true,
+    "registryAgentEventsFound": true,
+    "registryAgentTxsSucceeded": true,
+    "registryAgentTxsToContract": true,
+    "registryAgentTokensMatch": true,
+    "registryAgentOwnersMatch": true,
+    "registryAgentMetadataMatches": true,
+    "registryAgentStorageMatches": true
+  }
+}

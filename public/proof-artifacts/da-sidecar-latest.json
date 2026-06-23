@@ -1,0 +1,23 @@
+{
+  "schema": "0g-world-cup-da-sidecar-proof-v1",
+  "status": "blocked",
+  "sidecarUrl": "http://127.0.0.1:51080",
+  "statusCode": 503,
+  "requestId": "c95d2544-fa0f-480b-af7c-d085c5646d27",
+  "blobHash": "0x2a4955216d8615c99f80bdfc732f9d5dc82ba4f8d5beb96b65e56d13efdf0ee0",
+  "expectedBlobHash": "0x2a4955216d8615c99f80bdfc732f9d5dc82ba4f8d5beb96b65e56d13efdf0ee0",
+  "blobBytes": 28532,
+  "blobReady": true,
+  "maxBlobBytes": 32505852,
+  "daStatus": "",
+  "reason": "Missing OG_DA_CLIENT_GRPC_URL. 0G DA live submission requires a DA Client plus Encoder/Retriever.",
+  "env": {
+    "rpc": "https://evmrpc-testnet.0g.ai",
+    "storageIndexer": "https://indexer-storage-testnet-turbo.0g.ai",
+    "computeEndpoint": "https://router-api.0g.ai/v1",
+    "daClientGrpc": "",
+    "hasStorageSigner": true,
+    "hasComputeKey": true,
+    "hasDaClient": false
+  }
+}

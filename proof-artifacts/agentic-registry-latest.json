@@ -1,0 +1,54 @@
+{
+  "status": "minted",
+  "schema": "0g-world-cup-agentic-registry-v1",
+  "count": 2,
+  "agents": [
+    {
+      "status": "live",
+      "agentId": "agent-zero-nine",
+      "displayName": "ZeroNine Scout",
+      "ownerWallet": "0x3D325E51934AE5c7EBf9f37a8Ddf772F48F766Fb",
+      "imageUrl": "/agents/agent-1.jpg",
+      "policyHash": "0xdc106aea7be9c83d9a94ad439e265f4fc4975b66fc159cbaf99a2c233ff5553a",
+      "agenticTokenId": "2",
+      "agenticStatus": "minted",
+      "encryptedMetadataHash": "0x57ca841db653ecb857f73a76fb694122c11aefc0e7fce617747e87bde7377d3b",
+      "rootHash": "0x5f7bdadd19e7dd63d84a49c1bb4ee61027e59e21019315f7889fbc194062d90c",
+      "txHash": "0xa4d4bb5a6d667e683794361f3872e643affeb533f13d3acb2f1b9eb915846bc3",
+      "storageUri": "0g://storage/0x5f7bdadd19e7dd63d84a49c1bb4ee61027e59e21019315f7889fbc194062d90c",
+      "mintTxHash": "0xdc7b52f288a7425f2c1b9b16cf38770a6f1f6dc50bde7d0811df8628ffececb6",
+      "mintBlockNumber": "40353244",
+      "contract": "0x38Cc945DAB9A0fe2b04E7F70cea3a41B3837A5ab",
+      "owner": "0x3D325E51934AE5c7EBf9f37a8Ddf772F48F766Fb"
+    },
+    {
+      "status": "live",
+      "agentId": "agent-keepernet",
+      "displayName": "KeeperNet Oracle",
+      "ownerWallet": "0x3D325E51934AE5c7EBf9f37a8Ddf772F48F766Fb",
+      "imageUrl": "/agents/agent-2.jpg",
+      "policyHash": "0xbb95ff95ff15463bf88402d9c22df3e29f833b79faa1ecd4963c3072a75e3420",
+      "agenticTokenId": "3",
+      "agenticStatus": "minted",
+      "encryptedMetadataHash": "0x54b24bd4083a7906b52ea935d387edbd126d46b2c9f76c5358ac8c4dea607935",
+      "rootHash": "0x91d00606b9624a166f6c87b7b019f9550902f99574494157b03953397991ecea",
+      "txHash": "0x2ee9e7feaba5535e34ae564b45a3a5212958a061b43c9adb0d3de2e70a2d30e3",
+      "storageUri": "0g://storage/0x91d00606b9624a166f6c87b7b019f9550902f99574494157b03953397991ecea",
+      "mintTxHash": "0x4894d2fb8cb6502308d6feabbc4a4f52094d02ed55a95f77863025f61c78045a",
+      "mintBlockNumber": "40353365",
+      "contract": "0x38Cc945DAB9A0fe2b04E7F70cea3a41B3837A5ab",
+      "owner": "0x3D325E51934AE5c7EBf9f37a8Ddf772F48F766Fb"
+    }
+  ],
+  "contract": "0x38Cc945DAB9A0fe2b04E7F70cea3a41B3837A5ab",
+  "owner": "0x3D325E51934AE5c7EBf9f37a8Ddf772F48F766Fb",
+  "env": {
+    "rpc": "https://evmrpc-testnet.0g.ai",
+    "storageIndexer": "https://indexer-storage-testnet-turbo.0g.ai",
+    "computeEndpoint": "https://router-api.0g.ai/v1",
+    "daClientGrpc": "",
+    "hasStorageSigner": true,
+    "hasComputeKey": true,
+    "hasDaClient": false
+  }
+}

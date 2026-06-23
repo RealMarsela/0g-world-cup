@@ -1,0 +1,15 @@
+{
+  "status": "submitted",
+  "roomId": "room-human-vs-agent-chain-1782223853",
+  "txHash": "0x4e450701f7c69c122e3f9bb81dc6249f4f20077fd521503548767bc210926a3c",
+  "contract": "0xc90115A1A35a7B2F2741B2683eE122c25a43dBf6",
+  "storageUri": "0g://storage/0xc7620208c2d553b2a12e473548da871536449bf38471f49f3da3bb1b22c84ef5",
+  "readback": {
+    "snapshotHash": "0x10083228b84402ab9d2ac1f65629aaeebddd2bcdc20597ac2cca3a44b9d44026",
+    "lineupHash": "0x39070ecb5775c4d772598ac31a3657786f24174a7f2b4d49e76b305f0eaf6146",
+    "resultHash": "0x97cb7d1e29ccccf0c745d6b66a048dab6dce566d49f28a64cec5e63e96bbab5f",
+    "winner": "0x3D325E51934AE5c7EBf9f37a8Ddf772F48F766Fb",
+    "exists": true
+  },
+  "note": "Result already exists on 0G Chain; preserved proof artifact without resubmitting."
+}

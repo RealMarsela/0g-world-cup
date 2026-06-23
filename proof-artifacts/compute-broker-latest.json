@@ -1,0 +1,74 @@
+{
+  "status": "blocked",
+  "generatedAt": "1970-01-01T00:00:00.000Z",
+  "mode": "direct-0g-compute-broker",
+  "sdk": {
+    "package": "@0gfoundation/0g-compute-ts-sdk",
+    "installed": true,
+    "version": "0.8.4"
+  },
+  "network": {
+    "rpcUrl": "https://evmrpc-testnet.0g.ai"
+  },
+  "minimumLedgerOg": 3,
+  "wallet": {
+    "configured": true,
+    "address": "0x3D325E51934AE5c7EBf9f37a8Ddf772F48F766Fb",
+    "nativeBalanceOg": "0.038417174288134078",
+    "canFundMinimumLedger": false
+  },
+  "broker": {
+    "initialized": true,
+    "servicesListed": true,
+    "serviceCount": 2,
+    "preferredService": {
+      "provider": "0xa48f01287233509FD694a22Bf840225062E67836",
+      "serviceType": "chatbot",
+      "model": "qwen/qwen2.5-omni-7b",
+      "verifiability": "TeeML"
+    },
+    "sampleServices": [
+      {
+        "provider": "0xa48f01287233509FD694a22Bf840225062E67836",
+        "serviceType": "chatbot",
+        "model": "qwen/qwen2.5-omni-7b",
+        "verifiability": "TeeML"
+      },
+      {
+        "provider": "0x4b2a941929E39Adbea5316dDF2B9Bd8Ff3134389",
+        "serviceType": "image-editing",
+        "model": "qwen/qwen-image-edit-2511",
+        "verifiability": "TeeML"
+      }
+    ],
+    "metadata": {
+      "endpoint": "https://compute-network-6.integratenetwork.work/v1/proxy",
+      "model": "qwen/qwen2.5-omni-7b"
+    },
+    "error": null
+  },
+  "ledger": {
+    "readable": false,
+    "exists": false,
+    "raw": null,
+    "error": "Account does not exist. Please create an account first using \"add-account\". (Address: 0x3D325E51934AE5c7EBf9f37a8Ddf772F48F766Fb)"
+  },
+  "checks": {
+    "sdkInstalled": true,
+    "walletConfigured": true,
+    "walletCanFundMinimumLedger": false,
+    "brokerInitialized": true,
+    "servicesListed": true,
+    "ledgerReadable": false
+  },
+  "reason": "Direct 0G Compute providers are discoverable, but wallet balance is below the 3 0G ledger minimum for broker funding.",
+  "env": {
+    "rpc": "https://evmrpc-testnet.0g.ai",
+    "storageIndexer": "https://indexer-storage-testnet-turbo.0g.ai",
+    "computeEndpoint": "https://router-api.0g.ai/v1",
+    "daClientGrpc": "",
+    "hasStorageSigner": true,
+    "hasComputeKey": true,
+    "hasDaClient": false
+  }
+}

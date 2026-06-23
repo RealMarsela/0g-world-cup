@@ -1,0 +1,898 @@
+{
+  "env": {
+    "rpc": "https://evmrpc-testnet.0g.ai",
+    "storageIndexer": "https://indexer-storage-testnet-turbo.0g.ai",
+    "computeEndpoint": "https://router-api-testnet.integratenetwork.work/v1",
+    "hasStorageSigner": true,
+    "hasComputeKey": false
+  },
+  "room": {
+    "id": "room-human-vs-agent-proof-1782223777",
+    "mode": "human-vs-agent",
+    "wagerAmount": "free",
+    "snapshotVersion": "0g-world-cup-local-2026-06-23",
+    "snapshotHash": "0xa689451a",
+    "turnIndex": 22,
+    "teams": [
+      {
+        "id": "home",
+        "name": "Gabriel XI",
+        "kind": "human",
+        "formation": "4-3-3",
+        "tacticalStyle": "Possession",
+        "picks": [
+          {
+            "id": "bra-011",
+            "providerIds": {
+              "local": "0g-world-cup-local-2026-06-23:11"
+            },
+            "name": "Vinicius Junior",
+            "shortName": "Vinicius Jr",
+            "country": "Brazil",
+            "countryCode": "BRA",
+            "squad": "Brazil",
+            "shirtNumber": 7,
+            "position": "FW",
+            "detailedPosition": "Left winger",
+            "age": 25,
+            "height": 176,
+            "club": "Real Madrid",
+            "statsSource": "local-demo-snapshot",
+            "ratingSource": "0G World Rating ogr-v1 deterministic formula",
+            "worldRating": 90,
+            "attributes": {
+              "pace": 99,
+              "finishing": 99,
+              "passing": 88,
+              "control": 98,
+              "defense": 56,
+              "physical": 90,
+              "clutch": 99
+            },
+            "snapshotVersion": "0g-world-cup-local-2026-06-23",
+            "sourceAttribution": "Local demo snapshot curated from publicly known national-team player identities; provider ratings are not copied."
+          },
+          {
+            "id": "eng-016",
+            "providerIds": {
+              "local": "0g-world-cup-local-2026-06-23:16"
+            },
+            "name": "Harry Kane",
+            "shortName": "Kane",
+            "country": "England",
+            "countryCode": "ENG",
+            "squad": "England",
+            "shirtNumber": 9,
+            "position": "FW",
+            "detailedPosition": "Striker",
+            "age": 32,
+            "height": 188,
+            "club": "Bayern Munich",
+            "statsSource": "local-demo-snapshot",
+            "ratingSource": "0G World Rating ogr-v1 deterministic formula",
+            "worldRating": 90,
+            "attributes": {
+              "pace": 99,
+              "finishing": 99,
+              "passing": 88,
+              "control": 98,
+              "defense": 56,
+              "physical": 90,
+              "clutch": 99
+            },
+            "snapshotVersion": "0g-world-cup-local-2026-06-23",
+            "sourceAttribution": "Local demo snapshot curated from publicly known national-team player identities; provider ratings are not copied."
+          },
+          {
+            "id": "arg-006",
+            "providerIds": {
+              "local": "0g-world-cup-local-2026-06-23:6"
+            },
+            "name": "Lionel Messi",
+            "shortName": "Messi",
+            "country": "Argentina",
+            "countryCode": "ARG",
+            "squad": "Argentina",
+            "shirtNumber": 10,
+            "position": "FW",
+            "detailedPosition": "Playmaker forward",
+            "age": 39,
+            "height": 170,
+            "club": "Inter Miami",
+            "statsSource": "local-demo-snapshot",
+            "ratingSource": "0G World Rating ogr-v1 deterministic formula",
+            "worldRating": 89,
+            "attributes": {
+              "pace": 99,
+              "finishing": 99,
+              "passing": 87,
+              "control": 97,
+              "defense": 55,
+              "physical": 89,
+              "clutch": 99
+            },
+            "snapshotVersion": "0g-world-cup-local-2026-06-23",
+            "sourceAttribution": "Local demo snapshot curated from publicly known national-team player identities; provider ratings are not copied."
+          },
+          {
+            "id": "esp-023",
+            "providerIds": {
+              "local": "0g-world-cup-local-2026-06-23:23"
+            },
+            "name": "Rodri",
+            "shortName": "Rodri",
+            "country": "Spain",
+            "countryCode": "ESP",
+            "squad": "Spain",
+            "shirtNumber": 16,
+            "position": "MF",
+            "detailedPosition": "Defensive midfield",
+            "age": 30,
+            "height": 191,
+            "club": "Manchester City",
+            "statsSource": "local-demo-snapshot",
+            "ratingSource": "0G World Rating ogr-v1 deterministic formula",
+            "worldRating": 90,
+            "attributes": {
+              "pace": 84,
+              "finishing": 80,
+              "passing": 99,
+              "control": 99,
+              "defense": 84,
+              "physical": 90,
+              "clutch": 94
+            },
+            "snapshotVersion": "0g-world-cup-local-2026-06-23",
+            "sourceAttribution": "Local demo snapshot curated from publicly known national-team player identities; provider ratings are not copied."
+          },
+          {
+            "id": "ger-031",
+            "providerIds": {
+              "local": "0g-world-cup-local-2026-06-23:31"
+            },
+            "name": "Jamal Musiala",
+            "shortName": "Musiala",
+            "country": "Germany",
+            "countryCode": "GER",
+            "squad": "Germany",
+            "shirtNumber": 10,
+            "position": "MF",
+            "detailedPosition": "Attacking midfield",
+            "age": 23,
+            "height": 184,
+            "club": "Bayern Munich",
+            "statsSource": "local-demo-snapshot",
+            "ratingSource": "0G World Rating ogr-v1 deterministic formula",
+            "worldRating": 90,
+            "attributes": {
+              "pace": 83,
+              "finishing": 79,
+              "passing": 99,
+              "control": 99,
+              "defense": 83,
+              "physical": 89,
+              "clutch": 96
+            },
+            "snapshotVersion": "0g-world-cup-local-2026-06-23",
+            "sourceAttribution": "Local demo snapshot curated from publicly known national-team player identities; provider ratings are not copied."
+          },
+          {
+            "id": "arg-008",
+            "providerIds": {
+              "local": "0g-world-cup-local-2026-06-23:8"
+            },
+            "name": "Alexis Mac Allister",
+            "shortName": "Mac Allister",
+            "country": "Argentina",
+            "countryCode": "ARG",
+            "squad": "Argentina",
+            "shirtNumber": 20,
+            "position": "MF",
+            "detailedPosition": "Central midfield",
+            "age": 27,
+            "height": 176,
+            "club": "Liverpool",
+            "statsSource": "local-demo-snapshot",
+            "ratingSource": "0G World Rating ogr-v1 deterministic formula",
+            "worldRating": 88,
+            "attributes": {
+              "pace": 82,
+              "finishing": 78,
+              "passing": 99,
+              "control": 98,
+              "defense": 82,
+              "physical": 88,
+              "clutch": 92
+            },
+            "snapshotVersion": "0g-world-cup-local-2026-06-23",
+            "sourceAttribution": "Local demo snapshot curated from publicly known national-team player identities; provider ratings are not copied."
+          },
+          {
+            "id": "esp-024",
+            "providerIds": {
+              "local": "0g-world-cup-local-2026-06-23:24"
+            },
+            "name": "Dani Carvajal",
+            "shortName": "Carvajal",
+            "country": "Spain",
+            "countryCode": "ESP",
+            "squad": "Spain",
+            "shirtNumber": 2,
+            "position": "DF",
+            "detailedPosition": "Right back",
+            "age": 34,
+            "height": 173,
+            "club": "Real Madrid",
+            "statsSource": "local-demo-snapshot",
+            "ratingSource": "0G World Rating ogr-v1 deterministic formula",
+            "worldRating": 85,
+            "attributes": {
+              "pace": 88,
+              "finishing": 56,
+              "passing": 82,
+              "control": 84,
+              "defense": 99,
+              "physical": 98,
+              "clutch": 90
+            },
+            "snapshotVersion": "0g-world-cup-local-2026-06-23",
+            "sourceAttribution": "Local demo snapshot curated from publicly known national-team player identities; provider ratings are not copied."
+          },
+          {
+            "id": "bra-014",
+            "providerIds": {
+              "local": "0g-world-cup-local-2026-06-23:14"
+            },
+            "name": "Marquinhos",
+            "shortName": "Marquinhos",
+            "country": "Brazil",
+            "countryCode": "BRA",
+            "squad": "Brazil",
+            "shirtNumber": 4,
+            "position": "DF",
+            "detailedPosition": "Centre back",
+            "age": 32,
+            "height": 183,
+            "club": "Paris Saint-Germain",
+            "statsSource": "local-demo-snapshot",
+            "ratingSource": "0G World Rating ogr-v1 deterministic formula",
+            "worldRating": 84,
+            "attributes": {
+              "pace": 87,
+              "finishing": 55,
+              "passing": 81,
+              "control": 83,
+              "defense": 99,
+              "physical": 97,
+              "clutch": 89
+            },
+            "snapshotVersion": "0g-world-cup-local-2026-06-23",
+            "sourceAttribution": "Local demo snapshot curated from publicly known national-team player identities; provider ratings are not copied."
+          },
+          {
+            "id": "eng-020",
+            "providerIds": {
+              "local": "0g-world-cup-local-2026-06-23:20"
+            },
+            "name": "John Stones",
+            "shortName": "Stones",
+            "country": "England",
+            "countryCode": "ENG",
+            "squad": "England",
+            "shirtNumber": 5,
+            "position": "DF",
+            "detailedPosition": "Centre back",
+            "age": 32,
+            "height": 188,
+            "club": "Manchester City",
+            "statsSource": "local-demo-snapshot",
+            "ratingSource": "0G World Rating ogr-v1 deterministic formula",
+            "worldRating": 84,
+            "attributes": {
+              "pace": 87,
+              "finishing": 55,
+              "passing": 81,
+              "control": 83,
+              "defense": 99,
+              "physical": 97,
+              "clutch": 89
+            },
+            "snapshotVersion": "0g-world-cup-local-2026-06-23",
+            "sourceAttribution": "Local demo snapshot curated from publicly known national-team player identities; provider ratings are not copied."
+          },
+          {
+            "id": "fra-004",
+            "providerIds": {
+              "local": "0g-world-cup-local-2026-06-23:4"
+            },
+            "name": "Theo Hernandez",
+            "shortName": "T. Hernandez",
+            "country": "France",
+            "countryCode": "FRA",
+            "squad": "France",
+            "shirtNumber": 22,
+            "position": "DF",
+            "detailedPosition": "Left back",
+            "age": 28,
+            "height": 184,
+            "club": "AC Milan",
+            "statsSource": "local-demo-snapshot",
+            "ratingSource": "0G World Rating ogr-v1 deterministic formula",
+            "worldRating": 80,
+            "attributes": {
+              "pace": 82,
+              "finishing": 50,
+              "passing": 76,
+              "control": 78,
+              "defense": 97,
+              "physical": 92,
+              "clutch": 84
+            },
+            "snapshotVersion": "0g-world-cup-local-2026-06-23",
+            "sourceAttribution": "Local demo snapshot curated from publicly known national-team player identities; provider ratings are not copied."
+          },
+          {
+            "id": "arg-010",
+            "providerIds": {
+              "local": "0g-world-cup-local-2026-06-23:10"
+            },
+            "name": "Emiliano Martinez",
+            "shortName": "E. Martinez",
+            "country": "Argentina",
+            "countryCode": "ARG",
+            "squad": "Argentina",
+            "shirtNumber": 23,
+            "position": "GK",
+            "detailedPosition": "Goalkeeper",
+            "age": 33,
+            "height": 195,
+            "club": "Aston Villa",
+            "statsSource": "local-demo-snapshot",
+            "ratingSource": "0G World Rating ogr-v1 deterministic formula",
+            "worldRating": 78,
+            "attributes": {
+              "pace": 56,
+              "finishing": 42,
+              "passing": 76,
+              "control": 78,
+              "defense": 99,
+              "physical": 96,
+              "clutch": 98
+            },
+            "snapshotVersion": "0g-world-cup-local-2026-06-23",
+            "sourceAttribution": "Local demo snapshot curated from publicly known national-team player identities; provider ratings are not copied."
+          }
+        ],
+        "captainId": "arg-006"
+      },
+      {
+        "id": "away",
+        "name": "ZeroNine Scout",
+        "kind": "agent",
+        "formation": "3-5-2",
+        "tacticalStyle": "Counter",
+        "picks": [
+          {
+            "id": "fra-002",
+            "providerIds": {
+              "local": "0g-world-cup-local-2026-06-23:2"
+            },
+            "name": "Antoine Griezmann",
+            "shortName": "Griezmann",
+            "country": "France",
+            "countryCode": "FRA",
+            "squad": "France",
+            "shirtNumber": 7,
+            "position": "MF",
+            "detailedPosition": "Second striker",
+            "age": 35,
+            "height": 176,
+            "club": "Atletico Madrid",
+            "statsSource": "local-demo-snapshot",
+            "ratingSource": "0G World Rating ogr-v1 deterministic formula",
+            "worldRating": 91,
+            "attributes": {
+              "pace": 86,
+              "finishing": 82,
+              "passing": 99,
+              "control": 99,
+              "defense": 86,
+              "physical": 92,
+              "clutch": 96
+            },
+            "snapshotVersion": "0g-world-cup-local-2026-06-23",
+            "sourceAttribution": "Local demo snapshot curated from publicly known national-team player identities; provider ratings are not copied."
+          },
+          {
+            "id": "por-027",
+            "providerIds": {
+              "local": "0g-world-cup-local-2026-06-23:27"
+            },
+            "name": "Bruno Fernandes",
+            "shortName": "Fernandes",
+            "country": "Portugal",
+            "countryCode": "POR",
+            "squad": "Portugal",
+            "shirtNumber": 8,
+            "position": "MF",
+            "detailedPosition": "Attacking midfield",
+            "age": 31,
+            "height": 179,
+            "club": "Manchester United",
+            "statsSource": "local-demo-snapshot",
+            "ratingSource": "0G World Rating ogr-v1 deterministic formula",
+            "worldRating": 91,
+            "attributes": {
+              "pace": 85,
+              "finishing": 81,
+              "passing": 99,
+              "control": 99,
+              "defense": 85,
+              "physical": 91,
+              "clutch": 95
+            },
+            "snapshotVersion": "0g-world-cup-local-2026-06-23",
+            "sourceAttribution": "Local demo snapshot curated from publicly known national-team player identities; provider ratings are not copied."
+          },
+          {
+            "id": "bra-013",
+            "providerIds": {
+              "local": "0g-world-cup-local-2026-06-23:13"
+            },
+            "name": "Bruno Guimaraes",
+            "shortName": "Guimaraes",
+            "country": "Brazil",
+            "countryCode": "BRA",
+            "squad": "Brazil",
+            "shirtNumber": 5,
+            "position": "MF",
+            "detailedPosition": "Central midfield",
+            "age": 28,
+            "height": 182,
+            "club": "Newcastle United",
+            "statsSource": "local-demo-snapshot",
+            "ratingSource": "0G World Rating ogr-v1 deterministic formula",
+            "worldRating": 90,
+            "attributes": {
+              "pace": 84,
+              "finishing": 80,
+              "passing": 99,
+              "control": 99,
+              "defense": 84,
+              "physical": 90,
+              "clutch": 94
+            },
+            "snapshotVersion": "0g-world-cup-local-2026-06-23",
+            "sourceAttribution": "Local demo snapshot curated from publicly known national-team player identities; provider ratings are not copied."
+          },
+          {
+            "id": "eng-017",
+            "providerIds": {
+              "local": "0g-world-cup-local-2026-06-23:17"
+            },
+            "name": "Jude Bellingham",
+            "shortName": "Bellingham",
+            "country": "England",
+            "countryCode": "ENG",
+            "squad": "England",
+            "shirtNumber": 10,
+            "position": "MF",
+            "detailedPosition": "Attacking midfield",
+            "age": 23,
+            "height": 186,
+            "club": "Real Madrid",
+            "statsSource": "local-demo-snapshot",
+            "ratingSource": "0G World Rating ogr-v1 deterministic formula",
+            "worldRating": 90,
+            "attributes": {
+              "pace": 84,
+              "finishing": 80,
+              "passing": 99,
+              "control": 99,
+              "defense": 84,
+              "physical": 90,
+              "clutch": 97
+            },
+            "snapshotVersion": "0g-world-cup-local-2026-06-23",
+            "sourceAttribution": "Local demo snapshot curated from publicly known national-team player identities; provider ratings are not copied."
+          },
+          {
+            "id": "eng-019",
+            "providerIds": {
+              "local": "0g-world-cup-local-2026-06-23:19"
+            },
+            "name": "Declan Rice",
+            "shortName": "Rice",
+            "country": "England",
+            "countryCode": "ENG",
+            "squad": "England",
+            "shirtNumber": 4,
+            "position": "MF",
+            "detailedPosition": "Defensive midfield",
+            "age": 27,
+            "height": 185,
+            "club": "Arsenal",
+            "statsSource": "local-demo-snapshot",
+            "ratingSource": "0G World Rating ogr-v1 deterministic formula",
+            "worldRating": 89,
+            "attributes": {
+              "pace": 83,
+              "finishing": 79,
+              "passing": 99,
+              "control": 99,
+              "defense": 83,
+              "physical": 89,
+              "clutch": 93
+            },
+            "snapshotVersion": "0g-world-cup-local-2026-06-23",
+            "sourceAttribution": "Local demo snapshot curated from publicly known national-team player identities; provider ratings are not copied."
+          },
+          {
+            "id": "fra-001",
+            "providerIds": {
+              "local": "0g-world-cup-local-2026-06-23:1"
+            },
+            "name": "Kylian Mbappe",
+            "shortName": "Mbappe",
+            "country": "France",
+            "countryCode": "FRA",
+            "squad": "France",
+            "shirtNumber": 10,
+            "position": "FW",
+            "detailedPosition": "Left forward",
+            "age": 27,
+            "height": 178,
+            "club": "Real Madrid",
+            "statsSource": "local-demo-snapshot",
+            "ratingSource": "0G World Rating ogr-v1 deterministic formula",
+            "worldRating": 88,
+            "attributes": {
+              "pace": 97,
+              "finishing": 99,
+              "passing": 85,
+              "control": 95,
+              "defense": 53,
+              "physical": 87,
+              "clutch": 99
+            },
+            "snapshotVersion": "0g-world-cup-local-2026-06-23",
+            "sourceAttribution": "Local demo snapshot curated from publicly known national-team player identities; provider ratings are not copied."
+          },
+          {
+            "id": "por-026",
+            "providerIds": {
+              "local": "0g-world-cup-local-2026-06-23:26"
+            },
+            "name": "Cristiano Ronaldo",
+            "shortName": "Ronaldo",
+            "country": "Portugal",
+            "countryCode": "POR",
+            "squad": "Portugal",
+            "shirtNumber": 7,
+            "position": "FW",
+            "detailedPosition": "Striker",
+            "age": 41,
+            "height": 187,
+            "club": "Al Nassr",
+            "statsSource": "local-demo-snapshot",
+            "ratingSource": "0G World Rating ogr-v1 deterministic formula",
+            "worldRating": 88,
+            "attributes": {
+              "pace": 97,
+              "finishing": 99,
+              "passing": 85,
+              "control": 95,
+              "defense": 53,
+              "physical": 87,
+              "clutch": 97
+            },
+            "snapshotVersion": "0g-world-cup-local-2026-06-23",
+            "sourceAttribution": "Local demo snapshot curated from publicly known national-team player identities; provider ratings are not copied."
+          },
+          {
+            "id": "arg-009",
+            "providerIds": {
+              "local": "0g-world-cup-local-2026-06-23:9"
+            },
+            "name": "Cristian Romero",
+            "shortName": "Romero",
+            "country": "Argentina",
+            "countryCode": "ARG",
+            "squad": "Argentina",
+            "shirtNumber": 13,
+            "position": "DF",
+            "detailedPosition": "Centre back",
+            "age": 28,
+            "height": 185,
+            "club": "Tottenham",
+            "statsSource": "local-demo-snapshot",
+            "ratingSource": "0G World Rating ogr-v1 deterministic formula",
+            "worldRating": 84,
+            "attributes": {
+              "pace": 87,
+              "finishing": 55,
+              "passing": 81,
+              "control": 83,
+              "defense": 99,
+              "physical": 97,
+              "clutch": 89
+            },
+            "snapshotVersion": "0g-world-cup-local-2026-06-23",
+            "sourceAttribution": "Local demo snapshot curated from publicly known national-team player identities; provider ratings are not copied."
+          },
+          {
+            "id": "por-029",
+            "providerIds": {
+              "local": "0g-world-cup-local-2026-06-23:29"
+            },
+            "name": "Ruben Dias",
+            "shortName": "Dias",
+            "country": "Portugal",
+            "countryCode": "POR",
+            "squad": "Portugal",
+            "shirtNumber": 4,
+            "position": "DF",
+            "detailedPosition": "Centre back",
+            "age": 29,
+            "height": 187,
+            "club": "Manchester City",
+            "statsSource": "local-demo-snapshot",
+            "ratingSource": "0G World Rating ogr-v1 deterministic formula",
+            "worldRating": 82,
+            "attributes": {
+              "pace": 84,
+              "finishing": 52,
+              "passing": 78,
+              "control": 80,
+              "defense": 99,
+              "physical": 94,
+              "clutch": 86
+            },
+            "snapshotVersion": "0g-world-cup-local-2026-06-23",
+            "sourceAttribution": "Local demo snapshot curated from publicly known national-team player identities; provider ratings are not copied."
+          },
+          {
+            "id": "can-041",
+            "providerIds": {
+              "local": "0g-world-cup-local-2026-06-23:41"
+            },
+            "name": "Alphonso Davies",
+            "shortName": "Davies",
+            "country": "Canada",
+            "countryCode": "CAN",
+            "squad": "Canada",
+            "shirtNumber": 19,
+            "position": "DF",
+            "detailedPosition": "Left back",
+            "age": 25,
+            "height": 185,
+            "club": "Bayern Munich",
+            "statsSource": "local-demo-snapshot",
+            "ratingSource": "0G World Rating ogr-v1 deterministic formula",
+            "worldRating": 81,
+            "attributes": {
+              "pace": 83,
+              "finishing": 51,
+              "passing": 77,
+              "control": 79,
+              "defense": 98,
+              "physical": 93,
+              "clutch": 85
+            },
+            "snapshotVersion": "0g-world-cup-local-2026-06-23",
+            "sourceAttribution": "Local demo snapshot curated from publicly known national-team player identities; provider ratings are not copied."
+          },
+          {
+            "id": "fra-005",
+            "providerIds": {
+              "local": "0g-world-cup-local-2026-06-23:5"
+            },
+            "name": "Mike Maignan",
+            "shortName": "Maignan",
+            "country": "France",
+            "countryCode": "FRA",
+            "squad": "France",
+            "shirtNumber": 16,
+            "position": "GK",
+            "detailedPosition": "Goalkeeper",
+            "age": 30,
+            "height": 191,
+            "club": "AC Milan",
+            "statsSource": "local-demo-snapshot",
+            "ratingSource": "0G World Rating ogr-v1 deterministic formula",
+            "worldRating": 77,
+            "attributes": {
+              "pace": 55,
+              "finishing": 41,
+              "passing": 75,
+              "control": 77,
+              "defense": 99,
+              "physical": 95,
+              "clutch": 97
+            },
+            "snapshotVersion": "0g-world-cup-local-2026-06-23",
+            "sourceAttribution": "Local demo snapshot curated from publicly known national-team player identities; provider ratings are not copied."
+          }
+        ],
+        "captainId": "eng-017"
+      }
+    ],
+    "draftLog": [
+      "Gabriel XI drafted Vinicius Jr (BRA)",
+      "ZeroNine Scout drafted Griezmann (FRA)",
+      "ZeroNine Scout drafted Fernandes (POR)",
+      "Gabriel XI drafted Kane (ENG)",
+      "Gabriel XI drafted Messi (ARG)",
+      "ZeroNine Scout drafted Guimaraes (BRA)",
+      "ZeroNine Scout drafted Bellingham (ENG)",
+      "Gabriel XI drafted Rodri (ESP)",
+      "Gabriel XI drafted Musiala (GER)",
+      "ZeroNine Scout drafted Rice (ENG)",
+      "ZeroNine Scout drafted Mbappe (FRA)",
+      "Gabriel XI drafted Mac Allister (ARG)",
+      "Gabriel XI drafted Carvajal (ESP)",
+      "ZeroNine Scout drafted Ronaldo (POR)",
+      "ZeroNine Scout drafted Romero (ARG)",
+      "Gabriel XI drafted Marquinhos (BRA)",
+      "Gabriel XI drafted Stones (ENG)",
+      "ZeroNine Scout drafted Dias (POR)",
+      "ZeroNine Scout drafted Davies (CAN)",
+      "Gabriel XI drafted T. Hernandez (FRA)",
+      "Gabriel XI drafted E. Martinez (ARG)",
+      "ZeroNine Scout drafted Maignan (FRA)"
+    ]
+  },
+  "result": {
+    "type": "match",
+    "roomId": "room-human-vs-agent-proof-1782223777",
+    "home": "Gabriel XI",
+    "away": "ZeroNine Scout",
+    "homeScore": 9,
+    "awayScore": 8,
+    "winner": "Gabriel XI",
+    "mvp": {
+      "id": "bra-011",
+      "providerIds": {
+        "local": "0g-world-cup-local-2026-06-23:11"
+      },
+      "name": "Vinicius Junior",
+      "shortName": "Vinicius Jr",
+      "country": "Brazil",
+      "countryCode": "BRA",
+      "squad": "Brazil",
+      "shirtNumber": 7,
+      "position": "FW",
+      "detailedPosition": "Left winger",
+      "age": 25,
+      "height": 176,
+      "club": "Real Madrid",
+      "statsSource": "local-demo-snapshot",
+      "ratingSource": "0G World Rating ogr-v1 deterministic formula",
+      "worldRating": 90,
+      "attributes": {
+        "pace": 99,
+        "finishing": 99,
+        "passing": 88,
+        "control": 98,
+        "defense": 56,
+        "physical": 90,
+        "clutch": 99
+      },
+      "snapshotVersion": "0g-world-cup-local-2026-06-23",
+      "sourceAttribution": "Local demo snapshot curated from publicly known national-team player identities; provider ratings are not copied."
+    },
+    "events": [
+      "Vinicius Jr tilted the match with a 99 clutch rating.",
+      "Possession created the decisive edge over 68 power points.",
+      "Snapshot 0g-world-cup-local-2026-06-23 locked before kickoff."
+    ],
+    "tacticalSummary": "Gabriel XI won through 4-3-3 spacing, possession triggers, and captain leverage.",
+    "winExplanation": "Gabriel XI had the stronger formation fit after draft scarcity removed duplicate picks from the room pool.",
+    "lineupHash": "0x0d2d4599",
+    "simulationHash": "0xf6bf820e",
+    "storageUri": "0g://local-demo/f6bf820e",
+    "computeMode": "deterministic fallback",
+    "proofPacket": {
+      "schema": "0g-world-cup-proof-v1",
+      "roomId": "room-human-vs-agent-proof-1782223777",
+      "mode": "human-vs-agent",
+      "generatedAt": "1970-01-01T00:00:00.000Z",
+      "chainId": 16602,
+      "snapshotVersion": "0g-world-cup-local-2026-06-23",
+      "snapshotHash": "0xa689451a",
+      "lineupHash": "0x0d2d4599",
+      "resultHash": "0xf6bf820e",
+      "storageUri": "0g://local-demo/f6bf820e",
+      "receiptHash": "0xe2c907fa",
+      "services": [
+        {
+          "name": "chain",
+          "label": "0G Chain",
+          "status": "ready",
+          "summary": "Galileo contracts are configured for lineup, escrow, and result commitments.",
+          "artifact": "0xdB49AF99A4C0D1CFaa3bd31D1a8F2792107dad68, 0xbFe4c871074b97746D7b80d3Bf0715237C91477a, 0x8BD7bE5e0BA7cf870910b22A3eD891FCDfa4e7C7",
+          "explorerUrl": "https://chainscan-galileo.0g.ai/address/0x8BD7bE5e0BA7cf870910b22A3eD891FCDfa4e7C7"
+        },
+        {
+          "name": "storage",
+          "label": "0G Storage",
+          "status": "ready",
+          "summary": "Receipt payload is deterministic and ready for the live storage upload script.",
+          "artifact": "0g://local-demo/f6bf820e"
+        },
+        {
+          "name": "compute",
+          "label": "0G Compute",
+          "status": "fallback",
+          "summary": "Simulation is using the deterministic local engine until a Router key is configured.",
+          "artifact": "deterministic fallback"
+        },
+        {
+          "name": "da",
+          "label": "0G DA",
+          "status": "planned",
+          "summary": "Tournament event blobs are shaped for DA batch submission once a DA client is running.",
+          "artifact": "events:3"
+        },
+        {
+          "name": "agentic-id",
+          "label": "Agentic ID",
+          "status": "ready",
+          "summary": "Room includes AI-agent participants ready to map to ERC-7857 metadata.",
+          "artifact": "ZeroNine Scout"
+        }
+      ]
+    }
+  },
+  "proofPacket": {
+    "schema": "0g-world-cup-proof-v1",
+    "roomId": "room-human-vs-agent-proof-1782223777",
+    "mode": "human-vs-agent",
+    "generatedAt": "1970-01-01T00:00:00.000Z",
+    "chainId": 16602,
+    "snapshotVersion": "0g-world-cup-local-2026-06-23",
+    "snapshotHash": "0xa689451a",
+    "lineupHash": "0x0d2d4599",
+    "resultHash": "0xf6bf820e",
+    "storageUri": "0g://local-demo/f6bf820e",
+    "receiptHash": "0xe2c907fa",
+    "services": [
+      {
+        "name": "chain",
+        "label": "0G Chain",
+        "status": "ready",
+        "summary": "Galileo contracts are configured for lineup, escrow, and result commitments.",
+        "artifact": "0xdB49AF99A4C0D1CFaa3bd31D1a8F2792107dad68, 0xbFe4c871074b97746D7b80d3Bf0715237C91477a, 0x8BD7bE5e0BA7cf870910b22A3eD891FCDfa4e7C7",
+        "explorerUrl": "https://chainscan-galileo.0g.ai/address/0x8BD7bE5e0BA7cf870910b22A3eD891FCDfa4e7C7"
+      },
+      {
+        "name": "storage",
+        "label": "0G Storage",
+        "status": "ready",
+        "summary": "Receipt payload is deterministic and ready for the live storage upload script.",
+        "artifact": "0g://local-demo/f6bf820e"
+      },
+      {
+        "name": "compute",
+        "label": "0G Compute",
+        "status": "fallback",
+        "summary": "Simulation is using the deterministic local engine until a Router key is configured.",
+        "artifact": "deterministic fallback"
+      },
+      {
+        "name": "da",
+        "label": "0G DA",
+        "status": "planned",
+        "summary": "Tournament event blobs are shaped for DA batch submission once a DA client is running.",
+        "artifact": "events:3"
+      },
+      {
+        "name": "agentic-id",
+        "label": "Agentic ID",
+        "status": "ready",
+        "summary": "Room includes AI-agent participants ready to map to ERC-7857 metadata.",
+        "artifact": "ZeroNine Scout"
+      }
+    ]
+  }
+}

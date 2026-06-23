@@ -1,0 +1,17 @@
+{
+  "status": "minted",
+  "agentId": "agent-zero-nine",
+  "displayName": "ZeroNine Scout",
+  "encryptedMetadataHash": "0x57ca841db653ecb857f73a76fb694122c11aefc0e7fce617747e87bde7377d3b",
+  "rootHash": "0x5f7bdadd19e7dd63d84a49c1bb4ee61027e59e21019315f7889fbc194062d90c",
+  "txHash": "0xa4d4bb5a6d667e683794361f3872e643affeb533f13d3acb2f1b9eb915846bc3",
+  "storageUri": "0g://storage/0x5f7bdadd19e7dd63d84a49c1bb4ee61027e59e21019315f7889fbc194062d90c",
+  "contract": "0x38Cc945DAB9A0fe2b04E7F70cea3a41B3837A5ab",
+  "contractStatus": "minted",
+  "indexerRpc": "https://indexer-storage-testnet-turbo.0g.ai",
+  "reused": "Reused Agentic ID registry metadata root and mint for the default agent.",
+  "tokenId": "2",
+  "mintTxHash": "0xdc7b52f288a7425f2c1b9b16cf38770a6f1f6dc50bde7d0811df8628ffececb6",
+  "mintBlockNumber": "40353244",
+  "owner": "0x3D325E51934AE5c7EBf9f37a8Ddf772F48F766Fb"
+}

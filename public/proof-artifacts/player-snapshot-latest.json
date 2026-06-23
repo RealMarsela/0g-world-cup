@@ -1,0 +1,14 @@
+{
+  "status": "pending-finality",
+  "snapshotVersion": "0g-world-cup-history-1970-2022",
+  "snapshotHash": "0x10083228b84402ab9d2ac1f65629aaeebddd2bcdc20597ac2cca3a44b9d44026",
+  "contentHash": "0x13a918dcfe9f88e967712de26a22a33e6ed8745555ff8fce2362994c7212780c",
+  "playerCount": 8379,
+  "teamCount": 368,
+  "sourceAttribution": "Fjelstul World Cup Database v1.2.0, Joshua C. Fjelstul, CC-BY-SA 4.0; transformed for 0G World Cup gameplay.",
+  "indexerRpc": "https://indexer-storage-testnet-turbo.0g.ai",
+  "rootHash": "0x536d977d3ccda6855efe75441df32fd3961259477750b80c7b1ab41dd68b4fee",
+  "txHash": "0xed3a0e4cc9a2043ebe61526a372eaaa21e878185316d25e1125c8d13482f73fa",
+  "storageUri": "0g://storage/0x536d977d3ccda6855efe75441df32fd3961259477750b80c7b1ab41dd68b4fee",
+  "reason": "0G Storage transaction submitted and segments uploaded; SDK finality wait was still pending for the 4.35 MB historical snapshot."
+}

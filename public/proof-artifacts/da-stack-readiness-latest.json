@@ -1,0 +1,120 @@
+{
+  "schema": "0g-world-cup-da-stack-readiness-v1",
+  "status": "blocked",
+  "generatedAt": "1970-01-01T00:00:00.000Z",
+  "officialDocs": {
+    "url": "https://docs.0g.ai/developer-hub/building-on-0g/da-integration",
+    "requirement": "0G DA live submission requires DA Client, Encoder, and Retriever. Common local ports: DA Client gRPC 51001, Encoder 34000, Retriever 34005.",
+    "maxBlobBytes": 32505852
+  },
+  "docker": {
+    "installed": true,
+    "daemonReachable": false,
+    "composeAvailable": false,
+    "composePluginAvailable": false,
+    "composeStandaloneAvailable": false,
+    "colimaAvailable": true,
+    "colimaRunning": false,
+    "version": "Docker version 29.6.0, build fb59821d45",
+    "daemon": "failed to connect to the docker API at unix:///Users/gabrielantonyxaviour/.colima/default/docker.sock; check if the path is correct and if the daemon is running: dial unix /Users/gabrielantonyxaviour/.colima/default/docker.sock: connect: no such file or directory",
+    "compose": "docker: unknown command: docker compose\n\nRun 'docker --help' for more information",
+    "composeStandalone": "",
+    "colima": "time=\"2026-06-24T03:01:04+07:00\" level=fatal msg=\"colima is not running\"",
+    "containers": "failed to connect to the docker API at unix:///Users/gabrielantonyxaviour/.colima/default/docker.sock; check if the path is correct and if the daemon is running: dial unix /Users/gabrielantonyxaviour/.colima/default/docker.sock: connect: no such file or directory"
+  },
+  "generatedFiles": {
+    "envfile": {
+      "path": ".da-stack/envfile.env",
+      "exists": true,
+      "bytes": 1139,
+      "hasPrivateKey": true
+    },
+    "retrieverConfig": {
+      "path": ".da-stack/retriever-config.toml",
+      "exists": true,
+      "bytes": 186,
+      "hasPrivateKey": false
+    },
+    "readme": {
+      "path": ".da-stack/README.md",
+      "exists": true,
+      "bytes": 892,
+      "hasPrivateKey": false
+    },
+    "composeTemplate": {
+      "path": "scripts/da-stack/docker-compose.0g-da.yml",
+      "exists": true,
+      "bytes": 724,
+      "hasPrivateKey": false
+    }
+  },
+  "endpoints": {
+    "sidecarUrl": "http://127.0.0.1:51080",
+    "daClientGrpc": "",
+    "ports": [
+      {
+        "host": "127.0.0.1",
+        "port": 51080,
+        "listening": true
+      },
+      {
+        "host": "127.0.0.1",
+        "port": 51001,
+        "listening": false,
+        "reason": "connect ECONNREFUSED 127.0.0.1:51001"
+      },
+      {
+        "host": "127.0.0.1",
+        "port": 34000,
+        "listening": false,
+        "reason": "connect ECONNREFUSED 127.0.0.1:34000"
+      },
+      {
+        "host": "127.0.0.1",
+        "port": 34005,
+        "listening": false,
+        "reason": "connect ECONNREFUSED 127.0.0.1:34005"
+      }
+    ],
+    "sidecar": {
+      "reachable": true,
+      "statusCode": 200,
+      "body": {
+        "schema": "0g-da-sidecar-status-v1",
+        "status": "blocked",
+        "daClientGrpc": "",
+        "retrieverUrl": "",
+        "maxBlobBytes": 32505852,
+        "reason": "Missing OG_DA_CLIENT_GRPC_URL. Run 0G DA Client plus Encoder/Retriever, then restart this sidecar."
+      }
+    },
+    "sidecarListening": true,
+    "daClientListening": false,
+    "encoderListening": false,
+    "retrieverListening": false
+  },
+  "checks": {
+    "dockerInstalled": true,
+    "dockerDaemonReachable": false,
+    "dockerComposeAvailable": false,
+    "colimaRunning": false,
+    "generatedEnvfile": true,
+    "generatedRetrieverConfig": true,
+    "generatedComposeTemplate": true,
+    "envfileHasPrivateKey": true,
+    "sidecarReachable": true,
+    "daClientListening": false,
+    "encoderListening": false,
+    "retrieverListening": false
+  },
+  "reason": "0G DA stack is not live yet. Generated .da-stack files exist, but Docker/Colima and/or compose/DA processes are not ready. Start Colima or Docker, ensure Docker Compose is available, build official DA images, run the compose stack, and set OG_DA_CLIENT_GRPC_URL=127.0.0.1:51001.",
+  "env": {
+    "rpc": "https://evmrpc-testnet.0g.ai",
+    "storageIndexer": "https://indexer-storage-testnet-turbo.0g.ai",
+    "computeEndpoint": "https://router-api.0g.ai/v1",
+    "daClientGrpc": "",
+    "hasStorageSigner": true,
+    "hasComputeKey": true,
+    "hasDaClient": false
+  }
+}

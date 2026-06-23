@@ -1,0 +1,144 @@
+{
+  "requests": {
+    "a948c5bf-3952-4fc1-9ef9-3d34aa0ecd04": {
+      "schema": "0g-da-sidecar-submit-v1",
+      "requestId": "a948c5bf-3952-4fc1-9ef9-3d34aa0ecd04",
+      "blobHash": "0x25128492dc394c2491ef35377579a3416f3b1e928fbf5de26a8dfac5c476ac52",
+      "blobBytes": 525,
+      "maxBlobBytes": 32505852,
+      "receivedAt": "2026-06-23T18:40:22.542Z",
+      "status": "blocked",
+      "reason": "Missing OG_DA_CLIENT_GRPC_URL. 0G DA live submission requires a DA Client plus Encoder/Retriever."
+    },
+    "e4ec8aa6-eadd-4f2c-a6b9-ee088b212f68": {
+      "schema": "0g-da-sidecar-submit-v1",
+      "requestId": "e4ec8aa6-eadd-4f2c-a6b9-ee088b212f68",
+      "blobHash": "0xcc5fc3f1158c3ca531444960ab93abf081e503f71cde725eaa97525f363022ef",
+      "blobBytes": 11193,
+      "maxBlobBytes": 32505852,
+      "receivedAt": "2026-06-23T18:40:44.696Z",
+      "status": "blocked",
+      "reason": "Missing OG_DA_CLIENT_GRPC_URL. 0G DA live submission requires a DA Client plus Encoder/Retriever."
+    },
+    "3b27243a-2fa2-4e12-9528-f7315df177a0": {
+      "schema": "0g-da-sidecar-submit-v1",
+      "requestId": "3b27243a-2fa2-4e12-9528-f7315df177a0",
+      "blobHash": "0x0ce3ee63402ca85b74f33932f2391aecbec09c0723ea867360d482012e8a0c3b",
+      "blobBytes": 11193,
+      "maxBlobBytes": 32505852,
+      "receivedAt": "2026-06-23T18:56:59.486Z",
+      "status": "blocked",
+      "reason": "Missing OG_DA_CLIENT_GRPC_URL. 0G DA live submission requires a DA Client plus Encoder/Retriever."
+    },
+    "26c08300-f00f-4fdf-8c04-012fbd8f5848": {
+      "schema": "0g-da-sidecar-submit-v1",
+      "requestId": "26c08300-f00f-4fdf-8c04-012fbd8f5848",
+      "blobHash": "0xde2b6479617dcaf6b2f25a479d38687a95258df988c43cd79a418be9d5a8fbd2",
+      "blobBytes": 13461,
+      "maxBlobBytes": 32505852,
+      "receivedAt": "2026-06-23T19:05:01.408Z",
+      "status": "blocked",
+      "reason": "Missing OG_DA_CLIENT_GRPC_URL. 0G DA live submission requires a DA Client plus Encoder/Retriever."
+    },
+    "28635d43-7458-4c15-86e2-0e474b17aeed": {
+      "schema": "0g-da-sidecar-submit-v1",
+      "requestId": "28635d43-7458-4c15-86e2-0e474b17aeed",
+      "blobHash": "0xdd98a4f7ec2dd99bad4269e9649244840962cb3d087eafa4bf4be8ab0901f7a5",
+      "blobBytes": 13461,
+      "maxBlobBytes": 32505852,
+      "receivedAt": "2026-06-23T19:06:42.166Z",
+      "status": "blocked",
+      "reason": "Missing OG_DA_CLIENT_GRPC_URL. 0G DA live submission requires a DA Client plus Encoder/Retriever."
+    },
+    "c84ad94b-4a5a-49fb-8b3c-2169d6f3e85d": {
+      "schema": "0g-da-sidecar-submit-v1",
+      "requestId": "c84ad94b-4a5a-49fb-8b3c-2169d6f3e85d",
+      "blobHash": "0xd58da0f9ece0f87cf4f268edb1522c351f010d2749024c1442bff43a9cd7d10d",
+      "blobBytes": 13438,
+      "maxBlobBytes": 32505852,
+      "receivedAt": "2026-06-23T19:10:48.715Z",
+      "status": "blocked",
+      "reason": "Missing OG_DA_CLIENT_GRPC_URL. 0G DA live submission requires a DA Client plus Encoder/Retriever."
+    },
+    "788f109a-18b2-4b78-86bc-d8606c2006e2": {
+      "schema": "0g-da-sidecar-submit-v1",
+      "requestId": "788f109a-18b2-4b78-86bc-d8606c2006e2",
+      "blobHash": "0x5ca6e5279be00ade0104374f36eb3a9e4169b2c2fd242870bd846430128deb8f",
+      "blobBytes": 16177,
+      "maxBlobBytes": 32505852,
+      "receivedAt": "2026-06-23T19:23:23.976Z",
+      "status": "blocked",
+      "reason": "Missing OG_DA_CLIENT_GRPC_URL. 0G DA live submission requires a DA Client plus Encoder/Retriever."
+    },
+    "c6531fe7-4414-4b59-84f3-78eb9480dfa7": {
+      "schema": "0g-da-sidecar-submit-v1",
+      "requestId": "c6531fe7-4414-4b59-84f3-78eb9480dfa7",
+      "blobHash": "0x6910515c87b46bfa9cf588239a442a2544b154c4589cc6c4111344dc9893e058",
+      "blobBytes": 16177,
+      "maxBlobBytes": 32505852,
+      "receivedAt": "2026-06-23T19:26:19.267Z",
+      "status": "blocked",
+      "reason": "Missing OG_DA_CLIENT_GRPC_URL. 0G DA live submission requires a DA Client plus Encoder/Retriever."
+    },
+    "f13e9b5d-2c60-49ba-8d85-e4c1a06ea470": {
+      "schema": "0g-da-sidecar-submit-v1",
+      "requestId": "f13e9b5d-2c60-49ba-8d85-e4c1a06ea470",
+      "blobHash": "0xea68d41e5895d95cd7b825c84405d6521ab8e5f848faf52786ca71002642b5bc",
+      "blobBytes": 18868,
+      "maxBlobBytes": 32505852,
+      "receivedAt": "2026-06-23T19:32:50.861Z",
+      "status": "blocked",
+      "reason": "Missing OG_DA_CLIENT_GRPC_URL. 0G DA live submission requires a DA Client plus Encoder/Retriever."
+    },
+    "70435b66-73bd-4eba-88f1-92d00cbbf900": {
+      "schema": "0g-da-sidecar-submit-v1",
+      "requestId": "70435b66-73bd-4eba-88f1-92d00cbbf900",
+      "blobHash": "0x7f17022a83887467ad1ef3396e43894f470092170ce1a77a3a0f70e8c8cf1ce1",
+      "blobBytes": 20793,
+      "maxBlobBytes": 32505852,
+      "receivedAt": "2026-06-23T19:37:09.274Z",
+      "status": "blocked",
+      "reason": "Missing OG_DA_CLIENT_GRPC_URL. 0G DA live submission requires a DA Client plus Encoder/Retriever."
+    },
+    "6f517c55-88fd-412f-bf62-f9cba8326d71": {
+      "schema": "0g-da-sidecar-submit-v1",
+      "requestId": "6f517c55-88fd-412f-bf62-f9cba8326d71",
+      "blobHash": "0xaafda792b3d824183282e281f6071697958778e8b7adb504328132e11356b607",
+      "blobBytes": 22820,
+      "maxBlobBytes": 32505852,
+      "receivedAt": "2026-06-23T19:46:49.413Z",
+      "status": "blocked",
+      "reason": "Missing OG_DA_CLIENT_GRPC_URL. 0G DA live submission requires a DA Client plus Encoder/Retriever."
+    },
+    "d58e9685-9a3b-41f2-9281-1a1a4ae49233": {
+      "schema": "0g-da-sidecar-submit-v1",
+      "requestId": "d58e9685-9a3b-41f2-9281-1a1a4ae49233",
+      "blobHash": "0xa315e5d030b90960f34dc42d330742f6f387fe295cc541bd5d92adbc60359005",
+      "blobBytes": 25015,
+      "maxBlobBytes": 32505852,
+      "receivedAt": "2026-06-23T19:54:08.765Z",
+      "status": "blocked",
+      "reason": "Missing OG_DA_CLIENT_GRPC_URL. 0G DA live submission requires a DA Client plus Encoder/Retriever."
+    },
+    "cf2a1c50-3c74-4274-824e-a8f2b903750d": {
+      "schema": "0g-da-sidecar-submit-v1",
+      "requestId": "cf2a1c50-3c74-4274-824e-a8f2b903750d",
+      "blobHash": "0xf63157433f6b88e561260b7a2d929928812f2e04235166bf8fb1be37842bebcc",
+      "blobBytes": 28181,
+      "maxBlobBytes": 32505852,
+      "receivedAt": "2026-06-23T20:00:40.386Z",
+      "status": "blocked",
+      "reason": "Missing OG_DA_CLIENT_GRPC_URL. 0G DA live submission requires a DA Client plus Encoder/Retriever."
+    },
+    "c95d2544-fa0f-480b-af7c-d085c5646d27": {
+      "schema": "0g-da-sidecar-submit-v1",
+      "requestId": "c95d2544-fa0f-480b-af7c-d085c5646d27",
+      "blobHash": "0x2a4955216d8615c99f80bdfc732f9d5dc82ba4f8d5beb96b65e56d13efdf0ee0",
+      "blobBytes": 28532,
+      "maxBlobBytes": 32505852,
+      "receivedAt": "2026-06-23T20:01:19.276Z",
+      "status": "blocked",
+      "reason": "Missing OG_DA_CLIENT_GRPC_URL. 0G DA live submission requires a DA Client plus Encoder/Retriever."
+    }
+  }
+}

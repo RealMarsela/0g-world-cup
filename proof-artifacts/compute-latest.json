@@ -1,0 +1,15 @@
+{
+  "status": "blocked",
+  "reason": "0G Compute Router request failed: 402 {\"error\":{\"message\":\"Insufficient balance\",\"type\":\"payment_error\",\"code\":\"insufficient_balance\"},\"request_id\":\"9af5bf2e-4f9d-475a-86ee-eb50221654ec\"}",
+  "endpoint": "https://router-api.0g.ai/v1",
+  "model": "glm-5.1",
+  "env": {
+    "rpc": "https://evmrpc-testnet.0g.ai",
+    "storageIndexer": "https://indexer-storage-testnet-turbo.0g.ai",
+    "computeEndpoint": "https://router-api.0g.ai/v1",
+    "daClientGrpc": "",
+    "hasStorageSigner": true,
+    "hasComputeKey": true,
+    "hasDaClient": false
+  }
+}

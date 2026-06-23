@@ -1,0 +1,55 @@
+{
+  "status": "live",
+  "chainId": 16602,
+  "blockNumber": "40355133",
+  "contracts": {
+    "draft": {
+      "address": "0x37AE4f4BA75b203f45137E7d6C2059d0a0F36475",
+      "hasCode": true,
+      "byteLength": 1732
+    },
+    "escrow": {
+      "address": "0xeDf443C63A85daFBE7BF673C5b32a0560aCa832d",
+      "hasCode": true,
+      "byteLength": 1794
+    },
+    "results": {
+      "address": "0xc90115A1A35a7B2F2741B2683eE122c25a43dBf6",
+      "hasCode": true,
+      "byteLength": 1806
+    },
+    "agentId": {
+      "address": "0x38Cc945DAB9A0fe2b04E7F70cea3a41B3837A5ab",
+      "hasCode": true,
+      "byteLength": 3761
+    }
+  },
+  "resultReadback": {
+    "roomId": "room-human-vs-agent-chain-1782223853",
+    "roomHash": "0x961843ba9f66482dffc702d26eca6b7c455ce0e507252c45b511bc2d6dd13a3b",
+    "snapshotHash": "0x10083228b84402ab9d2ac1f65629aaeebddd2bcdc20597ac2cca3a44b9d44026",
+    "lineupHash": "0x39070ecb5775c4d772598ac31a3657786f24174a7f2b4d49e76b305f0eaf6146",
+    "resultHash": "0x97cb7d1e29ccccf0c745d6b66a048dab6dce566d49f28a64cec5e63e96bbab5f",
+    "storageUri": "0g://storage/0xc7620208c2d553b2a12e473548da871536449bf38471f49f3da3bb1b22c84ef5",
+    "winner": "0x3D325E51934AE5c7EBf9f37a8Ddf772F48F766Fb",
+    "exists": true
+  },
+  "agenticReadback": {
+    "tokenId": "2",
+    "owner": "0x3D325E51934AE5c7EBf9f37a8Ddf772F48F766Fb",
+    "encryptedMetadataHash": "0x57ca841db653ecb857f73a76fb694122c11aefc0e7fce617747e87bde7377d3b",
+    "storageUri": "0g://storage/0x5f7bdadd19e7dd63d84a49c1bb4ee61027e59e21019315f7889fbc194062d90c",
+    "displayName": "ZeroNine Scout",
+    "authorizedExecutor": "0x0000000000000000000000000000000000000000",
+    "exists": true,
+    "nextTokenId": "4"
+  },
+  "checks": {
+    "contractsHaveCode": true,
+    "resultExists": true,
+    "resultStorageMatches": true,
+    "agentTokenExists": true,
+    "agentMetadataMatches": true,
+    "agentStorageMatches": true
+  }
+}

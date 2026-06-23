@@ -1,0 +1,12 @@
+{
+  "d1Seed": "data/published/0g-world-cup-local-2026-06-23.d1.sql",
+  "r2ObjectKey": "snapshots/0g-world-cup-local-2026-06-23.json",
+  "kv": {
+    "key": "active-player-snapshot",
+    "value": {
+      "version": "0g-world-cup-local-2026-06-23",
+      "snapshotHash": "0x33301f5a9061cc4e38501ab2aaab237b9aeba2917ff0bc5b2b08e5e14d407f33",
+      "r2ObjectKey": "snapshots/0g-world-cup-local-2026-06-23.json"
+    }
+  }
+}

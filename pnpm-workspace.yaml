@@ -1,0 +1,9 @@
+allowBuilds:
+  '@reown/appkit': true
+  blake-hash: true
+  bufferutil: true
+  es5-ext: false
+  esbuild: true
+  keccak: true
+  protobufjs: true
+  utf-8-validate: true

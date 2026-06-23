@@ -1,0 +1,92 @@
+{
+  "status": "blocked",
+  "generatedAt": "1970-01-01T00:00:00.000Z",
+  "compute": {
+    "endpoint": "https://router-api.0g.ai/v1",
+    "hasKey": true,
+    "keyFingerprint": "3a3bbba8d102",
+    "probes": [
+      {
+        "model": "glm-5.1",
+        "ok": false,
+        "statusCode": 402,
+        "requestId": null,
+        "errorCode": "insufficient_balance",
+        "errorType": "payment_error",
+        "message": "Insufficient balance",
+        "provider": null,
+        "teeVerified": null
+      },
+      {
+        "model": "glm-5.2",
+        "ok": false,
+        "statusCode": 402,
+        "requestId": null,
+        "errorCode": "insufficient_balance",
+        "errorType": "payment_error",
+        "message": "Insufficient balance",
+        "provider": null,
+        "teeVerified": null
+      }
+    ],
+    "live": false,
+    "reason": "All probed 0G Compute models are blocked; current responses indicate insufficient router balance."
+  },
+  "da": {
+    "docsUrl": "https://docs.0g.ai/developer-hub/building-on-0g/da-integration",
+    "officialRequirement": "0G DA submission requires running a DA Client node plus Encoder/Retriever; the DA Client exposes the Disperser gRPC service, commonly on port 51001.",
+    "sidecarUrl": "http://127.0.0.1:51080",
+    "sidecar": {
+      "reachable": true,
+      "statusCode": 200,
+      "body": {
+        "schema": "0g-da-sidecar-status-v1",
+        "status": "blocked",
+        "daClientGrpc": "",
+        "retrieverUrl": "",
+        "maxBlobBytes": 32505852,
+        "reason": "Missing OG_DA_CLIENT_GRPC_URL. Run 0G DA Client plus Encoder/Retriever, then restart this sidecar."
+      }
+    },
+    "daClientGrpc": "",
+    "localPorts": [
+      {
+        "host": "127.0.0.1",
+        "port": 51080,
+        "listening": true
+      },
+      {
+        "host": "127.0.0.1",
+        "port": 51001,
+        "listening": false,
+        "reason": "connect ECONNREFUSED 127.0.0.1:51001"
+      },
+      {
+        "host": "127.0.0.1",
+        "port": 34000,
+        "listening": false,
+        "reason": "connect ECONNREFUSED 127.0.0.1:34000"
+      },
+      {
+        "host": "127.0.0.1",
+        "port": 34005,
+        "listening": false,
+        "reason": "connect ECONNREFUSED 127.0.0.1:34005"
+      }
+    ],
+    "hasDaClientGrpc": false,
+    "daClientListening": false,
+    "encoderListening": false,
+    "retrieverListening": false,
+    "reason": "No reachable OG_DA_CLIENT_GRPC_URL/51001 DA Client was found. Live DA submission remains blocked."
+  },
+  "env": {
+    "rpc": "https://evmrpc-testnet.0g.ai",
+    "storageIndexer": "https://indexer-storage-testnet-turbo.0g.ai",
+    "computeEndpoint": "https://router-api.0g.ai/v1",
+    "daClientGrpc": "",
+    "hasStorageSigner": true,
+    "hasComputeKey": true,
+    "hasDaClient": false
+  }
+}

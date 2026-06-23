@@ -1,0 +1,96 @@
+{
+  "status": "settled",
+  "chainId": 16602,
+  "roomId": "room-testnet-wager-1v1-e2e",
+  "roomHash": "0x5c8c62397e93ca4a120eb99b8a4cf8447acc469058ca39efb9174fbd47954830",
+  "contract": "0xeDf443C63A85daFBE7BF673C5b32a0560aCa832d",
+  "projectWallet": "0x3D325E51934AE5c7EBf9f37a8Ddf772F48F766Fb",
+  "winner": "0x23761115c5f38ca51f0d425d00DE6E34029239EC",
+  "wagerAmountWei": "10000000000000000",
+  "protocolFeeBps": "250",
+  "transactions": {
+    "secondDeposit": "0xc3094aee3d19c7d04b95da43ad3041f60d735eb67457d9b38fa278d4dc4ec663",
+    "settle": "0x2c49f366a57bb0eeb1e7f57398d159169d64637573cd8b717660e8eac5c71a8a"
+  },
+  "blockNumbers": {
+    "secondDeposit": "40357469",
+    "settle": "40357614"
+  },
+  "balances": {
+    "projectBefore0g": "0.038195258288620725",
+    "projectAfter0g": "0.038417174288134078",
+    "winnerBefore0g": "0.036769551994360716",
+    "winnerAfter0g": "0.056269551994360716",
+    "winnerDeltaWei": "19500000000000000"
+  },
+  "events": {
+    "secondDeposit": {
+      "contract": "0xedf443c63a85dafbe7bf673c5b32a0560aca832d",
+      "roomHash": "0x5c8c62397e93ca4a120eb99b8a4cf8447acc469058ca39efb9174fbd47954830",
+      "player": "0x3D325E51934AE5c7EBf9f37a8Ddf772F48F766Fb",
+      "amountWei": "10000000000000000"
+    },
+    "settled": {
+      "contract": "0xedf443c63a85dafbe7bf673c5b32a0560aca832d",
+      "roomHash": "0x5c8c62397e93ca4a120eb99b8a4cf8447acc469058ca39efb9174fbd47954830",
+      "winner": "0x23761115c5f38ca51f0d425d00DE6E34029239EC",
+      "payoutWei": "19500000000000000",
+      "feeWei": "500000000000000"
+    }
+  },
+  "state": {
+    "before": {
+      "browserDeposited": true,
+      "projectDeposited": true,
+      "canStart": true,
+      "totalDepositedWei": "20000000000000000",
+      "wagerAmountWei": "10000000000000000",
+      "depositCount": "2",
+      "settled": false
+    },
+    "afterSecondDeposit": {
+      "browserDeposited": true,
+      "projectDeposited": true,
+      "canStart": true,
+      "totalDepositedWei": "20000000000000000",
+      "wagerAmountWei": "10000000000000000",
+      "depositCount": "2",
+      "settled": false
+    },
+    "afterSettlement": {
+      "browserDeposited": true,
+      "projectDeposited": true,
+      "canStart": false,
+      "totalDepositedWei": "20000000000000000",
+      "wagerAmountWei": "10000000000000000",
+      "depositCount": "2",
+      "settled": true
+    }
+  },
+  "payout": {
+    "totalDepositedWei": "20000000000000000",
+    "expectedFeeWei": "500000000000000",
+    "expectedPayoutWei": "19500000000000000"
+  },
+  "checks": {
+    "ownerMatchesProjectWallet": true,
+    "browserWalletWasFirstDepositor": true,
+    "projectWalletDeposited": true,
+    "secondDepositTxSucceeded": true,
+    "secondDepositEventFound": true,
+    "secondDepositRoomMatches": true,
+    "secondDepositPlayerMatches": true,
+    "secondDepositAmountMatches": true,
+    "escrowWasStartReadyBeforeSettle": true,
+    "settleTxSucceeded": true,
+    "settledEventFound": true,
+    "settledRoomMatches": true,
+    "settledWinnerMatches": true,
+    "settledPayoutMatches": true,
+    "settledFeeMatches": true,
+    "escrowSettledState": true,
+    "escrowDepositCountTwo": true,
+    "winnerReceivedPayout": true,
+    "canStartClosedAfterSettle": true
+  }
+}

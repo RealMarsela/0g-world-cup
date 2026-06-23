@@ -1,0 +1,39 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "0g-world-cup-room-worker",
+  "main": "worker/room.ts",
+  "compatibility_date": "2026-06-23",
+  "durable_objects": {
+    "bindings": [
+      {
+        "name": "ROOM_STATE",
+        "class_name": "RoomState"
+      }
+    ]
+  },
+  "migrations": [
+    {
+      "tag": "v1",
+      "new_sqlite_classes": ["RoomState"]
+    }
+  ],
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "0g-world-cup",
+      "database_id": "replace-with-cloudflare-d1-id"
+    }
+  ],
+  "r2_buckets": [
+    {
+      "binding": "SNAPSHOTS",
+      "bucket_name": "0g-world-cup-snapshots"
+    }
+  ],
+  "kv_namespaces": [
+    {
+      "binding": "ACTIVE_SNAPSHOT",
+      "id": "replace-with-kv-id"
+    }
+  ]
+}
