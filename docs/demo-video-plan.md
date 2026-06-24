@@ -1,6 +1,7 @@
 # 0G World Cup Demo Video Plan
 
-Target runtime: 85-95 seconds.
+Current rendered scaffold: 66.048 seconds at `public/demo.mp4`.
+Final footage cut target: 85-95 seconds after replacing the placeholder segment with real app recordings.
 Audience: first-round judges.
 Video style: pitch-led product story with short gameplay/proof recordings. Do not use one continuous screen recording.
 Final public URL: `https://0g-world-cup.pages.dev/demo.mp4`.
@@ -63,7 +64,9 @@ The result is not just a score. The app exposes commitments, match transcript ar
 
 ## Remotion Assembly Notes
 
-Composition: `WorldCupDemo`, 1920x1080, 30 fps, 90 seconds.
+Composition: `WorldCupDemo`, 1280x720, 30 fps, 66.048 seconds.
+Source file: `video/remotion-demo.tsx`.
+Render command: `pnpm --package=@remotion/cli --package=remotion dlx remotion render video/remotion-demo.tsx WorldCupDemo public/demo.mp4 --overwrite --codec=h264 --crf=26`.
 
 Assets:
 - `public/video/raw/worldcup-clip-01-create-draft-room.mp4`
