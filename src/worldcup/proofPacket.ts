@@ -43,6 +43,7 @@ function storageProof(result: MatchResult): ZeroGServiceProof {
 function computeProof(result: MatchResult): ZeroGServiceProof {
   const live = result.computeAuthority === "compute";
   const blocked = result.computeAuthority === "blocked";
+  const externalFallback = result.computeAuthority === "external-ai-fallback";
   return {
     name: "compute",
     label: "0G Compute",
@@ -51,7 +52,9 @@ function computeProof(result: MatchResult): ZeroGServiceProof {
       ? "This result was adjudicated by the 0G Compute Router."
       : blocked
         ? result.blocker ?? "0G Compute did not produce a result."
-        : "This result is deterministic background or local fallback output, not a live 0G Compute adjudication.",
+        : externalFallback
+          ? `0G Compute was unavailable, so the match stayed playable through ${result.computeMode}. ${result.blocker ?? ""}`.trim()
+          : "This result is deterministic background or local fallback output, not a live 0G Compute adjudication.",
     artifact: live ? result.computeReceipt?.requestId ?? result.computeMode : result.blocker ?? result.computeMode,
   };
 }

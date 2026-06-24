@@ -45,7 +45,7 @@ export function ZeroGRuntimeGate() {
           <Badge tone={statusTone(computeRuntime?.status)}>0G runtime gate</Badge>
           <h2 className="mt-3 text-2xl font-bold">Compute-authoritative kickoff</h2>
           <p className="mt-2 max-w-3xl text-sm text-muted">
-            Real human or agent matches must pass 0G Compute before the app can reveal a score, write Storage, or commit Chain finalization.
+            Real human or agent matches try 0G Compute first. If 0G is unavailable, Sarvam can keep playback live, while Storage and Chain finalization stay guarded until a 0G Compute-authoritative result exists.
           </p>
         </div>
         <Badge tone={finalize?.status === "live" ? "ok" : "warn"}>{finalize?.status === "live" ? "finalizable" : "finalization guarded"}</Badge>

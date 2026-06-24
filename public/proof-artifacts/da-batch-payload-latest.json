@@ -153,10 +153,12 @@
         "env": {
           "rpc": "https://evmrpc-testnet.0g.ai",
           "storageIndexer": "https://indexer-storage-testnet-turbo.0g.ai",
-          "computeEndpoint": "https://router-api.0g.ai/v1",
+          "computeEndpoint": "https://router-api-testnet.integratenetwork.work/v1",
           "daClientGrpc": "",
           "hasStorageSigner": true,
           "hasComputeKey": true,
+          "hasSarvamFallbackKey": true,
+          "sarvamFallbackModel": "sarvam-30b",
           "hasDaClient": false
         }
       }
@@ -169,7 +171,8 @@
         "rootHash": "0x950d13bcd9ea7816c323e7e6b0cfcbd409ac3a4cdd18b29dcb3935c55ad9d75b",
         "txHash": "0x4d0b82969d959a74b3e2717880e7516dc5aea4788838c0be509216fa8caf54e2",
         "storageUri": "0g://storage/0x950d13bcd9ea7816c323e7e6b0cfcbd409ac3a4cdd18b29dcb3935c55ad9d75b",
-        "indexerRpc": "https://indexer-storage-testnet-turbo.0g.ai"
+        "indexerRpc": "https://indexer-storage-testnet-turbo.0g.ai",
+        "reused": "Existing 0G Storage root is already discoverable; skipped duplicate upload."
       }
     },
     {
@@ -266,7 +269,7 @@
       "value": {
         "status": "live",
         "chainId": 16602,
-        "blockNumber": "40491482",
+        "blockNumber": "40513514",
         "contracts": {
           "draft": {
             "address": "0x37AE4f4BA75b203f45137E7d6C2059d0a0F36475",
@@ -467,7 +470,7 @@
       "value": {
         "status": "live",
         "chainId": 16602,
-        "blockNumber": "40491494",
+        "blockNumber": "40513527",
         "contract": "0xeDf443C63A85daFBE7BF673C5b32a0560aCa832d",
         "roomId": "room-testnet-wager-1v1-e2e",
         "roomHash": "0x5c8c62397e93ca4a120eb99b8a4cf8447acc469058ca39efb9174fbd47954830",
@@ -680,19 +683,50 @@
     {
       "kind": "compute-status",
       "value": {
-        "status": "blocked",
-        "reason": "0G Compute Router request failed: 402 {\"error\":{\"message\":\"Insufficient balance\",\"type\":\"payment_error\",\"code\":\"insufficient_balance\"},\"request_id\":\"aa979914-0b51-40e4-bc94-f96f262c952d\"}",
-        "endpoint": "https://router-api.0g.ai/v1",
-        "model": "glm-5.1",
-        "env": {
-          "rpc": "https://evmrpc-testnet.0g.ai",
-          "storageIndexer": "https://indexer-storage-testnet-turbo.0g.ai",
-          "computeEndpoint": "https://router-api.0g.ai/v1",
-          "daClientGrpc": "",
-          "hasStorageSigner": true,
-          "hasComputeKey": true,
-          "hasDaClient": false
-        }
+        "status": "live",
+        "source": "ZEROG_ROUTER_API_KEY",
+        "endpoint": "https://router-api-testnet.integratenetwork.work/v1",
+        "model": "qwen2.5-omni",
+        "response": {
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "{\n  \"minute\": 45,\n  \"team\": \"Team A\",\n  \"player\": \"John Doe\",\n  \"type\": \"Pass\",\n  \"narration\": \"John Doe makes a precise through-ball to Jane Smith, setting up a scoring opportunity.\"\n}",
+                "role": "assistant"
+              }
+            }
+          ],
+          "created": 1782319980,
+          "id": "chatcmpl-3bf241a9-79b5-4ac6-9321-e897379d59b2",
+          "model": "qwen2.5-omni",
+          "object": "chat.completion",
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 59,
+            "completion_tokens_details": {
+              "text_tokens": 59
+            },
+            "prompt_tokens": 53,
+            "prompt_tokens_details": {
+              "text_tokens": 53
+            },
+            "total_tokens": 112
+          },
+          "x_0g_trace": {
+            "billing": {
+              "input_cost": "39856000000000",
+              "output_cost": "177590000000000",
+              "total_cost": "217446000000000"
+            },
+            "provider": "0xa48f01287233509FD694a22Bf840225062E67836",
+            "request_id": "89c05531-3808-4111-b845-f6f7ce5a30b7",
+            "tee_verified": true
+          }
+        },
+        "failedCandidates": []
       }
     },
     {
@@ -768,10 +802,12 @@
         "env": {
           "rpc": "https://evmrpc-testnet.0g.ai",
           "storageIndexer": "https://indexer-storage-testnet-turbo.0g.ai",
-          "computeEndpoint": "https://router-api.0g.ai/v1",
+          "computeEndpoint": "https://router-api-testnet.integratenetwork.work/v1",
           "daClientGrpc": "",
           "hasStorageSigner": true,
           "hasComputeKey": true,
+          "hasSarvamFallbackKey": true,
+          "sarvamFallbackModel": "sarvam-30b",
           "hasDaClient": false
         }
       }
@@ -779,33 +815,392 @@
     {
       "kind": "compute-runtime",
       "value": {
-        "status": "blocked",
+        "status": "live",
         "roomId": "room-human-vs-agent-runtime-compute",
         "output": {
           "schema": "0g-world-cup-compute-output-v1",
           "roomId": "room-human-vs-agent-runtime-compute",
-          "authority": "blocked",
-          "homeScore": 0,
-          "awayScore": 0,
+          "authority": "compute",
+          "homeScore": 2,
+          "awayScore": 1,
           "winnerTeamId": "home",
           "winner": "Gabriel XI",
           "mvpPlayerId": "WC-1970:SLV:P-10096:97",
-          "highlights": [],
-          "tacticalSummary": "0G Compute is blocked.",
-          "winExplanation": "0G Compute Router failed: 0G Compute request failed: 402 {\"error\":{\"message\":\"Insufficient balance\",\"type\":\"payment_error\",\"code\":\"insufficient_balance\"},\"request_id\":\"c426d339-9155-44f4-8dee-922f5d9aff42\"} | Direct 0G Compute broker failed: Direct 0G Compute broker ledger is not ready and OG_COMPUTE_BROKER_AUTOFUND is not enabled: Account does not exist. Please create an account first using \"add-account\". (Address: 0x3D325E51934AE5c7EBf9f37a8Ddf772F48F766Fb)",
-          "resultHash": "",
-          "storageUri": "",
-          "computeMode": "0G Compute blocked",
-          "blocker": "0G Compute Router failed: 0G Compute request failed: 402 {\"error\":{\"message\":\"Insufficient balance\",\"type\":\"payment_error\",\"code\":\"insufficient_balance\"},\"request_id\":\"c426d339-9155-44f4-8dee-922f5d9aff42\"} | Direct 0G Compute broker failed: Direct 0G Compute broker ledger is not ready and OG_COMPUTE_BROKER_AUTOFUND is not enabled: Account does not exist. Please create an account first using \"add-account\". (Address: 0x3D325E51934AE5c7EBf9f37a8Ddf772F48F766Fb)"
+          "highlights": [
+            {
+              "id": "goal-1",
+              "minute": 15,
+              "teamId": "home",
+              "teamName": "Gabriel XI",
+              "playerId": "WC-1970:SLV:P-10096:97",
+              "playerName": "Cabezas",
+              "kind": "goal",
+              "narration": "Cabezas scores a beautiful goal from a free-kick.",
+              "scoreAfter": [
+                1,
+                0
+              ]
+            },
+            {
+              "id": "turning-point-1",
+              "minute": 30,
+              "teamId": "away",
+              "teamName": "ZeroNine Scout",
+              "playerId": "WC-1978:HUN:P-45243:798",
+              "playerName": "Pintér",
+              "kind": "turning-point",
+              "narration": "Pintér intercepts a pass and starts an attack for ZeroNine Scout.",
+              "scoreAfter": [
+                1,
+                0
+              ]
+            },
+            {
+              "id": "miss-1",
+              "minute": 45,
+              "teamId": "away",
+              "teamName": "ZeroNine Scout",
+              "playerId": "WC-1978:HUN:P-45243:798",
+              "playerName": "Pintér",
+              "kind": "miss",
+              "narration": "Pintér misses a great opportunity to score after receiving a cross.",
+              "scoreAfter": [
+                1,
+                0
+              ]
+            },
+            {
+              "id": "chance-1",
+              "minute": 55,
+              "teamId": "home",
+              "teamName": "Gabriel XI",
+              "playerId": "WC-1970:SLV:P-10096:97",
+              "playerName": "Cabezas",
+              "kind": "chance",
+              "narration": "Cabezas has another chance but his shot is saved by the goalkeeper.",
+              "scoreAfter": [
+                1,
+                0
+              ]
+            },
+            {
+              "id": "save-1",
+              "minute": 60,
+              "teamId": "away",
+              "teamName": "ZeroNine Scout",
+              "playerId": "WC-1978:IRN:P-47243:811",
+              "playerName": "Hejazi",
+              "kind": "save",
+              "narration": "Hejazi makes a crucial save to deny a goal for ZeroNine Scout.",
+              "scoreAfter": [
+                1,
+                0
+              ]
+            },
+            {
+              "id": "substitution-1",
+              "minute": 70,
+              "teamId": "home",
+              "teamName": "Gabriel XI",
+              "playerId": "WC-1970:SLV:P-10096:97",
+              "playerName": "Cabezas",
+              "kind": "substitution",
+              "narration": "Cabezas is substituted out due to injury.",
+              "scoreAfter": [
+                1,
+                0
+              ]
+            },
+            {
+              "id": "goal-2",
+              "minute": 75,
+              "teamId": "home",
+              "teamName": "Gabriel XI",
+              "playerId": "WC-1970:URY:P-93811:315",
+              "playerName": "Morales",
+              "kind": "goal",
+              "narration": "Morales scores a stunning goal to put Gabriel XI ahead.",
+              "scoreAfter": [
+                2,
+                0
+              ]
+            },
+            {
+              "id": "tactical-shift-1",
+              "minute": 80,
+              "teamId": "away",
+              "teamName": "ZeroNine Scout",
+              "playerId": "WC-1978:HUN:P-45243:798",
+              "playerName": "Pintér",
+              "kind": "tactical-shift",
+              "narration": "ZeroNine Scout shifts their formation to a more defensive approach.",
+              "scoreAfter": [
+                2,
+                0
+              ]
+            }
+          ],
+          "tacticalSummary": "Gabriel XI played possession-based football, maintaining control throughout the game. ZeroNine Scout struggled to create chances but managed to score once in the second half.",
+          "winExplanation": "Gabriel XI's possession-based play and clinical finishing led them to victory over ZeroNine Scout.",
+          "resultHash": "0xdc1b1342968714c1089df862f38282e78bcf3c32a65bfba51755d620c0fb27a0",
+          "storageUri": "0g://compute-ready/182a23dbb1d7818624500f35a22024c3073ede877697bcfa5d7a9e9ea2b0f824",
+          "computeMode": "0G Compute Router (qwen2.5-omni)",
+          "receipt": {
+            "endpoint": "https://router-api-testnet.integratenetwork.work/v1",
+            "model": "qwen2.5-omni",
+            "path": "router",
+            "provider": "0xa48f01287233509FD694a22Bf840225062E67836",
+            "requestId": "chatcmpl-86e69d19-03df-48d0-83f7-901d44f2e603",
+            "teeVerified": true,
+            "requestHash": "0xaeed152dd05a2849ebb15e71ac2ba96cadd8b34bba3b42b3df2275de291cd380",
+            "responseHash": "0x182a23dbb1d7818624500f35a22024c3073ede877697bcfa5d7a9e9ea2b0f824",
+            "rawResponseHash": "0x4b78f75c0cf7bb079fe0b769e30867464c190c841264b00a69244e8991549996"
+          }
         },
-        "reason": "0G Compute Router failed: 0G Compute request failed: 402 {\"error\":{\"message\":\"Insufficient balance\",\"type\":\"payment_error\",\"code\":\"insufficient_balance\"},\"request_id\":\"c426d339-9155-44f4-8dee-922f5d9aff42\"} | Direct 0G Compute broker failed: Direct 0G Compute broker ledger is not ready and OG_COMPUTE_BROKER_AUTOFUND is not enabled: Account does not exist. Please create an account first using \"add-account\". (Address: 0x3D325E51934AE5c7EBf9f37a8Ddf772F48F766Fb)",
+        "result": {
+          "type": "match",
+          "roomId": "room-human-vs-agent-runtime-compute",
+          "home": "Gabriel XI",
+          "away": "ZeroNine Scout",
+          "homeScore": 2,
+          "awayScore": 1,
+          "winner": "Gabriel XI",
+          "mvp": {
+            "id": "WC-1970:SLV:P-10096:97",
+            "providerIds": {
+              "jfjelstul": "P-10096",
+              "tournament": "WC-1970",
+              "history": "WC-1970:SLV:P-10096:97"
+            },
+            "name": "Salvador Cabezas",
+            "shortName": "Cabezas",
+            "country": "El Salvador",
+            "countryCode": "SLV",
+            "squad": "1970 El Salvador",
+            "shirtNumber": 10,
+            "position": "FW",
+            "detailedPosition": "forward",
+            "age": 23,
+            "height": 0,
+            "club": "World Cup squad",
+            "statsSource": "jfjelstul-worldcup-history",
+            "ratingSource": "ogr-history-v1 original 0G World Rating derived from open historical squad data",
+            "worldRating": 92,
+            "attributes": {
+              "pace": 99,
+              "finishing": 99,
+              "passing": 93,
+              "control": 99,
+              "defense": 62,
+              "physical": 96,
+              "clutch": 99
+            },
+            "snapshotVersion": "0g-world-cup-history-1970-2022",
+            "sourceAttribution": "Fjelstul World Cup Database v1.2.0, Joshua C. Fjelstul, CC-BY-SA 4.0; transformed for 0G World Cup gameplay."
+          },
+          "events": [
+            "15' GOAL Gabriel XI: Cabezas scores a beautiful goal from a free-kick.",
+            "30' TURNING-POINT ZeroNine Scout: Pintér intercepts a pass and starts an attack for ZeroNine Scout.",
+            "45' MISS ZeroNine Scout: Pintér misses a great opportunity to score after receiving a cross.",
+            "55' CHANCE Gabriel XI: Cabezas has another chance but his shot is saved by the goalkeeper.",
+            "60' SAVE ZeroNine Scout: Hejazi makes a crucial save to deny a goal for ZeroNine Scout.",
+            "70' SUBSTITUTION Gabriel XI: Cabezas is substituted out due to injury.",
+            "75' GOAL Gabriel XI: Morales scores a stunning goal to put Gabriel XI ahead.",
+            "80' TACTICAL-SHIFT ZeroNine Scout: ZeroNine Scout shifts their formation to a more defensive approach."
+          ],
+          "tacticalSummary": "Gabriel XI played possession-based football, maintaining control throughout the game. ZeroNine Scout struggled to create chances but managed to score once in the second half.",
+          "winExplanation": "Gabriel XI's possession-based play and clinical finishing led them to victory over ZeroNine Scout.",
+          "lineupHash": "0x6ff07c46",
+          "simulationHash": "0xdc1b1342968714c1089df862f38282e78bcf3c32a65bfba51755d620c0fb27a0",
+          "storageUri": "0g://compute-ready/182a23dbb1d7818624500f35a22024c3073ede877697bcfa5d7a9e9ea2b0f824",
+          "computeMode": "0G Compute Router (qwen2.5-omni)",
+          "computeAuthority": "compute",
+          "computeReceipt": {
+            "endpoint": "https://router-api-testnet.integratenetwork.work/v1",
+            "model": "qwen2.5-omni",
+            "path": "router",
+            "provider": "0xa48f01287233509FD694a22Bf840225062E67836",
+            "requestId": "chatcmpl-86e69d19-03df-48d0-83f7-901d44f2e603",
+            "teeVerified": true,
+            "requestHash": "0xaeed152dd05a2849ebb15e71ac2ba96cadd8b34bba3b42b3df2275de291cd380",
+            "responseHash": "0x182a23dbb1d7818624500f35a22024c3073ede877697bcfa5d7a9e9ea2b0f824",
+            "rawResponseHash": "0x4b78f75c0cf7bb079fe0b769e30867464c190c841264b00a69244e8991549996"
+          },
+          "highlights": [
+            {
+              "id": "goal-1",
+              "minute": 15,
+              "teamId": "home",
+              "teamName": "Gabriel XI",
+              "playerId": "WC-1970:SLV:P-10096:97",
+              "playerName": "Cabezas",
+              "kind": "goal",
+              "narration": "Cabezas scores a beautiful goal from a free-kick.",
+              "scoreAfter": [
+                1,
+                0
+              ]
+            },
+            {
+              "id": "turning-point-1",
+              "minute": 30,
+              "teamId": "away",
+              "teamName": "ZeroNine Scout",
+              "playerId": "WC-1978:HUN:P-45243:798",
+              "playerName": "Pintér",
+              "kind": "turning-point",
+              "narration": "Pintér intercepts a pass and starts an attack for ZeroNine Scout.",
+              "scoreAfter": [
+                1,
+                0
+              ]
+            },
+            {
+              "id": "miss-1",
+              "minute": 45,
+              "teamId": "away",
+              "teamName": "ZeroNine Scout",
+              "playerId": "WC-1978:HUN:P-45243:798",
+              "playerName": "Pintér",
+              "kind": "miss",
+              "narration": "Pintér misses a great opportunity to score after receiving a cross.",
+              "scoreAfter": [
+                1,
+                0
+              ]
+            },
+            {
+              "id": "chance-1",
+              "minute": 55,
+              "teamId": "home",
+              "teamName": "Gabriel XI",
+              "playerId": "WC-1970:SLV:P-10096:97",
+              "playerName": "Cabezas",
+              "kind": "chance",
+              "narration": "Cabezas has another chance but his shot is saved by the goalkeeper.",
+              "scoreAfter": [
+                1,
+                0
+              ]
+            },
+            {
+              "id": "save-1",
+              "minute": 60,
+              "teamId": "away",
+              "teamName": "ZeroNine Scout",
+              "playerId": "WC-1978:IRN:P-47243:811",
+              "playerName": "Hejazi",
+              "kind": "save",
+              "narration": "Hejazi makes a crucial save to deny a goal for ZeroNine Scout.",
+              "scoreAfter": [
+                1,
+                0
+              ]
+            },
+            {
+              "id": "substitution-1",
+              "minute": 70,
+              "teamId": "home",
+              "teamName": "Gabriel XI",
+              "playerId": "WC-1970:SLV:P-10096:97",
+              "playerName": "Cabezas",
+              "kind": "substitution",
+              "narration": "Cabezas is substituted out due to injury.",
+              "scoreAfter": [
+                1,
+                0
+              ]
+            },
+            {
+              "id": "goal-2",
+              "minute": 75,
+              "teamId": "home",
+              "teamName": "Gabriel XI",
+              "playerId": "WC-1970:URY:P-93811:315",
+              "playerName": "Morales",
+              "kind": "goal",
+              "narration": "Morales scores a stunning goal to put Gabriel XI ahead.",
+              "scoreAfter": [
+                2,
+                0
+              ]
+            },
+            {
+              "id": "tactical-shift-1",
+              "minute": 80,
+              "teamId": "away",
+              "teamName": "ZeroNine Scout",
+              "playerId": "WC-1978:HUN:P-45243:798",
+              "playerName": "Pintér",
+              "kind": "tactical-shift",
+              "narration": "ZeroNine Scout shifts their formation to a more defensive approach.",
+              "scoreAfter": [
+                2,
+                0
+              ]
+            }
+          ],
+          "proofPacket": {
+            "schema": "0g-world-cup-proof-v1",
+            "roomId": "room-human-vs-agent-runtime-compute",
+            "mode": "human-vs-agent",
+            "generatedAt": "1970-01-01T00:00:00.000Z",
+            "chainId": 16602,
+            "snapshotVersion": "0g-world-cup-history-1970-2022",
+            "snapshotHash": "0x10083228b84402ab9d2ac1f65629aaeebddd2bcdc20597ac2cca3a44b9d44026",
+            "lineupHash": "0x6ff07c46",
+            "resultHash": "0xdc1b1342968714c1089df862f38282e78bcf3c32a65bfba51755d620c0fb27a0",
+            "storageUri": "0g://compute-ready/182a23dbb1d7818624500f35a22024c3073ede877697bcfa5d7a9e9ea2b0f824",
+            "receiptHash": "0x4973036e",
+            "services": [
+              {
+                "name": "chain",
+                "label": "0G Chain",
+                "status": "ready",
+                "summary": "Galileo contracts are configured for lineup, escrow, and result commitments.",
+                "artifact": "0x37AE4f4BA75b203f45137E7d6C2059d0a0F36475, 0xeDf443C63A85daFBE7BF673C5b32a0560aCa832d, 0xc90115A1A35a7B2F2741B2683eE122c25a43dBf6",
+                "explorerUrl": "https://chainscan-galileo.0g.ai/address/0xc90115A1A35a7B2F2741B2683eE122c25a43dBf6"
+              },
+              {
+                "name": "storage",
+                "label": "0G Storage",
+                "status": "live",
+                "summary": "Receipt payload is mirrored to 0G Storage.",
+                "artifact": "0g://compute-ready/182a23dbb1d7818624500f35a22024c3073ede877697bcfa5d7a9e9ea2b0f824"
+              },
+              {
+                "name": "compute",
+                "label": "0G Compute",
+                "status": "live",
+                "summary": "This result was adjudicated by the 0G Compute Router.",
+                "artifact": "chatcmpl-86e69d19-03df-48d0-83f7-901d44f2e603"
+              },
+              {
+                "name": "da",
+                "label": "0G DA",
+                "status": "ready",
+                "summary": "Match and tournament receipts are shaped into a byte-ready blob; live DA submission status is shown in the artifact matrix.",
+                "artifact": "events:8"
+              },
+              {
+                "name": "agentic-id",
+                "label": "Agentic ID",
+                "status": "ready",
+                "summary": "Room includes AI-agent participants ready to map to ERC-7857 metadata.",
+                "artifact": "ZeroNine Scout"
+              }
+            ]
+          }
+        },
         "env": {
           "rpc": "https://evmrpc-testnet.0g.ai",
           "storageIndexer": "https://indexer-storage-testnet-turbo.0g.ai",
-          "computeEndpoint": "https://router-api.0g.ai/v1",
+          "computeEndpoint": "https://router-api-testnet.integratenetwork.work/v1",
           "daClientGrpc": "",
           "hasStorageSigner": true,
           "hasComputeKey": true,
+          "hasSarvamFallbackKey": true,
+          "sarvamFallbackModel": "sarvam-30b",
           "hasDaClient": false
         }
       }
@@ -816,11 +1211,40 @@
         "status": "blocked",
         "generatedAt": "1970-01-01T00:00:00.000Z",
         "compute": {
-          "endpoint": "https://router-api.0g.ai/v1",
+          "endpoint": "https://router-api-testnet.integratenetwork.work/v1",
+          "candidates": [
+            {
+              "source": "ZEROG_ROUTER_API_KEY",
+              "endpoint": "https://router-api-testnet.integratenetwork.work/v1",
+              "model": "qwen2.5-omni",
+              "keyFingerprint": "110ba05d72f7"
+            },
+            {
+              "source": "OG_COMPUTE_API_KEY",
+              "endpoint": "https://router-api.0g.ai/v1",
+              "model": "glm-5.1",
+              "keyFingerprint": "3a3bbba8d102"
+            }
+          ],
           "hasKey": true,
-          "keyFingerprint": "3a3bbba8d102",
+          "keyFingerprint": "110ba05d72f7",
           "probes": [
             {
+              "source": "ZEROG_ROUTER_API_KEY",
+              "endpoint": "https://router-api-testnet.integratenetwork.work/v1",
+              "model": "qwen2.5-omni",
+              "ok": true,
+              "statusCode": 200,
+              "requestId": "eec40aa9-2835-4cea-89e8-84d6e5eddee3",
+              "errorCode": null,
+              "errorType": null,
+              "message": "ok",
+              "provider": "0xa48f01287233509FD694a22Bf840225062E67836",
+              "teeVerified": true
+            },
+            {
+              "source": "OG_COMPUTE_API_KEY",
+              "endpoint": "https://router-api.0g.ai/v1",
               "model": "glm-5.1",
               "ok": false,
               "statusCode": 402,
@@ -832,6 +1256,21 @@
               "teeVerified": null
             },
             {
+              "source": "OG_COMPUTE_API_KEY",
+              "endpoint": "https://router-api.0g.ai/v1",
+              "model": "qwen2.5-omni",
+              "ok": false,
+              "statusCode": 402,
+              "requestId": null,
+              "errorCode": "insufficient_balance",
+              "errorType": "payment_error",
+              "message": "Insufficient balance",
+              "provider": null,
+              "teeVerified": null
+            },
+            {
+              "source": "OG_COMPUTE_API_KEY",
+              "endpoint": "https://router-api.0g.ai/v1",
               "model": "glm-5.2",
               "ok": false,
               "statusCode": 402,
@@ -843,28 +1282,21 @@
               "teeVerified": null
             }
           ],
-          "live": false,
-          "reason": "All probed 0G Compute models are blocked; current responses indicate insufficient router balance."
+          "live": true,
+          "reason": "At least one 0G Compute model completed."
         },
         "da": {
           "docsUrl": "https://docs.0g.ai/developer-hub/building-on-0g/da-integration",
           "officialRequirement": "0G DA submission requires running a DA Client node plus Encoder/Retriever; the DA Client exposes the Disperser gRPC service, commonly on port 51001.",
           "sidecarUrl": "http://127.0.0.1:51080",
           "sidecar": {
-            "reachable": true,
-            "statusCode": 200,
-            "body": {
-              "schema": "0g-da-sidecar-status-v1",
-              "status": "configured",
-              "daClientGrpc": "127.0.0.1:51001",
-              "retrieverUrl": "",
-              "maxBlobBytes": 32505852,
-              "reason": "DA Client endpoint configured. Live gRPC submitter can be enabled against this sidecar host."
-            }
+            "reachable": false,
+            "statusCode": 0,
+            "reason": "fetch failed"
           },
-          "daClientGrpc": "127.0.0.1:51001",
+          "daClientGrpc": "",
           "stackStatus": "blocked",
-          "stackReason": "0G DA stack is not live yet: DAEntrance 0xE75A073dA5bb7b0eC622170Fd268f35E675a957B has no bytecode on https://evmrpc-testnet.0g.ai; documented candidates checked 0xE75A073dA5bb7b0eC622170Fd268f35E675a957B:0b, 0x857C0A28A8634614BB2C96039Cf4a20AFF709Aa9:0b.",
+          "stackReason": "0G DA stack is not live yet: local DA sidecar is not reachable on 51080; OG_DA_CLIENT_GRPC_URL is unset; 0G DA Encoder port 34000 is not listening; DAEntrance 0xE75A073dA5bb7b0eC622170Fd268f35E675a957B has no bytecode on https://evmrpc-testnet.0g.ai; documented candidates checked 0xE75A073dA5bb7b0eC622170Fd268f35E675a957B:0b, 0x857C0A28A8634614BB2C96039Cf4a20AFF709Aa9:0b.",
           "daEntrance": {
             "address": "0xE75A073dA5bb7b0eC622170Fd268f35E675a957B",
             "reachable": true,
@@ -895,7 +1327,8 @@
             {
               "host": "127.0.0.1",
               "port": 51080,
-              "listening": true
+              "listening": false,
+              "reason": "connect ECONNREFUSED 127.0.0.1:51080"
             },
             {
               "host": "127.0.0.1",
@@ -905,7 +1338,8 @@
             {
               "host": "127.0.0.1",
               "port": 34000,
-              "listening": true
+              "listening": false,
+              "reason": "connect ECONNREFUSED 127.0.0.1:34000"
             },
             {
               "host": "127.0.0.1",
@@ -913,20 +1347,22 @@
               "listening": true
             }
           ],
-          "hasDaClientGrpc": true,
+          "hasDaClientGrpc": false,
           "daClientListening": true,
-          "encoderListening": true,
+          "encoderListening": false,
           "retrieverListening": true,
-          "reason": "0G DA stack is not live yet: DAEntrance 0xE75A073dA5bb7b0eC622170Fd268f35E675a957B has no bytecode on https://evmrpc-testnet.0g.ai; documented candidates checked 0xE75A073dA5bb7b0eC622170Fd268f35E675a957B:0b, 0x857C0A28A8634614BB2C96039Cf4a20AFF709Aa9:0b."
+          "reason": "0G DA stack is not live yet: local DA sidecar is not reachable on 51080; OG_DA_CLIENT_GRPC_URL is unset; 0G DA Encoder port 34000 is not listening; DAEntrance 0xE75A073dA5bb7b0eC622170Fd268f35E675a957B has no bytecode on https://evmrpc-testnet.0g.ai; documented candidates checked 0xE75A073dA5bb7b0eC622170Fd268f35E675a957B:0b, 0x857C0A28A8634614BB2C96039Cf4a20AFF709Aa9:0b."
         },
         "env": {
           "rpc": "https://evmrpc-testnet.0g.ai",
           "storageIndexer": "https://indexer-storage-testnet-turbo.0g.ai",
-          "computeEndpoint": "https://router-api.0g.ai/v1",
-          "daClientGrpc": "127.0.0.1:51001",
+          "computeEndpoint": "https://router-api-testnet.integratenetwork.work/v1",
+          "daClientGrpc": "",
           "hasStorageSigner": true,
           "hasComputeKey": true,
-          "hasDaClient": true
+          "hasSarvamFallbackKey": true,
+          "sarvamFallbackModel": "sarvam-30b",
+          "hasDaClient": false
         }
       }
     },
@@ -1049,13 +1485,13 @@
             "id": "compute-router",
             "label": "0G Compute Router",
             "layer": "compute",
-            "status": "external-blocked",
+            "status": "verified",
             "artifacts": [
               "compute-latest.json",
               "infra-diagnostics-latest.json"
             ],
             "uiSurface": "/simulate/:roomId and /proof/:roomId",
-            "proof": "0G Compute Router request failed: 402 {\"error\":{\"message\":\"Insufficient balance\",\"type\":\"payment_error\",\"code\":\"insufficient_balance\"},\"request_id\":\"aa979914-0b51-40e4-bc94-f96f262c952d\"}"
+            "proof": "qwen2.5-omni"
           },
           {
             "id": "compute-broker",
@@ -1072,13 +1508,13 @@
             "id": "runtime-compute-authority",
             "label": "Runtime match compute authority",
             "layer": "compute",
-            "status": "external-blocked",
+            "status": "verified",
             "artifacts": [
               "compute-runtime-latest.json",
               "runtime-finalize-latest.json"
             ],
             "uiSurface": "/simulate/:roomId",
-            "proof": "0G Compute Router failed: 0G Compute request failed: 402 {\"error\":{\"message\":\"Insufficient balance\",\"type\":\"payment_error\",\"code\":\"insufficient_balance\"},\"request_id\":\"c426d339-9155-44f4-8dee-922f5d9aff42\"} | Direct 0G Compute broker failed: Direct 0G Compute broker ledger is not ready and OG_COMPUTE_BROKER_AUTOFUND is not enabled: Account does not exist. Please create an account first using \"add-account\". (Address: 0x3D325E51934AE5c7EBf9f37a8Ddf772F48F766Fb)"
+            "proof": "Runtime finalization only accepts a real 0G Compute-authoritative result."
           },
           {
             "id": "runtime-finalization-guard",
@@ -1112,7 +1548,7 @@
               "da-stack-readiness-latest.json"
             ],
             "uiSurface": "/proof/:roomId",
-            "proof": "0G DA stack is not live yet: DAEntrance 0xE75A073dA5bb7b0eC622170Fd268f35E675a957B has no bytecode on https://evmrpc-testnet.0g.ai; documented candidates checked 0xE75A073dA5bb7b0eC622170Fd268f35E675a957B:0b, 0x857C0A28A8634614BB2C96039Cf4a20AFF709Aa9:0b."
+            "proof": "0G DA stack is not live yet: local DA sidecar is not reachable on 51080; OG_DA_CLIENT_GRPC_URL is unset; 0G DA Encoder port 34000 is not listening; DAEntrance 0xE75A073dA5bb7b0eC622170Fd268f35E675a957B has no bytecode on https://evmrpc-testnet.0g.ai; documented candidates checked 0xE75A073dA5bb7b0eC622170Fd268f35E675a957B:0b, 0x857C0A28A8634614BB2C96039Cf4a20AFF709Aa9:0b."
           },
           {
             "id": "da-sidecar-submit",
@@ -1123,7 +1559,7 @@
               "da-sidecar-latest.json"
             ],
             "uiSurface": "/proof/:roomId",
-            "proof": "DA sidecar submit skipped because readiness preflight is blocked: 0G DA stack is not live yet: DAEntrance 0xE75A073dA5bb7b0eC622170Fd268f35E675a957B has no bytecode on https://evmrpc-testnet.0g.ai."
+            "proof": "DA sidecar submit skipped because readiness preflight is blocked: 0G DA stack is not live yet: DAEntrance 0xE75A073dA5bb7b0eC622170Fd268f35E675a957B has no bytecode on https://evmrpc-testnet.0g.ai; documented candidates checked 0xE75A073dA5bb7b0eC622170Fd268f35E675a957B:0b, 0x857C0A28A8634614BB2C96039Cf4a20AFF709Aa9:0b."
           },
           {
             "id": "cloudflare-tunnel-bridge",
@@ -1183,26 +1619,14 @@
           }
         ],
         "counts": {
-          "verified": 13,
+          "verified": 15,
           "ready": 1,
-          "external-blocked": 5,
+          "external-blocked": 3,
           "local-only": 1,
           "missing": 0
         },
-        "coverageHash": "0xd245761ad99202082359fa6eaa881c93d838b2bdde73913ce6f77969242f1301",
+        "coverageHash": "0xcbb53cc6161ca3b37ba4d9bcd876463282aed698e0f50f04b92896787ae628a7",
         "blockers": [
-          {
-            "id": "compute-router",
-            "label": "0G Compute Router",
-            "layer": "compute",
-            "status": "external-blocked",
-            "artifacts": [
-              "compute-latest.json",
-              "infra-diagnostics-latest.json"
-            ],
-            "uiSurface": "/simulate/:roomId and /proof/:roomId",
-            "proof": "0G Compute Router request failed: 402 {\"error\":{\"message\":\"Insufficient balance\",\"type\":\"payment_error\",\"code\":\"insufficient_balance\"},\"request_id\":\"aa979914-0b51-40e4-bc94-f96f262c952d\"}"
-          },
           {
             "id": "compute-broker",
             "label": "Direct 0G Compute broker",
@@ -1215,18 +1639,6 @@
             "proof": "Direct 0G Compute providers are discoverable, but wallet balance is below the 3 0G ledger minimum for broker funding. Top up 0x3D325E51934AE5c7EBf9f37a8Ddf772F48F766Fb with at least 2.969183 0G, then rerun with OG_COMPUTE_BROKER_AUTOFUND=1 to create the broker ledger."
           },
           {
-            "id": "runtime-compute-authority",
-            "label": "Runtime match compute authority",
-            "layer": "compute",
-            "status": "external-blocked",
-            "artifacts": [
-              "compute-runtime-latest.json",
-              "runtime-finalize-latest.json"
-            ],
-            "uiSurface": "/simulate/:roomId",
-            "proof": "0G Compute Router failed: 0G Compute request failed: 402 {\"error\":{\"message\":\"Insufficient balance\",\"type\":\"payment_error\",\"code\":\"insufficient_balance\"},\"request_id\":\"c426d339-9155-44f4-8dee-922f5d9aff42\"} | Direct 0G Compute broker failed: Direct 0G Compute broker ledger is not ready and OG_COMPUTE_BROKER_AUTOFUND is not enabled: Account does not exist. Please create an account first using \"add-account\". (Address: 0x3D325E51934AE5c7EBf9f37a8Ddf772F48F766Fb)"
-          },
-          {
             "id": "da-local-stack",
             "label": "0G DA local sidecar/client stack",
             "layer": "da",
@@ -1235,7 +1647,7 @@
               "da-stack-readiness-latest.json"
             ],
             "uiSurface": "/proof/:roomId",
-            "proof": "0G DA stack is not live yet: DAEntrance 0xE75A073dA5bb7b0eC622170Fd268f35E675a957B has no bytecode on https://evmrpc-testnet.0g.ai; documented candidates checked 0xE75A073dA5bb7b0eC622170Fd268f35E675a957B:0b, 0x857C0A28A8634614BB2C96039Cf4a20AFF709Aa9:0b."
+            "proof": "0G DA stack is not live yet: local DA sidecar is not reachable on 51080; OG_DA_CLIENT_GRPC_URL is unset; 0G DA Encoder port 34000 is not listening; DAEntrance 0xE75A073dA5bb7b0eC622170Fd268f35E675a957B has no bytecode on https://evmrpc-testnet.0g.ai; documented candidates checked 0xE75A073dA5bb7b0eC622170Fd268f35E675a957B:0b, 0x857C0A28A8634614BB2C96039Cf4a20AFF709Aa9:0b."
           },
           {
             "id": "da-sidecar-submit",
@@ -1246,7 +1658,7 @@
               "da-sidecar-latest.json"
             ],
             "uiSurface": "/proof/:roomId",
-            "proof": "DA sidecar submit skipped because readiness preflight is blocked: 0G DA stack is not live yet: DAEntrance 0xE75A073dA5bb7b0eC622170Fd268f35E675a957B has no bytecode on https://evmrpc-testnet.0g.ai."
+            "proof": "DA sidecar submit skipped because readiness preflight is blocked: 0G DA stack is not live yet: DAEntrance 0xE75A073dA5bb7b0eC622170Fd268f35E675a957B has no bytecode on https://evmrpc-testnet.0g.ai; documented candidates checked 0xE75A073dA5bb7b0eC622170Fd268f35E675a957B:0b, 0x857C0A28A8634614BB2C96039Cf4a20AFF709Aa9:0b."
           },
           {
             "id": "cloudflare-tunnel-bridge",
@@ -1263,10 +1675,12 @@
         "env": {
           "rpc": "https://evmrpc-testnet.0g.ai",
           "storageIndexer": "https://indexer-storage-testnet-turbo.0g.ai",
-          "computeEndpoint": "https://router-api.0g.ai/v1",
+          "computeEndpoint": "https://router-api-testnet.integratenetwork.work/v1",
           "daClientGrpc": "",
           "hasStorageSigner": true,
           "hasComputeKey": true,
+          "hasSarvamFallbackKey": true,
+          "sarvamFallbackModel": "sarvam-30b",
           "hasDaClient": false
         }
       }
@@ -1292,9 +1706,9 @@
           "configuredPublicSidecar": false,
           "configuredPublicApp": false,
           "sidecarHealth": {
-            "reachable": true,
-            "statusCode": 200,
-            "contentType": "application/json"
+            "reachable": false,
+            "statusCode": 0,
+            "reason": "fetch failed"
           },
           "appHealth": {
             "reachable": true,
@@ -1313,7 +1727,7 @@
         },
         "checks": {
           "cloudflaredInstalled": true,
-          "sidecarReachable": true,
+          "sidecarReachable": false,
           "appReachable": true,
           "publicSidecarConfigured": false,
           "publicAppConfigured": false,
@@ -1323,10 +1737,12 @@
         "env": {
           "rpc": "https://evmrpc-testnet.0g.ai",
           "storageIndexer": "https://indexer-storage-testnet-turbo.0g.ai",
-          "computeEndpoint": "https://router-api.0g.ai/v1",
+          "computeEndpoint": "https://router-api-testnet.integratenetwork.work/v1",
           "daClientGrpc": "",
           "hasStorageSigner": true,
           "hasComputeKey": true,
+          "hasSarvamFallbackKey": true,
+          "sarvamFallbackModel": "sarvam-30b",
           "hasDaClient": false
         }
       }
@@ -1393,7 +1809,7 @@
         },
         "endpoints": {
           "sidecarUrl": "http://127.0.0.1:51080",
-          "daClientGrpc": "127.0.0.1:51001",
+          "daClientGrpc": "",
           "rpcUrl": "https://evmrpc-testnet.0g.ai",
           "daEntrance": {
             "address": "0xE75A073dA5bb7b0eC622170Fd268f35E675a957B",
@@ -1422,7 +1838,8 @@
             {
               "host": "127.0.0.1",
               "port": 51080,
-              "listening": true
+              "listening": false,
+              "reason": "connect ECONNREFUSED 127.0.0.1:51080"
             },
             {
               "host": "127.0.0.1",
@@ -1432,7 +1849,8 @@
             {
               "host": "127.0.0.1",
               "port": 34000,
-              "listening": true
+              "listening": false,
+              "reason": "connect ECONNREFUSED 127.0.0.1:34000"
             },
             {
               "host": "127.0.0.1",
@@ -1441,20 +1859,13 @@
             }
           ],
           "sidecar": {
-            "reachable": true,
-            "statusCode": 200,
-            "body": {
-              "schema": "0g-da-sidecar-status-v1",
-              "status": "configured",
-              "daClientGrpc": "127.0.0.1:51001",
-              "retrieverUrl": "",
-              "maxBlobBytes": 32505852,
-              "reason": "DA Client endpoint configured. Live gRPC submitter can be enabled against this sidecar host."
-            }
+            "reachable": false,
+            "statusCode": 0,
+            "reason": "fetch failed"
           },
-          "sidecarListening": true,
+          "sidecarListening": false,
           "daClientListening": true,
-          "encoderListening": true,
+          "encoderListening": false,
           "retrieverListening": true,
           "daEntranceHasCode": false,
           "anyDocumentedDaEntranceHasCode": false
@@ -1471,21 +1882,23 @@
           "daClientImageBuilt": true,
           "encoderImageBuilt": false,
           "retrieverImageBuilt": true,
-          "sidecarReachable": true,
+          "sidecarReachable": false,
           "daClientListening": true,
-          "encoderListening": true,
+          "encoderListening": false,
           "retrieverListening": true,
           "documentedDaEntranceHasCode": false
         },
-        "reason": "0G DA stack is not live yet: DAEntrance 0xE75A073dA5bb7b0eC622170Fd268f35E675a957B has no bytecode on https://evmrpc-testnet.0g.ai; documented candidates checked 0xE75A073dA5bb7b0eC622170Fd268f35E675a957B:0b, 0x857C0A28A8634614BB2C96039Cf4a20AFF709Aa9:0b.",
+        "reason": "0G DA stack is not live yet: local DA sidecar is not reachable on 51080; OG_DA_CLIENT_GRPC_URL is unset; 0G DA Encoder port 34000 is not listening; DAEntrance 0xE75A073dA5bb7b0eC622170Fd268f35E675a957B has no bytecode on https://evmrpc-testnet.0g.ai; documented candidates checked 0xE75A073dA5bb7b0eC622170Fd268f35E675a957B:0b, 0x857C0A28A8634614BB2C96039Cf4a20AFF709Aa9:0b.",
         "env": {
           "rpc": "https://evmrpc-testnet.0g.ai",
           "storageIndexer": "https://indexer-storage-testnet-turbo.0g.ai",
-          "computeEndpoint": "https://router-api.0g.ai/v1",
-          "daClientGrpc": "127.0.0.1:51001",
+          "computeEndpoint": "https://router-api-testnet.integratenetwork.work/v1",
+          "daClientGrpc": "",
           "hasStorageSigner": true,
           "hasComputeKey": true,
-          "hasDaClient": true
+          "hasSarvamFallbackKey": true,
+          "sarvamFallbackModel": "sarvam-30b",
+          "hasDaClient": false
         }
       }
     },
@@ -1558,10 +1971,12 @@
         "env": {
           "rpc": "https://evmrpc-testnet.0g.ai",
           "storageIndexer": "https://indexer-storage-testnet-turbo.0g.ai",
-          "computeEndpoint": "https://router-api.0g.ai/v1",
+          "computeEndpoint": "https://router-api-testnet.integratenetwork.work/v1",
           "daClientGrpc": "",
           "hasStorageSigner": true,
           "hasComputeKey": true,
+          "hasSarvamFallbackKey": true,
+          "sarvamFallbackModel": "sarvam-30b",
           "hasDaClient": false
         },
         "contract": "0x38Cc945DAB9A0fe2b04E7F70cea3a41B3837A5ab",
@@ -1736,10 +2151,12 @@
         "env": {
           "rpc": "https://evmrpc-testnet.0g.ai",
           "storageIndexer": "https://indexer-storage-testnet-turbo.0g.ai",
-          "computeEndpoint": "https://router-api.0g.ai/v1",
+          "computeEndpoint": "https://router-api-testnet.integratenetwork.work/v1",
           "daClientGrpc": "",
           "hasStorageSigner": true,
           "hasComputeKey": true,
+          "hasSarvamFallbackKey": true,
+          "sarvamFallbackModel": "sarvam-30b",
           "hasDaClient": false
         }
       }

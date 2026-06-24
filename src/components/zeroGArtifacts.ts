@@ -40,7 +40,7 @@ export type Artifact = Record<string, unknown> & {
     endpoint?: string;
     live?: boolean;
     reason?: string;
-    probes?: { model?: string; statusCode?: number; errorCode?: string; message?: string; ok?: boolean }[];
+    probes?: { source?: string; endpoint?: string; model?: string; statusCode?: number; errorCode?: string; message?: string; ok?: boolean }[];
   };
   broker?: {
     serviceCount?: number;

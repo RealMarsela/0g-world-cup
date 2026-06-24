@@ -66,11 +66,13 @@ test("proof page renders live 0G artifacts", async ({ page }) => {
   await expect(page.getByTestId("integration-summary")).toBeVisible();
   await expect(page.getByTestId("integration-counts")).toContainText(textValue((integrationMatrix.counts as Record<string, unknown>).verified));
   await expect(page.getByTestId("integration-counts")).toContainText(textValue((integrationMatrix.counts as Record<string, unknown>)["external-blocked"]));
-  await expect(page.getByTestId("integration-blockers")).toContainText("0G Compute Router");
+  await expect(page.getByTestId("integration-blockers")).toContainText("Direct 0G Compute broker");
   await expect(page.getByTestId("integration-blockers")).toContainText("0G DA sidecar submit");
   await expect(artifacts.getByRole("heading", { name: "0G Integration Matrix" })).toBeVisible();
   await expect(artifacts).toContainText(textValue(integrationMatrix.coverageHash));
-  await expect(artifacts).toContainText("compute-router / compute / external-blocked");
+  const computeRouterEntry = (integrationMatrix.coverage as Record<string, unknown>[]).find((entry) => entry.id === "compute-router");
+  await expect(artifacts).toContainText(`compute-router / compute / ${textValue(computeRouterEntry?.status)}`);
+  await expect(artifacts).toContainText("compute-broker / compute / external-blocked");
   await expect(artifacts).toContainText("runtime-finalization-guard / compute / verified");
   await expect(artifacts).toContainText("data-pipeline-import-publish / data / verified");
   await expect(artifacts).toContainText("cloudflare-tunnel-bridge / ui / local-only");

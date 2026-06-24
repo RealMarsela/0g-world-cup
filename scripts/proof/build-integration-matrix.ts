@@ -154,7 +154,11 @@ const coverage: Coverage[] = [
     id: "runtime-compute-authority",
     label: "Runtime match compute authority",
     layer: "compute",
-    status: artifacts.computeRuntime?.status === "live" ? "verified" : artifacts.computeRuntime?.status === "blocked" ? "external-blocked" : "missing",
+    status: artifacts.computeRuntime?.status === "live"
+      ? "verified"
+      : artifacts.computeRuntime?.status === "blocked" || artifacts.computeRuntime?.status === "fallback"
+        ? "external-blocked"
+        : "missing",
     artifacts: ["compute-runtime-latest.json", "runtime-finalize-latest.json"],
     uiSurface: "/simulate/:roomId",
     proof: String(artifacts.computeRuntime?.reason ?? artifacts.runtimeFinalize?.reason ?? "missing"),

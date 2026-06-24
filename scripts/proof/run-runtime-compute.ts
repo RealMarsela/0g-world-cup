@@ -18,6 +18,15 @@ const artifact = output.authority === "compute"
       result: buildMatchResultFromCompute(room, output),
       env: publicEnvSummary(),
     }
+  : output.authority === "external-ai-fallback"
+    ? {
+        status: "fallback",
+        roomId,
+        output,
+        result: buildMatchResultFromCompute(room, output),
+        reason: output.blocker || "0G Compute was unavailable, so Sarvam AI produced a labeled fallback result.",
+        env: publicEnvSummary(),
+      }
   : {
       status: "blocked",
       roomId,

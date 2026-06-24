@@ -56,6 +56,7 @@ async function probeComputeModel(candidate: { source: string; endpoint: string; 
         Authorization: `Bearer ${candidate.apiKey}`,
         "Content-Type": "application/json",
       },
+      signal: AbortSignal.timeout(Number(process.env.OG_COMPUTE_PROBE_TIMEOUT_MS || 30_000)),
       body: JSON.stringify({
         model,
         messages: [
@@ -145,13 +146,21 @@ const configuredModels = Array.from(new Set([
 ].filter(Boolean)));
 const computeProbeInputs = computeCandidates.length
   ? computeCandidates.flatMap((candidate) =>
-      Array.from(new Set([candidate.model || configuredModels[0] || "glm-5.1", ...configuredModels])).map((model) => ({
+      Array.from(
+        new Set([
+          candidate.model || configuredModels[0] || "glm-5.1",
+          ...(candidate.source === "ZEROG_ROUTER_API_KEY" ? [] : configuredModels),
+        ]),
+      ).map((model) => ({
         candidate,
         model,
       })),
     )
   : [{ candidate: { source: "missing", endpoint: publicEnvSummary().computeEndpoint, apiKey: "" }, model: "glm-5.1" }];
-const computeProbes = await Promise.all(computeProbeInputs.map((input) => probeComputeModel(input.candidate, input.model)));
+const computeProbes = [];
+for (const input of computeProbeInputs) {
+  computeProbes.push(await probeComputeModel(input.candidate, input.model));
+}
 const daPorts = await Promise.all([
   probeTcp("127.0.0.1", 51080),
   probeTcp("127.0.0.1", 51001),

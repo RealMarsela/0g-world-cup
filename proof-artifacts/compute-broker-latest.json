@@ -69,10 +69,12 @@
   "env": {
     "rpc": "https://evmrpc-testnet.0g.ai",
     "storageIndexer": "https://indexer-storage-testnet-turbo.0g.ai",
-    "computeEndpoint": "https://router-api.0g.ai/v1",
+    "computeEndpoint": "https://router-api-testnet.integratenetwork.work/v1",
     "daClientGrpc": "",
     "hasStorageSigner": true,
     "hasComputeKey": true,
+    "hasSarvamFallbackKey": true,
+    "sarvamFallbackModel": "sarvam-30b",
     "hasDaClient": false
   }
 }

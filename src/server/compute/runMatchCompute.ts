@@ -4,11 +4,11 @@ import { completeDraft } from "../../worldcup/game";
 import type { MatchComputeInput, MatchComputeOutput } from "../../worldcup/computeTypes";
 import { buildMatchComputeInput } from "../../worldcup/matchCompute";
 import type { DraftRoom } from "../../worldcup/types";
-import { getComputeEnvCandidates, loadLocalEnv } from "../env";
+import { getComputeEnvCandidates, getSarvamFallbackEnv, loadLocalEnv } from "../env";
 
 type RouterChoice = {
   message?: {
-    content?: string;
+    content?: unknown;
   };
 };
 
@@ -27,7 +27,7 @@ type RouterResponse = {
   };
 };
 
-type ComputePath = "router" | "broker";
+type ComputePath = "router" | "broker" | "sarvam";
 
 type BrokerService = {
   provider?: string;
@@ -99,6 +99,19 @@ function extractJson(content: string) {
   throw new Error("0G Compute response did not contain JSON.");
 }
 
+function assistantContent(router: RouterResponse, label: string) {
+  const content = router.choices?.[0]?.message?.content;
+  if (typeof content === "string" && content.trim()) return content;
+  if (Array.isArray(content)) {
+    const text = content
+      .map((item) => typeof item === "string" ? item : (item && typeof item === "object" ? String((item as { text?: unknown }).text ?? "") : ""))
+      .join("")
+      .trim();
+    if (text) return text;
+  }
+  throw new Error(`${label} returned no assistant content.`);
+}
+
 function normalizeOutput(
   raw: unknown,
   input: MatchComputeInput,
@@ -107,6 +120,8 @@ function normalizeOutput(
   model: string,
   requestHash: string,
   path: ComputePath,
+  authority: MatchComputeOutput["authority"] = "compute",
+  fallbackFor?: string,
 ): MatchComputeOutput {
   const value = raw as Partial<MatchComputeOutput>;
   const highlights = Array.isArray(value.highlights) ? value.highlights : [];
@@ -133,7 +148,7 @@ function normalizeOutput(
   return {
     schema: "0g-world-cup-compute-output-v1",
     roomId: input.roomId,
-    authority: "compute",
+    authority,
     homeScore,
     awayScore,
     winnerTeamId: value.winnerTeamId,
@@ -158,7 +173,12 @@ function normalizeOutput(
     winExplanation: String(value.winExplanation || "0G Compute selected the winner from lineup quality, tactics, and match events."),
     resultHash: sha256(`${input.roomId}:${input.lineupHash}:${responseHash}`),
     storageUri: `0g://compute-ready/${responseHash.slice(2)}`,
-    computeMode: path === "router" ? `0G Compute Router (${model})` : `0G Compute Broker (${model})`,
+    computeMode:
+      path === "router"
+        ? `0G Compute Router (${model})`
+        : path === "broker"
+          ? `0G Compute Broker (${model})`
+          : `Sarvam AI fallback (${model})`,
     receipt: {
       endpoint,
       model,
@@ -166,16 +186,17 @@ function normalizeOutput(
       provider,
       requestId,
       teeVerified: router.x_0g_trace?.tee_verified ?? null,
+      fallbackFor,
       requestHash,
       responseHash,
       rawResponseHash,
     },
+    blocker: authority === "external-ai-fallback" ? fallbackFor : undefined,
   };
 }
 
-function buildPrompt(input: MatchComputeInput) {
-  const [home, away] = input.room.teams;
-  const compactRoom = {
+function buildComputeRoomPayload(input: MatchComputeInput) {
+  return {
     roomId: input.roomId,
     snapshotHash: input.snapshotHash,
     lineupHash: input.lineupHash,
@@ -193,31 +214,41 @@ function buildPrompt(input: MatchComputeInput) {
         position: player.position,
         countryCode: player.countryCode,
         rating: player.worldRating,
-        attributes: player.attributes,
+        pace: player.attributes.pace,
+        finishing: player.attributes.finishing,
+        passing: player.attributes.passing,
+        defense: player.attributes.defense,
+        clutch: player.attributes.clutch,
       })),
     })),
   };
+}
+
+function buildPrompt(input: MatchComputeInput) {
+  const [home, away] = input.room.teams;
+  const compactRoom = buildComputeRoomPayload(input);
   return [
     {
       role: "system",
       content:
-        "You are the 0G World Cup match adjudicator. This is normal association football in a 0G blockchain game, not zero-gravity sport. Return only valid JSON matching the requested schema.",
+        "You are the 0G World Cup match adjudicator. This is normal association football. Return JSON only, no markdown.",
     },
     {
       role: "user",
-      content: `Adjudicate this match: ${home?.name} vs ${away?.name}.
-Use tactical reasoning, player ratings, formation fit, captain impact, and clutch attributes.
-Return JSON with exactly these keys:
-{
-  "homeScore": number,
-  "awayScore": number,
-  "winnerTeamId": "${home?.id}" | "${away?.id}",
-  "mvpPlayerId": string,
-  "highlights": [{"id": string, "minute": number, "teamId": string, "teamName": string, "playerId": string, "playerName": string, "kind": "goal"|"miss"|"save"|"chance"|"turning-point"|"tactical-shift"|"substitution", "narration": string, "scoreAfter": [number, number]}],
-  "tacticalSummary": string,
-  "winExplanation": string
-}
-Produce 8 to 14 highlights sorted by minute. Goals must match the final score. Every highlight must clearly identify team and player when possible.
+      content: `Simulate ${home?.name} vs ${away?.name}. Use ratings, formation, tactics, captain impact, and clutch.
+
+Return exactly one JSON object with:
+- homeScore integer
+- awayScore integer
+- winnerTeamId exactly "${home?.id}" or "${away?.id}"
+- mvpPlayerId exactly one drafted player id
+- highlights exactly 8 items sorted by minute
+- each highlight: id string, minute integer, teamId, teamName, playerId, playerName, kind, narration, scoreAfter array [homeScoreAtMinute, awayScoreAtMinute]
+- kind must be one of: goal, miss, save, chance, turning-point, tactical-shift, substitution
+- number of goal highlights must equal final score total
+- tacticalSummary string
+- winExplanation string
+
 Match input:
 ${JSON.stringify(compactRoom)}`,
     },
@@ -245,7 +276,7 @@ Repair it for the same match input. Keep the same football logic where possible,
 - tacticalSummary and winExplanation
 
 Original match input:
-${JSON.stringify(input)}
+${JSON.stringify(buildComputeRoomPayload(input))}
 
 Invalid response to repair:
 ${invalidContent}`,
@@ -261,6 +292,17 @@ function computeRequestBody(model: string, messages: { role: string; content: st
     max_tokens: Math.min(numberEnv("OG_COMPUTE_MAX_TOKENS", 1_800), 2_048),
     verify_tee: true,
     chat_template_kwargs: { enable_thinking: false },
+  };
+}
+
+function sarvamRequestBody(model: string, messages: { role: string; content: string }[]) {
+  return {
+    model,
+    messages,
+    temperature: 0.15,
+    max_tokens: Math.min(numberEnv("SARVAM_MAX_TOKENS", 1_800), 2_048),
+    reasoning_effort: null,
+    response_format: { type: "json_object" },
   };
 }
 
@@ -284,8 +326,31 @@ async function fetchRouterCompletion(input: {
     throw new Error(`0G Compute request failed: ${response.status} ${await response.text()}`);
   }
   const router = (await response.json()) as RouterResponse;
-  const content = router.choices?.[0]?.message?.content;
-  if (!content) throw new Error("0G Compute Router returned no assistant content.");
+  const content = assistantContent(router, "0G Compute Router");
+  return { router, content };
+}
+
+async function fetchSarvamCompletion(input: {
+  endpoint: string;
+  apiKey: string;
+  requestBody: ReturnType<typeof sarvamRequestBody>;
+  timeoutMs: number;
+}) {
+  const response = await fetch(`${input.endpoint}/chat/completions`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${input.apiKey}`,
+      "api-subscription-key": input.apiKey,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(input.requestBody),
+    signal: AbortSignal.timeout(input.timeoutMs),
+  });
+  if (!response.ok) {
+    throw new Error(`Sarvam AI fallback request failed: ${response.status} ${await response.text()}`);
+  }
+  const router = (await response.json()) as RouterResponse;
+  const content = assistantContent(router, "Sarvam AI fallback");
   return { router, content };
 }
 
@@ -369,8 +434,12 @@ async function runBrokerCompute(room: DraftRoom, input: MatchComputeInput): Prom
     const router = await response.json() as RouterResponse;
     router.provider ||= providerAddress;
     const chatId = response.headers.get("ZG-Res-Key") || router.x_0g_trace?.request_id || router.id || "";
-    const content = router.choices?.[0]?.message?.content;
-    if (!content) return blockedOutput(room, "Direct 0G Compute broker returned no assistant content.");
+    let content: string;
+    try {
+      content = assistantContent(router, "Direct 0G Compute broker");
+    } catch (error) {
+      return blockedOutput(room, error instanceof Error ? error.message : String(error));
+    }
     let teeVerified: boolean | null = router.x_0g_trace?.tee_verified ?? null;
     if (chatId && teeVerified !== true) {
       try {
@@ -393,6 +462,92 @@ async function runBrokerCompute(room: DraftRoom, input: MatchComputeInput): Prom
     return normalizeOutput(JSON.parse(extractJson(content)), input, router, endpoint, model, requestHash, "broker");
   } catch (error) {
     return blockedOutput(room, `Direct 0G Compute broker failed: ${error instanceof Error ? error.message : String(error)}`);
+  }
+}
+
+async function runSarvamFallback(
+  room: DraftRoom,
+  input: MatchComputeInput,
+  computeUnavailableReason: string,
+): Promise<MatchComputeOutput> {
+  const env = getSarvamFallbackEnv();
+  if (!env.apiKey) {
+    return blockedOutput(
+      room,
+      `${computeUnavailableReason} | Sarvam AI fallback is blocked: missing SARVAM_API_KEY.`,
+    );
+  }
+
+  const messages = buildPrompt(input);
+  const requestBody = sarvamRequestBody(env.model, messages);
+  const timeoutMs = numberEnv("SARVAM_FETCH_TIMEOUT_MS", 45_000);
+  const requestHash = sha256(stableJson({
+    endpoint: env.endpoint,
+    model: env.model,
+    source: env.source,
+    fallbackFor: computeUnavailableReason,
+    input,
+    messages,
+  }));
+
+  try {
+    const { router, content } = await fetchSarvamCompletion({
+      endpoint: env.endpoint,
+      apiKey: env.apiKey,
+      requestBody,
+      timeoutMs,
+    });
+    try {
+      return normalizeOutput(
+        JSON.parse(extractJson(content)),
+        input,
+        router,
+        env.endpoint,
+        env.model,
+        requestHash,
+        "sarvam",
+        "external-ai-fallback",
+        computeUnavailableReason,
+      );
+    } catch (validationError) {
+      const repairMessages = buildRepairPrompt(
+        input,
+        content,
+        validationError instanceof Error ? validationError.message : String(validationError),
+      );
+      const repairRequestBody = sarvamRequestBody(env.model, repairMessages);
+      const repairRequestHash = sha256(stableJson({
+        endpoint: env.endpoint,
+        model: env.model,
+        source: env.source,
+        fallbackFor: computeUnavailableReason,
+        input,
+        repairMessages,
+        previousRequestHash: requestHash,
+      }));
+      const repair = await fetchSarvamCompletion({
+        endpoint: env.endpoint,
+        apiKey: env.apiKey,
+        requestBody: repairRequestBody,
+        timeoutMs,
+      });
+      return normalizeOutput(
+        JSON.parse(extractJson(repair.content)),
+        input,
+        repair.router,
+        env.endpoint,
+        env.model,
+        repairRequestHash,
+        "sarvam",
+        "external-ai-fallback",
+        computeUnavailableReason,
+      );
+    }
+  } catch (error) {
+    return blockedOutput(
+      room,
+      `${computeUnavailableReason} | Sarvam AI fallback failed: ${error instanceof Error ? error.message : String(error)}`,
+    );
   }
 }
 
@@ -421,7 +576,7 @@ export async function runMatchCompute(roomInput: DraftRoom): Promise<MatchComput
   const room = completeDraft(roomInput);
   const input = buildMatchComputeInput(room);
   const computeEnvs = getComputeEnvCandidates();
-  const fetchTimeoutMs = numberEnv("OG_COMPUTE_FETCH_TIMEOUT_MS", 12_000);
+  const fetchTimeoutMs = numberEnv("OG_COMPUTE_FETCH_TIMEOUT_MS", 60_000);
   const brokerTimeoutMs = numberEnv("OG_COMPUTE_BROKER_TOTAL_TIMEOUT_MS", 18_000);
 
   const routerBlockers: string[] = [];
@@ -482,10 +637,8 @@ export async function runMatchCompute(roomInput: DraftRoom): Promise<MatchComput
     brokerOutput = blockedOutput(room, `Direct 0G Compute broker failed: ${error instanceof Error ? error.message : String(error)}`);
   }
   if (brokerOutput.authority === "compute") return brokerOutput;
-  return blockedOutput(
-    room,
-    `0G Compute Router failed: ${routerBlockers.join(" | ")} | ${
-      brokerOutput.blocker ?? "Direct 0G Compute broker did not produce a result."
-    }`,
-  );
+  const computeUnavailableReason = `0G Compute Router failed: ${routerBlockers.join(" | ")} | ${
+    brokerOutput.blocker ?? "Direct 0G Compute broker did not produce a result."
+  }`;
+  return runSarvamFallback(room, input, computeUnavailableReason);
 }

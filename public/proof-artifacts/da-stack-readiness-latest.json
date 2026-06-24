@@ -58,7 +58,7 @@
   },
   "endpoints": {
     "sidecarUrl": "http://127.0.0.1:51080",
-    "daClientGrpc": "127.0.0.1:51001",
+    "daClientGrpc": "",
     "rpcUrl": "https://evmrpc-testnet.0g.ai",
     "daEntrance": {
       "address": "0xE75A073dA5bb7b0eC622170Fd268f35E675a957B",
@@ -70,24 +70,25 @@
     "daEntranceCandidates": [
       {
         "address": "0xE75A073dA5bb7b0eC622170Fd268f35E675a957B",
-        "reachable": false,
+        "reachable": true,
         "hasCode": false,
         "codeBytes": 0,
-        "reason": "fetch failed"
+        "reason": "No contract bytecode at DAEntrance on configured RPC."
       },
       {
         "address": "0x857C0A28A8634614BB2C96039Cf4a20AFF709Aa9",
-        "reachable": false,
+        "reachable": true,
         "hasCode": false,
         "codeBytes": 0,
-        "reason": "fetch failed"
+        "reason": "No contract bytecode at DAEntrance on configured RPC."
       }
     ],
     "ports": [
       {
         "host": "127.0.0.1",
         "port": 51080,
-        "listening": true
+        "listening": false,
+        "reason": "connect ECONNREFUSED 127.0.0.1:51080"
       },
       {
         "host": "127.0.0.1",
@@ -97,7 +98,8 @@
       {
         "host": "127.0.0.1",
         "port": 34000,
-        "listening": true
+        "listening": false,
+        "reason": "connect ECONNREFUSED 127.0.0.1:34000"
       },
       {
         "host": "127.0.0.1",
@@ -106,20 +108,13 @@
       }
     ],
     "sidecar": {
-      "reachable": true,
-      "statusCode": 200,
-      "body": {
-        "schema": "0g-da-sidecar-status-v1",
-        "status": "configured",
-        "daClientGrpc": "127.0.0.1:51001",
-        "retrieverUrl": "",
-        "maxBlobBytes": 32505852,
-        "reason": "DA Client endpoint configured. Live gRPC submitter can be enabled against this sidecar host."
-      }
+      "reachable": false,
+      "statusCode": 0,
+      "reason": "fetch failed"
     },
-    "sidecarListening": true,
+    "sidecarListening": false,
     "daClientListening": true,
-    "encoderListening": true,
+    "encoderListening": false,
     "retrieverListening": true,
     "daEntranceHasCode": false,
     "anyDocumentedDaEntranceHasCode": false
@@ -136,20 +131,22 @@
     "daClientImageBuilt": true,
     "encoderImageBuilt": false,
     "retrieverImageBuilt": true,
-    "sidecarReachable": true,
+    "sidecarReachable": false,
     "daClientListening": true,
-    "encoderListening": true,
+    "encoderListening": false,
     "retrieverListening": true,
     "documentedDaEntranceHasCode": false
   },
-  "reason": "0G DA stack is not live yet: DAEntrance 0xE75A073dA5bb7b0eC622170Fd268f35E675a957B has no bytecode on https://evmrpc-testnet.0g.ai; documented candidates checked 0xE75A073dA5bb7b0eC622170Fd268f35E675a957B:0b, 0x857C0A28A8634614BB2C96039Cf4a20AFF709Aa9:0b.",
+  "reason": "0G DA stack is not live yet: local DA sidecar is not reachable on 51080; OG_DA_CLIENT_GRPC_URL is unset; 0G DA Encoder port 34000 is not listening; DAEntrance 0xE75A073dA5bb7b0eC622170Fd268f35E675a957B has no bytecode on https://evmrpc-testnet.0g.ai; documented candidates checked 0xE75A073dA5bb7b0eC622170Fd268f35E675a957B:0b, 0x857C0A28A8634614BB2C96039Cf4a20AFF709Aa9:0b.",
   "env": {
     "rpc": "https://evmrpc-testnet.0g.ai",
     "storageIndexer": "https://indexer-storage-testnet-turbo.0g.ai",
-    "computeEndpoint": "https://router-api.0g.ai/v1",
-    "daClientGrpc": "127.0.0.1:51001",
+    "computeEndpoint": "https://router-api-testnet.integratenetwork.work/v1",
+    "daClientGrpc": "",
     "hasStorageSigner": true,
     "hasComputeKey": true,
-    "hasDaClient": true
+    "hasSarvamFallbackKey": true,
+    "sarvamFallbackModel": "sarvam-30b",
+    "hasDaClient": false
   }
 }

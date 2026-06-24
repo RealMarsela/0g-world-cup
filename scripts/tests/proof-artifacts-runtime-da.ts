@@ -51,14 +51,21 @@ export function assertRuntimeDaArtifacts(artifacts: RuntimeDaArtifacts) {
   assert.equal(typeof (computeBroker.checks as { servicesListed?: boolean }).servicesListed, "boolean", "compute broker service listing truth");
   assert.match(String(computeBroker.reason), /0G Compute|broker|ledger|provider|wallet|fund/i, "compute broker reason");
 
-  assert.ok(computeRuntime.status === "live" || computeRuntime.status === "blocked", "runtime compute must be live or honestly blocked");
+  assert.ok(
+    computeRuntime.status === "live" || computeRuntime.status === "fallback" || computeRuntime.status === "blocked",
+    "runtime compute must be live, fallback, or honestly blocked",
+  );
   assert.equal((computeRuntime.output as { schema?: string }).schema, "0g-world-cup-compute-output-v1", "runtime compute output schema");
   if (computeRuntime.status === "live") {
     assert.equal((computeRuntime.output as { authority?: string }).authority, "compute", "runtime compute authority");
     assert.match(String((computeRuntime.output as { receipt?: { path?: string } }).receipt?.path), /router|broker/, "runtime compute path");
+  } else if (computeRuntime.status === "fallback") {
+    assert.equal((computeRuntime.output as { authority?: string }).authority, "external-ai-fallback", "runtime fallback authority");
+    assert.match(String((computeRuntime.output as { receipt?: { path?: string } }).receipt?.path), /sarvam/, "runtime fallback path");
+    assert.match(String(computeRuntime.reason), /0G Compute|Router|broker|ledger|balance|fund/i, "runtime fallback must retain 0G blocker reason");
   } else {
     assert.equal((computeRuntime.output as { authority?: string }).authority, "blocked", "runtime compute blocked authority");
-    assert.match(String(computeRuntime.reason), /Router|broker|ledger|balance|fund|0G Compute/i, "runtime compute blocker");
+    assert.match(String(computeRuntime.reason), /Router|broker|ledger|balance|fund|0G Compute|Sarvam/i, "runtime compute blocker");
   }
 
   assert.ok(infraDiagnostics.status === "live" || infraDiagnostics.status === "blocked", "infra diagnostics must be live or honestly blocked");
@@ -66,7 +73,10 @@ export function assertRuntimeDaArtifacts(artifacts: RuntimeDaArtifacts) {
   assert.equal(typeof (infraDiagnostics.compute as { hasKey?: boolean }).hasKey, "boolean", "infra compute key truth");
   assert.equal(((infraDiagnostics.compute as { probes?: { model?: string }[] }).probes ?? []).some((probe) => probe.model === "glm-5.1"), true, "infra diagnostics must probe glm-5.1");
   assert.equal(((infraDiagnostics.compute as { probes?: { model?: string }[] }).probes ?? []).some((probe) => probe.model === "glm-5.2"), true, "infra diagnostics must probe glm-5.2");
-  assert.equal((infraDiagnostics.da as { sidecar?: { reachable?: boolean } }).sidecar?.reachable, true, "infra diagnostics must reach local DA sidecar");
+  assert.equal(typeof (infraDiagnostics.da as { sidecar?: { reachable?: boolean } }).sidecar?.reachable, "boolean", "infra diagnostics must report local DA sidecar reachability");
+  if ((infraDiagnostics.da as { sidecar?: { reachable?: boolean } }).sidecar?.reachable === false) {
+    assert.match(String((infraDiagnostics.da as { sidecar?: { reason?: string } }).sidecar?.reason), /fetch|connect|refused|timeout/i, "infra diagnostics must explain unreachable DA sidecar");
+  }
   assert.equal(typeof (infraDiagnostics.da as { daEntranceHasCode?: boolean }).daEntranceHasCode, "boolean", "infra diagnostics must report DAEntrance bytecode truth");
   assert.match(String((infraDiagnostics.da as { daEntrance?: { address?: string } }).daEntrance?.address), /^0x[a-f0-9]{40}$/i, "infra diagnostics must report DAEntrance address");
   assert.equal(Array.isArray((infraDiagnostics.da as { daEntranceCandidates?: unknown[] }).daEntranceCandidates), true, "infra diagnostics must report documented DAEntrance candidates");

@@ -85,7 +85,7 @@ export type MatchResult = {
   simulationHash: string;
   storageUri: string;
   computeMode: string;
-  computeAuthority?: "compute" | "deterministic-background" | "blocked";
+  computeAuthority?: "compute" | "external-ai-fallback" | "deterministic-background" | "blocked";
   computeReceipt?: MatchComputeReceipt;
   highlights?: MatchHighlight[];
   blocker?: string;

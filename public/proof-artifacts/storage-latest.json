@@ -4,5 +4,6 @@
   "rootHash": "0x950d13bcd9ea7816c323e7e6b0cfcbd409ac3a4cdd18b29dcb3935c55ad9d75b",
   "txHash": "0x4d0b82969d959a74b3e2717880e7516dc5aea4788838c0be509216fa8caf54e2",
   "storageUri": "0g://storage/0x950d13bcd9ea7816c323e7e6b0cfcbd409ac3a4cdd18b29dcb3935c55ad9d75b",
-  "indexerRpc": "https://indexer-storage-testnet-turbo.0g.ai"
+  "indexerRpc": "https://indexer-storage-testnet-turbo.0g.ai",
+  "reused": "Existing 0G Storage root is already discoverable; skipped duplicate upload."
 }

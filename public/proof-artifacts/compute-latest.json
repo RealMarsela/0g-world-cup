@@ -15,8 +15,8 @@
         }
       }
     ],
-    "created": 1782310958,
-    "id": "chatcmpl-08a1d005-170d-440c-af50-1b2bf5493719",
+    "created": 1782319980,
+    "id": "chatcmpl-3bf241a9-79b5-4ac6-9321-e897379d59b2",
     "model": "qwen2.5-omni",
     "object": "chat.completion",
     "system_fingerprint": null,
@@ -33,21 +33,14 @@
     },
     "x_0g_trace": {
       "billing": {
-        "input_cost": "39591000000000",
-        "output_cost": "176410000000000",
-        "total_cost": "216001000000000"
+        "input_cost": "39856000000000",
+        "output_cost": "177590000000000",
+        "total_cost": "217446000000000"
       },
       "provider": "0xa48f01287233509FD694a22Bf840225062E67836",
-      "request_id": "e52ed01e-a21b-4807-bc3d-9ae7fcf9ba4a",
+      "request_id": "89c05531-3808-4111-b845-f6f7ce5a30b7",
       "tee_verified": true
     }
   },
-  "failedCandidates": [
-    {
-      "source": "OG_COMPUTE_API_KEY",
-      "endpoint": "https://router-api.0g.ai/v1",
-      "model": "glm-5.1",
-      "reason": "0G Compute Router request failed: 402 {\"error\":{\"message\":\"Insufficient balance\",\"type\":\"payment_error\",\"code\":\"insufficient_balance\"},\"request_id\":\"67100cbe-48d7-41c3-8c1f-ccec261fbb26\"}"
-    }
-  ]
+  "failedCandidates": []
 }

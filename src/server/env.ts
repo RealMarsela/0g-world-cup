@@ -21,6 +21,8 @@ type ComputeEnv = {
 };
 
 const fallbackComputeEndpoint = "https://router-api-testnet.integratenetwork.work/v1";
+const fallbackSarvamEndpoint = "https://api.sarvam.ai/v1";
+const fallbackSarvamModel = "sarvam-30b";
 
 function uniqueComputeEnvs(candidates: ComputeEnv[]) {
   const seen = new Set<string>();
@@ -36,6 +38,12 @@ function uniqueComputeEnvs(candidates: ComputeEnv[]) {
 export function getComputeEnvCandidates(): ComputeEnv[] {
   return uniqueComputeEnvs([
     {
+      source: "ZEROG_ROUTER_API_KEY",
+      apiKey: process.env.ZEROG_ROUTER_API_KEY || "",
+      endpoint: process.env.ZEROG_COMPUTE_ROUTER || fallbackComputeEndpoint,
+      model: process.env.ZEROG_COMPUTE_MODEL || process.env.OG_COMPUTE_MODEL || "",
+    },
+    {
       source: "OG_COMPUTE_API_KEY",
       apiKey: process.env.OG_COMPUTE_API_KEY || "",
       endpoint: process.env.OG_COMPUTE_ENDPOINT || process.env.VITE_OG_COMPUTE_ENDPOINT || fallbackComputeEndpoint,
@@ -46,12 +54,6 @@ export function getComputeEnvCandidates(): ComputeEnv[] {
       apiKey: process.env.VITE_OG_COMPUTE_API_KEY || "",
       endpoint: process.env.VITE_OG_COMPUTE_ENDPOINT || process.env.OG_COMPUTE_ENDPOINT || fallbackComputeEndpoint,
       model: process.env.VITE_OG_COMPUTE_MODEL || process.env.OG_COMPUTE_MODEL || "",
-    },
-    {
-      source: "ZEROG_ROUTER_API_KEY",
-      apiKey: process.env.ZEROG_ROUTER_API_KEY || "",
-      endpoint: process.env.ZEROG_COMPUTE_ROUTER || process.env.OG_COMPUTE_ENDPOINT || fallbackComputeEndpoint,
-      model: process.env.ZEROG_COMPUTE_MODEL || process.env.OG_COMPUTE_MODEL || "",
     },
   ]);
 }
@@ -68,5 +70,14 @@ export function getComputeEnv() {
       process.env.ZEROG_COMPUTE_ROUTER ||
       fallbackComputeEndpoint,
     model: process.env.OG_COMPUTE_MODEL || process.env.VITE_OG_COMPUTE_MODEL || process.env.ZEROG_COMPUTE_MODEL || "",
+  };
+}
+
+export function getSarvamFallbackEnv() {
+  return {
+    source: "SARVAM_API_KEY",
+    apiKey: process.env.SARVAM_API_KEY || "",
+    endpoint: (process.env.SARVAM_ENDPOINT || fallbackSarvamEndpoint).replace(/\/$/, ""),
+    model: process.env.SARVAM_MODEL || fallbackSarvamModel,
   };
 }

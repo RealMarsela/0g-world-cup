@@ -75,8 +75,12 @@ test("runtime compute endpoint is explicit when Compute is unavailable", async (
   const body = await response.json() as { error?: string; reason?: string; result?: Record<string, unknown> };
   if (response.status() === 503) {
     expect(body.error).toBe("COMPUTE_BLOCKED");
-    expect(body.reason).toMatch(/0G Compute|Router|balance|provider|key/i);
+    expect(body.reason).toMatch(/0G Compute|Router|balance|provider|key|Sarvam/i);
   } else {
-    expect(body.result?.computeAuthority).toBe("compute");
+    expect(["compute", "external-ai-fallback"]).toContain(body.result?.computeAuthority);
+    if (body.result?.computeAuthority === "external-ai-fallback") {
+      expect(String(body.result.blocker)).toMatch(/0G Compute|Router|balance|provider|key/i);
+      expect(String(body.result.computeMode)).toMatch(/Sarvam AI fallback/i);
+    }
   }
 });

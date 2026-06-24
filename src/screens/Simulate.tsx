@@ -40,7 +40,7 @@ export function Simulate() {
         <Badge tone={result ? "ok" : error ? "warn" : "accent"}>{result ? result.computeMode : error ? "Compute blocked" : "Kickoff pending"}</Badge>
         <h1 className="mt-3 text-4xl font-black">{result ? "Simulation receipt" : "Ready to start."}</h1>
         <p className="mt-2 max-w-3xl text-muted">
-          The room is drafted, but no score, table, result hash, or storage receipt is generated until 0G Compute adjudicates kickoff.
+          The room is drafted, but no score, table, result hash, or storage receipt is generated until kickoff. 0G Compute is tried first; if it is rate-limited or out of balance, the app keeps the match playable with a labeled Sarvam AI fallback.
         </p>
       </Panel>
 
@@ -178,6 +178,14 @@ function Receipt({ result, room }: { result: MatchResult; room: DraftRoom }) {
       </div>
       {result.highlights?.length ? <Highlights result={result} /> : null}
       <Panel className="p-5" data-testid="simulation-receipt">
+        {result.computeAuthority === "external-ai-fallback" && (
+          <div className="mb-5 rounded-md border border-amber-300/25 bg-amber-300/10 p-3">
+            <p className="text-xs font-black uppercase tracking-[0.14em] text-amber-100">0G Compute unavailable</p>
+            <p className="mt-1 break-all text-sm text-amber-50/85">
+              {result.blocker || "Sarvam AI generated this playable fallback result. It is not a 0G Compute-authoritative settlement result."}
+            </p>
+          </div>
+        )}
         {result.type === "tournament" ? <TournamentReceipt result={result} /> : <MatchReceipt result={result} />}
         <p className="mt-5 text-muted">{result.tacticalSummary}</p>
         <div className="mt-5 flex flex-wrap gap-3">
@@ -199,7 +207,7 @@ function Receipt({ result, room }: { result: MatchResult; room: DraftRoom }) {
 function Highlights({ result }: { result: MatchResult }) {
   return (
     <Panel className="p-5">
-      <h2 className="text-2xl font-bold">0G Compute highlight tape</h2>
+      <h2 className="text-2xl font-bold">{result.computeAuthority === "external-ai-fallback" ? "Fallback highlight tape" : "0G Compute highlight tape"}</h2>
       <div className="mt-4 max-h-[360px] overflow-y-auto pr-2">
         <div className="grid gap-3">
           {result.highlights?.map((highlight) => (

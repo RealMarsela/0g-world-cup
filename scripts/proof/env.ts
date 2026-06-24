@@ -21,15 +21,17 @@ export function publicEnvSummary() {
       process.env.VITE_OG_STORAGE_INDEXER_URL ||
       "https://indexer-storage-testnet-turbo.0g.ai",
     computeEndpoint:
+      process.env.ZEROG_COMPUTE_ROUTER ||
       process.env.OG_COMPUTE_ENDPOINT ||
       process.env.VITE_OG_COMPUTE_ENDPOINT ||
-      process.env.ZEROG_COMPUTE_ROUTER ||
       "https://router-api-testnet.integratenetwork.work/v1",
     daClientGrpc: process.env.OG_DA_CLIENT_GRPC_URL || "",
     hasStorageSigner: Boolean(process.env.OG_PRIVATE_KEY),
     hasComputeKey: Boolean(
       process.env.OG_COMPUTE_API_KEY || process.env.VITE_OG_COMPUTE_API_KEY || process.env.ZEROG_ROUTER_API_KEY,
     ),
+    hasSarvamFallbackKey: Boolean(process.env.SARVAM_API_KEY),
+    sarvamFallbackModel: process.env.SARVAM_MODEL || "sarvam-30b",
     hasDaClient: Boolean(process.env.OG_DA_CLIENT_GRPC_URL),
   };
 }

@@ -2,20 +2,22 @@
   "schema": "0g-world-cup-da-sidecar-proof-v1",
   "status": "blocked",
   "sidecarUrl": "http://127.0.0.1:51080",
-  "blobHash": "0x77f1336dda44c33cbc3d8c3d2aad4370bc1f821663d08264ee6c4367764aff34",
-  "expectedBlobHash": "0x77f1336dda44c33cbc3d8c3d2aad4370bc1f821663d08264ee6c4367764aff34",
-  "blobBytes": 54363,
+  "blobHash": "0x4d1308b1f4496019e9501dab235aa1c1b523c61f92d0601412ae1ba1cc0e8551",
+  "expectedBlobHash": "0x4d1308b1f4496019e9501dab235aa1c1b523c61f92d0601412ae1ba1cc0e8551",
+  "blobBytes": 63377,
   "blobReady": true,
   "maxBlobBytes": 32505852,
   "daStatus": "",
-  "reason": "DA sidecar submit skipped because readiness preflight is blocked: 0G DA stack is not live yet: DAEntrance 0xE75A073dA5bb7b0eC622170Fd268f35E675a957B has no bytecode on https://evmrpc-testnet.0g.ai; documented candidates checked 0xE75A073dA5bb7b0eC622170Fd268f35E675a957B:0b, 0x857C0A28A8634614BB2C96039Cf4a20AFF709Aa9:0b.",
+  "reason": "DA sidecar submit skipped because readiness preflight is blocked: 0G DA stack is not live yet: local DA sidecar is not reachable on 51080; OG_DA_CLIENT_GRPC_URL is unset; 0G DA Encoder port 34000 is not listening; DAEntrance 0xE75A073dA5bb7b0eC622170Fd268f35E675a957B has no bytecode on https://evmrpc-testnet.0g.ai; documented candidates checked 0xE75A073dA5bb7b0eC622170Fd268f35E675a957B:0b, 0x857C0A28A8634614BB2C96039Cf4a20AFF709Aa9:0b.",
   "env": {
     "rpc": "https://evmrpc-testnet.0g.ai",
     "storageIndexer": "https://indexer-storage-testnet-turbo.0g.ai",
-    "computeEndpoint": "https://router-api.0g.ai/v1",
-    "daClientGrpc": "127.0.0.1:51001",
+    "computeEndpoint": "https://router-api-testnet.integratenetwork.work/v1",
+    "daClientGrpc": "",
     "hasStorageSigner": true,
     "hasComputeKey": true,
-    "hasDaClient": true
+    "hasSarvamFallbackKey": true,
+    "sarvamFallbackModel": "sarvam-30b",
+    "hasDaClient": false
   }
 }

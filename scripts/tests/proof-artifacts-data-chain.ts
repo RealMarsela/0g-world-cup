@@ -93,9 +93,18 @@ export function assertDataChainArtifacts(artifacts: DataChainArtifacts) {
     assert.equal(coverage.some((entry) => entry.id === id), true, `integration matrix includes ${id}`);
   }
   assert.equal(
-    coverage.some((entry) => entry.id === "compute-router" && entry.status === "external-blocked"),
+    coverage.some(
+      (entry) =>
+        entry.id === "compute-router" &&
+        (entry.status === "verified" || entry.status === "external-blocked"),
+    ),
     true,
-    "integration matrix must expose current compute router blocker",
+    "integration matrix must show compute router as live or honestly externally blocked",
+  );
+  assert.equal(
+    coverage.some((entry) => entry.id === "compute-broker" && entry.status === "external-blocked"),
+    true,
+    "integration matrix must expose current direct compute broker blocker",
   );
   assert.equal(
     coverage.some((entry) => entry.id === "runtime-finalization-guard" && entry.status === "verified"),

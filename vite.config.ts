@@ -5,6 +5,7 @@ import { mkdirSync, writeFileSync } from "node:fs";
 import { commitRoomResult } from "./src/server/chain/commitRoomResult";
 import { runMatchCompute } from "./src/server/compute/runMatchCompute";
 import { uploadRoomBundle } from "./src/server/storage/uploadRoomBundle";
+import { completeDraft } from "./src/worldcup/game";
 import { buildMatchResultFromCompute } from "./src/worldcup/matchCompute";
 import type { DraftRoom, MatchResult } from "./src/worldcup/types";
 
@@ -40,14 +41,15 @@ export default defineConfig({
           try {
             const body = (await readJsonBody(req)) as { room?: DraftRoom };
             if (!body.room) throw new Error("Missing room payload.");
-            const output = await runMatchCompute(body.room);
+            const room = completeDraft(body.room);
+            const output = await runMatchCompute(room);
             if (output.authority === "blocked") {
               res.statusCode = 503;
               res.setHeader("Content-Type", "application/json");
               res.end(JSON.stringify({ error: "COMPUTE_BLOCKED", reason: output.blocker, output }));
               return;
             }
-            const result = buildMatchResultFromCompute(body.room, output);
+            const result = buildMatchResultFromCompute(room, output);
             res.statusCode = 200;
             res.setHeader("Content-Type", "application/json");
             res.end(JSON.stringify({ output, result }));

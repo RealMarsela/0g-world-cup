@@ -98,13 +98,13 @@
       "id": "compute-router",
       "label": "0G Compute Router",
       "layer": "compute",
-      "status": "external-blocked",
+      "status": "verified",
       "artifacts": [
         "compute-latest.json",
         "infra-diagnostics-latest.json"
       ],
       "uiSurface": "/simulate/:roomId and /proof/:roomId",
-      "proof": "0G Compute Router request failed: 402 {\"error\":{\"message\":\"Insufficient balance\",\"type\":\"payment_error\",\"code\":\"insufficient_balance\"},\"request_id\":\"aa979914-0b51-40e4-bc94-f96f262c952d\"}"
+      "proof": "qwen2.5-omni"
     },
     {
       "id": "compute-broker",
@@ -121,13 +121,13 @@
       "id": "runtime-compute-authority",
       "label": "Runtime match compute authority",
       "layer": "compute",
-      "status": "external-blocked",
+      "status": "verified",
       "artifacts": [
         "compute-runtime-latest.json",
         "runtime-finalize-latest.json"
       ],
       "uiSurface": "/simulate/:roomId",
-      "proof": "0G Compute Router failed: 0G Compute request failed: 402 {\"error\":{\"message\":\"Insufficient balance\",\"type\":\"payment_error\",\"code\":\"insufficient_balance\"},\"request_id\":\"c426d339-9155-44f4-8dee-922f5d9aff42\"} | Direct 0G Compute broker failed: Direct 0G Compute broker ledger is not ready and OG_COMPUTE_BROKER_AUTOFUND is not enabled: Account does not exist. Please create an account first using \"add-account\". (Address: 0x3D325E51934AE5c7EBf9f37a8Ddf772F48F766Fb)"
+      "proof": "Runtime finalization only accepts a real 0G Compute-authoritative result."
     },
     {
       "id": "runtime-finalization-guard",
@@ -161,7 +161,7 @@
         "da-stack-readiness-latest.json"
       ],
       "uiSurface": "/proof/:roomId",
-      "proof": "0G DA stack is not live yet: DAEntrance 0xE75A073dA5bb7b0eC622170Fd268f35E675a957B has no bytecode on https://evmrpc-testnet.0g.ai; documented candidates checked 0xE75A073dA5bb7b0eC622170Fd268f35E675a957B:0b, 0x857C0A28A8634614BB2C96039Cf4a20AFF709Aa9:0b."
+      "proof": "0G DA stack is not live yet: local DA sidecar is not reachable on 51080; OG_DA_CLIENT_GRPC_URL is unset; 0G DA Encoder port 34000 is not listening; DAEntrance 0xE75A073dA5bb7b0eC622170Fd268f35E675a957B has no bytecode on https://evmrpc-testnet.0g.ai; documented candidates checked 0xE75A073dA5bb7b0eC622170Fd268f35E675a957B:0b, 0x857C0A28A8634614BB2C96039Cf4a20AFF709Aa9:0b."
     },
     {
       "id": "da-sidecar-submit",
@@ -172,7 +172,7 @@
         "da-sidecar-latest.json"
       ],
       "uiSurface": "/proof/:roomId",
-      "proof": "DA sidecar submit skipped because readiness preflight is blocked: 0G DA stack is not live yet: DAEntrance 0xE75A073dA5bb7b0eC622170Fd268f35E675a957B has no bytecode on https://evmrpc-testnet.0g.ai; documented candidates checked 0xE75A073dA5bb7b0eC622170Fd268f35E675a957B:0b, 0x857C0A28A8634614BB2C96039Cf4a20AFF709Aa9:0b."
+      "proof": "DA sidecar submit skipped because readiness preflight is blocked: 0G DA stack is not live yet: local DA sidecar is not reachable on 51080; OG_DA_CLIENT_GRPC_URL is unset; 0G DA Encoder port 34000 is not listening; DAEntrance 0xE75A073dA5bb7b0eC622170Fd268f35E675a957B has no bytecode on https://evmrpc-testnet.0g.ai; documented candidates checked 0xE75A073dA5bb7b0eC622170Fd268f35E675a957B:0b, 0x857C0A28A8634614BB2C96039Cf4a20AFF709Aa9:0b."
     },
     {
       "id": "cloudflare-tunnel-bridge",
@@ -232,26 +232,14 @@
     }
   ],
   "counts": {
-    "verified": 13,
+    "verified": 15,
     "ready": 1,
-    "external-blocked": 5,
+    "external-blocked": 3,
     "local-only": 1,
     "missing": 0
   },
-  "coverageHash": "0xedc3b91107ee28ba9e74ddb184bed0f6473c5e86f0b3460493d89ea72603883d",
+  "coverageHash": "0xd970602f4684d8c2349a3809ea4e41b9e8e8e7de07d2329720d0bd201e661cb2",
   "blockers": [
-    {
-      "id": "compute-router",
-      "label": "0G Compute Router",
-      "layer": "compute",
-      "status": "external-blocked",
-      "artifacts": [
-        "compute-latest.json",
-        "infra-diagnostics-latest.json"
-      ],
-      "uiSurface": "/simulate/:roomId and /proof/:roomId",
-      "proof": "0G Compute Router request failed: 402 {\"error\":{\"message\":\"Insufficient balance\",\"type\":\"payment_error\",\"code\":\"insufficient_balance\"},\"request_id\":\"aa979914-0b51-40e4-bc94-f96f262c952d\"}"
-    },
     {
       "id": "compute-broker",
       "label": "Direct 0G Compute broker",
@@ -264,18 +252,6 @@
       "proof": "Direct 0G Compute providers are discoverable, but wallet balance is below the 3 0G ledger minimum for broker funding. Top up 0x3D325E51934AE5c7EBf9f37a8Ddf772F48F766Fb with at least 2.969183 0G, then rerun with OG_COMPUTE_BROKER_AUTOFUND=1 to create the broker ledger."
     },
     {
-      "id": "runtime-compute-authority",
-      "label": "Runtime match compute authority",
-      "layer": "compute",
-      "status": "external-blocked",
-      "artifacts": [
-        "compute-runtime-latest.json",
-        "runtime-finalize-latest.json"
-      ],
-      "uiSurface": "/simulate/:roomId",
-      "proof": "0G Compute Router failed: 0G Compute request failed: 402 {\"error\":{\"message\":\"Insufficient balance\",\"type\":\"payment_error\",\"code\":\"insufficient_balance\"},\"request_id\":\"c426d339-9155-44f4-8dee-922f5d9aff42\"} | Direct 0G Compute broker failed: Direct 0G Compute broker ledger is not ready and OG_COMPUTE_BROKER_AUTOFUND is not enabled: Account does not exist. Please create an account first using \"add-account\". (Address: 0x3D325E51934AE5c7EBf9f37a8Ddf772F48F766Fb)"
-    },
-    {
       "id": "da-local-stack",
       "label": "0G DA local sidecar/client stack",
       "layer": "da",
@@ -284,7 +260,7 @@
         "da-stack-readiness-latest.json"
       ],
       "uiSurface": "/proof/:roomId",
-      "proof": "0G DA stack is not live yet: DAEntrance 0xE75A073dA5bb7b0eC622170Fd268f35E675a957B has no bytecode on https://evmrpc-testnet.0g.ai; documented candidates checked 0xE75A073dA5bb7b0eC622170Fd268f35E675a957B:0b, 0x857C0A28A8634614BB2C96039Cf4a20AFF709Aa9:0b."
+      "proof": "0G DA stack is not live yet: local DA sidecar is not reachable on 51080; OG_DA_CLIENT_GRPC_URL is unset; 0G DA Encoder port 34000 is not listening; DAEntrance 0xE75A073dA5bb7b0eC622170Fd268f35E675a957B has no bytecode on https://evmrpc-testnet.0g.ai; documented candidates checked 0xE75A073dA5bb7b0eC622170Fd268f35E675a957B:0b, 0x857C0A28A8634614BB2C96039Cf4a20AFF709Aa9:0b."
     },
     {
       "id": "da-sidecar-submit",
@@ -295,7 +271,7 @@
         "da-sidecar-latest.json"
       ],
       "uiSurface": "/proof/:roomId",
-      "proof": "DA sidecar submit skipped because readiness preflight is blocked: 0G DA stack is not live yet: DAEntrance 0xE75A073dA5bb7b0eC622170Fd268f35E675a957B has no bytecode on https://evmrpc-testnet.0g.ai; documented candidates checked 0xE75A073dA5bb7b0eC622170Fd268f35E675a957B:0b, 0x857C0A28A8634614BB2C96039Cf4a20AFF709Aa9:0b."
+      "proof": "DA sidecar submit skipped because readiness preflight is blocked: 0G DA stack is not live yet: local DA sidecar is not reachable on 51080; OG_DA_CLIENT_GRPC_URL is unset; 0G DA Encoder port 34000 is not listening; DAEntrance 0xE75A073dA5bb7b0eC622170Fd268f35E675a957B has no bytecode on https://evmrpc-testnet.0g.ai; documented candidates checked 0xE75A073dA5bb7b0eC622170Fd268f35E675a957B:0b, 0x857C0A28A8634614BB2C96039Cf4a20AFF709Aa9:0b."
     },
     {
       "id": "cloudflare-tunnel-bridge",
@@ -312,10 +288,12 @@
   "env": {
     "rpc": "https://evmrpc-testnet.0g.ai",
     "storageIndexer": "https://indexer-storage-testnet-turbo.0g.ai",
-    "computeEndpoint": "https://router-api.0g.ai/v1",
+    "computeEndpoint": "https://router-api-testnet.integratenetwork.work/v1",
     "daClientGrpc": "",
     "hasStorageSigner": true,
     "hasComputeKey": true,
+    "hasSarvamFallbackKey": true,
+    "sarvamFallbackModel": "sarvam-30b",
     "hasDaClient": false
   }
 }

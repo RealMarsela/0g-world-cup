@@ -1,6 +1,6 @@
 import type { DraftRoom, Player } from "./types";
 
-export type MatchAuthority = "compute" | "deterministic-background" | "blocked";
+export type MatchAuthority = "compute" | "external-ai-fallback" | "deterministic-background" | "blocked";
 
 export type MatchHighlightKind =
   | "goal"
@@ -37,10 +37,11 @@ export type MatchComputeInput = {
 export type MatchComputeReceipt = {
   endpoint: string;
   model: string;
-  path?: "router" | "broker";
+  path?: "router" | "broker" | "sarvam";
   provider?: string;
   requestId?: string;
   teeVerified?: boolean | null;
+  fallbackFor?: string;
   requestHash: string;
   responseHash: string;
   rawResponseHash: string;

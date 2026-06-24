@@ -52,7 +52,11 @@ export function ZeroGArtifactDetails({ artifact }: { artifact: Artifact }) {
       {artifact.storage && <p className="break-all font-mono">runtime storage {String(artifact.storage.storageUri ?? artifact.storage.reason ?? "pending")}</p>}
       {artifact.chain && <p className="break-all font-mono">runtime chain {String(artifact.chain.status ?? "pending")} {String(artifact.chain.txHash ?? "")}</p>}
       {artifact.compute && <p className="break-all font-mono">compute {String(artifact.compute.endpoint ?? "")} / live {String(artifact.compute.live)} / {String(artifact.compute.reason ?? "")}</p>}
-      {artifact.compute?.probes?.map((probe) => <p className="break-all font-mono" key={String(probe.model)}>{String(probe.model)} status {String(probe.statusCode)} {String(probe.errorCode ?? probe.message ?? "")}</p>)}
+      {artifact.compute?.probes?.map((probe, index) => (
+        <p className="break-all font-mono" key={`${String(probe.source ?? "?")}:${String(probe.endpoint ?? "?")}:${String(probe.model)}:${String(probe.statusCode)}:${index}`}>
+          {String(probe.model)} status {String(probe.statusCode)} {String(probe.errorCode ?? probe.message ?? "")}
+        </p>
+      ))}
       {artifact.wallet && <p className="break-all font-mono">broker wallet {String(artifact.wallet.address ?? "missing")} / balance {String(artifact.wallet.nativeBalanceOg ?? "?")} 0G / min {String(artifact.wallet.minimumLedgerOg ?? "?")} 0G / top up {String(artifact.wallet.requiredTopUpOg ?? "?")} 0G / can fund {String(artifact.wallet.canFundMinimumLedger)}</p>}
       {artifact.broker && <p className="break-all font-mono">broker services {String(artifact.broker.serviceCount ?? 0)} / provider {String(artifact.broker.preferredService?.provider ?? "missing")} / model {String(artifact.broker.metadata?.model ?? artifact.broker.preferredService?.model ?? "unknown")}</p>}
       {artifact.broker?.metadata?.endpoint && <p className="break-all font-mono">broker endpoint {artifact.broker.metadata.endpoint}</p>}
