@@ -16,7 +16,7 @@ const proofRails = [
 function Slide({ num, label, children }: { num: string; label: string; children: ReactNode }) {
   return (
     <section className="grid min-h-screen place-items-center px-4 py-10">
-      <div className="relative aspect-video w-full max-w-7xl overflow-hidden rounded-[10px] border border-white/12 bg-[#07110a] shadow-2xl shadow-black/40">
+      <div className="relative min-h-[720px] w-full max-w-7xl overflow-hidden rounded-[10px] border border-white/12 bg-[#07110a] shadow-2xl shadow-black/40 md:aspect-video md:min-h-0">
         <div className="absolute left-8 top-7 z-10 flex items-center gap-4 font-mono text-xs uppercase tracking-[0.24em] text-[#d7ff4f]">
           <span>{num}</span>
           <span className="h-px w-14 bg-[#d7ff4f]/35" />
@@ -37,11 +37,11 @@ export function Pitch() {
           <img src="/cover.jpg" alt="0G World Cup draft room" className="h-full w-full object-cover opacity-75" />
           <div className="absolute inset-0 bg-gradient-to-l from-transparent to-[#051108]" />
         </div>
-        <div className="absolute left-16 top-28 max-w-3xl">
+        <div className="absolute left-6 right-6 top-24 max-w-3xl md:left-16 md:right-auto md:top-28">
           <Link to="/" className="font-mono text-xs uppercase tracking-[0.28em] text-[#d7ff4f]">
             0G World Cup
           </Link>
-          <h1 className="mt-8 text-[88px] font-black leading-[0.86] tracking-tight">
+          <h1 className="mt-8 text-[44px] font-black leading-[0.92] tracking-tight md:text-[88px] md:leading-[0.86]">
             Fantasy football becomes a verifiable AI arena.
           </h1>
           <p className="mt-8 max-w-2xl text-[27px] leading-[1.35] text-white/70">
