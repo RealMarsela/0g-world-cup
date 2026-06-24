@@ -1,10 +1,12 @@
 {
   "schema": "0g-world-cup-da-stack-readiness-v1",
-  "status": "ready",
+  "status": "blocked",
   "generatedAt": "1970-01-01T00:00:00.000Z",
   "officialDocs": {
     "url": "https://docs.0g.ai/developer-hub/building-on-0g/da-integration",
     "requirement": "0G DA live submission requires DA Client, Encoder, and Retriever. Common local ports: DA Client gRPC 51001, Encoder 34000, Retriever 34005.",
+    "testnetOverviewUrl": "https://docs.0g.ai/developer-hub/testnet/testnet-overview",
+    "daEntrance": "0xE75A073dA5bb7b0eC622170Fd268f35E675a957B",
     "maxBlobBytes": 32505852
   },
   "docker": {
@@ -56,6 +58,14 @@
   "endpoints": {
     "sidecarUrl": "http://127.0.0.1:51080",
     "daClientGrpc": "127.0.0.1:51001",
+    "rpcUrl": "https://evmrpc-testnet.0g.ai",
+    "daEntrance": {
+      "address": "0xE75A073dA5bb7b0eC622170Fd268f35E675a957B",
+      "reachable": true,
+      "hasCode": false,
+      "codeBytes": 0,
+      "reason": "No contract bytecode at DAEntrance on configured RPC."
+    },
     "ports": [
       {
         "host": "127.0.0.1",
@@ -93,7 +103,8 @@
     "sidecarListening": true,
     "daClientListening": true,
     "encoderListening": true,
-    "retrieverListening": true
+    "retrieverListening": true,
+    "daEntranceHasCode": false
   },
   "checks": {
     "dockerInstalled": true,
@@ -112,7 +123,7 @@
     "encoderListening": true,
     "retrieverListening": true
   },
-  "reason": "0G DA Client, Encoder, Retriever, and sidecar are all reachable.",
+  "reason": "0G DA stack is not live yet: DAEntrance 0xE75A073dA5bb7b0eC622170Fd268f35E675a957B has no bytecode on https://evmrpc-testnet.0g.ai.",
   "env": {
     "rpc": "https://evmrpc-testnet.0g.ai",
     "storageIndexer": "https://indexer-storage-testnet-turbo.0g.ai",

@@ -1,4 +1,4 @@
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { loadLocalEnv, publicEnvSummary, writeProofArtifact } from "./env";
 import "./build-da-batch";
 
@@ -21,6 +21,9 @@ type SidecarResponse = Record<string, unknown> & {
 const sidecarUrl = process.env.OG_DA_SIDECAR_URL || "http://127.0.0.1:51080";
 const daBatch = JSON.parse(readFileSync("proof-artifacts/da-latest.json", "utf8")) as DaBatchArtifact;
 const daPayload = JSON.parse(readFileSync("proof-artifacts/da-batch-payload-latest.json", "utf8")) as Record<string, unknown>;
+const daStack = existsSync("proof-artifacts/da-stack-readiness-latest.json")
+  ? JSON.parse(readFileSync("proof-artifacts/da-stack-readiness-latest.json", "utf8")) as { status?: string; reason?: string }
+  : null;
 
 async function postToSidecar() {
   const response = await fetch(`${sidecarUrl.replace(/\/$/, "")}/submit-da-blob`, {
@@ -37,6 +40,25 @@ async function postToSidecar() {
 }
 
 try {
+  if (daStack?.status === "blocked" && /DAEntrance|bytecode|contract/i.test(String(daStack.reason ?? ""))) {
+    const artifact = {
+      schema: "0g-world-cup-da-sidecar-proof-v1",
+      status: "blocked",
+      sidecarUrl,
+      blobHash: daBatch.blobHash,
+      expectedBlobHash: daBatch.blobHash,
+      blobBytes: daBatch.blobBytes,
+      blobReady: daBatch.blobReady,
+      maxBlobBytes: daBatch.maxBlobBytes,
+      daStatus: "",
+      reason: `DA sidecar submit skipped because readiness preflight is blocked: ${daStack.reason}`,
+      env: publicEnvSummary(),
+    };
+    writeProofArtifact("da-sidecar-latest.json", artifact);
+    console.log(JSON.stringify(artifact, null, 2));
+    process.exit(0);
+  }
+
   const result = await postToSidecar();
   const sidecarStatus = String(result.body.status ?? (result.ok ? "submitted" : "blocked"));
   const artifact = {

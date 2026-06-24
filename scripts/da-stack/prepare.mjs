@@ -26,7 +26,7 @@ const daClientPrivateKey = privateKey.replace(/^0x/i, "");
 const daClientPort = process.env.OG_DA_CLIENT_GRPC_PORT || "51001";
 const encoderAddress = process.env.OG_DA_ENCODER_ADDRESS || "0g-da-encoder:34000";
 const retrieverListen = process.env.OG_DA_RETRIEVER_LISTEN || "0.0.0.0:34005";
-const entranceContract = process.env.OG_DA_ENTRANCE_CONTRACT_ADDR || "0x857C0A28A8634614BB2C96039Cf4a20AFF709Aa9";
+const entranceContract = process.env.OG_DA_ENTRANCE_CONTRACT_ADDR || "0xE75A073dA5bb7b0eC622170Fd268f35E675a957B";
 const signersContract = process.env.OG_DA_SIGNERS_CONTRACT_ADDR || "0x0000000000000000000000000000000000001000";
 
 if (!privateKey) {

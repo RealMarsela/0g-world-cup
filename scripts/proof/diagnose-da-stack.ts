@@ -9,6 +9,8 @@ loadLocalEnv();
 const execFileAsync = promisify(execFile);
 const sidecarUrl = process.env.OG_DA_SIDECAR_URL || "http://127.0.0.1:51080";
 const daClientGrpc = process.env.OG_DA_CLIENT_GRPC_URL || "";
+const rpcUrl = process.env.OG_RPC_URL || process.env.VITE_OG_RPC_URL || "https://evmrpc-testnet.0g.ai";
+const defaultDaEntrance = "0xE75A073dA5bb7b0eC622170Fd268f35E675a957B";
 
 function fileInfo(path: string, sensitive = false) {
   if (!existsSync(path)) return { path, exists: false };
@@ -51,6 +53,50 @@ function probeTcp(host: string, port: number) {
       resolve({ host, port, listening: false, reason: error.message });
     });
   });
+}
+
+function readEnvValue(path: string, key: string) {
+  if (!existsSync(path)) return "";
+  const prefix = `${key}=`;
+  const line = readFileSync(path, "utf8").split(/\r?\n/).find((entry) => entry.startsWith(prefix));
+  return line ? line.slice(prefix.length).trim() : "";
+}
+
+async function probeContractCode(address: string) {
+  if (!/^0x[a-fA-F0-9]{40}$/.test(address)) {
+    return { address, reachable: false, hasCode: false, codeBytes: 0, reason: "Invalid contract address." };
+  }
+
+  try {
+    const response = await fetch(rpcUrl, {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({
+        jsonrpc: "2.0",
+        id: 1,
+        method: "eth_getCode",
+        params: [address, "latest"],
+      }),
+    });
+    const body = await response.json() as { result?: string; error?: { message?: string } };
+    const code = body.result || "0x";
+    const codeBytes = code === "0x" ? 0 : (code.length - 2) / 2;
+    return {
+      address,
+      reachable: true,
+      hasCode: codeBytes > 0,
+      codeBytes,
+      reason: body.error?.message || (codeBytes > 0 ? "Contract bytecode found." : "No contract bytecode at DAEntrance on configured RPC."),
+    };
+  } catch (error) {
+    return {
+      address,
+      reachable: false,
+      hasCode: false,
+      codeBytes: 0,
+      reason: error instanceof Error ? error.message : String(error),
+    };
+  }
 }
 
 async function probeSidecar() {
@@ -101,6 +147,11 @@ const generatedFiles = {
   readme: fileInfo(".da-stack/README.md"),
   composeTemplate: fileInfo("scripts/da-stack/docker-compose.0g-da.yml"),
 };
+const daEntranceAddress =
+  process.env.OG_DA_ENTRANCE_CONTRACT_ADDR ||
+  readEnvValue(".da-stack/envfile.env", "BATCHER_DAENTRANCE_CONTRACT_ADDRESS") ||
+  defaultDaEntrance;
+const daEntrance = await probeContractCode(daEntranceAddress);
 
 const ready =
   Boolean(daClientGrpc) &&
@@ -108,7 +159,8 @@ const ready =
   encoderListening &&
   retrieverListening &&
   sidecarListening &&
-  sidecar.reachable;
+  sidecar.reachable &&
+  daEntrance.hasCode;
 
 function blockedReason() {
   if (ready) return "0G DA Client, Encoder, Retriever, and sidecar are all reachable.";
@@ -123,6 +175,7 @@ function blockedReason() {
   if (!daClientListening) missing.push("0G DA Client gRPC port 51001 is not listening");
   if (!encoderListening) missing.push("0G DA Encoder port 34000 is not listening");
   if (!retrieverListening) missing.push("0G DA Retriever port 34005 is not listening");
+  if (!daEntrance.hasCode) missing.push(`DAEntrance ${daEntrance.address} has no bytecode on ${rpcUrl}`);
   return `0G DA stack is not live yet: ${missing.join("; ")}.`;
 }
 
@@ -134,6 +187,8 @@ const artifact = {
     url: "https://docs.0g.ai/developer-hub/building-on-0g/da-integration",
     requirement:
       "0G DA live submission requires DA Client, Encoder, and Retriever. Common local ports: DA Client gRPC 51001, Encoder 34000, Retriever 34005.",
+    testnetOverviewUrl: "https://docs.0g.ai/developer-hub/testnet/testnet-overview",
+    daEntrance: defaultDaEntrance,
     maxBlobBytes: 32_505_852,
   },
   docker: {
@@ -160,12 +215,15 @@ const artifact = {
   endpoints: {
     sidecarUrl,
     daClientGrpc,
+    rpcUrl,
+    daEntrance,
     ports,
     sidecar,
     sidecarListening,
     daClientListening,
     encoderListening,
     retrieverListening,
+    daEntranceHasCode: daEntrance.hasCode,
   },
   checks: {
     dockerInstalled: dockerVersion.ok,
