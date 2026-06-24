@@ -21,27 +21,27 @@ export function Result() {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
     const gradient = ctx.createLinearGradient(0, 0, 1200, 630);
-    gradient.addColorStop(0, "#07110f");
-    gradient.addColorStop(0.55, "#09231d");
-    gradient.addColorStop(1, "#020504");
+    gradient.addColorStop(0, "#07070c");
+    gradient.addColorStop(0.55, "#1a090d");
+    gradient.addColorStop(1, "#030306");
     ctx.fillStyle = gradient;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = "rgba(70,255,190,0.16)";
+    ctx.fillStyle = "rgba(242,13,34,0.18)";
     ctx.beginPath();
     ctx.arc(970, 80, 270, 0, Math.PI * 2);
     ctx.fill();
-    ctx.strokeStyle = "rgba(70,255,190,0.42)";
+    ctx.strokeStyle = "rgba(242,13,34,0.46)";
     ctx.lineWidth = 4;
     ctx.strokeRect(44, 44, 1112, 542);
-    ctx.fillStyle = "#46ffbe";
+    ctx.fillStyle = "#f20d22";
     ctx.font = "700 42px Arial";
     ctx.fillText("0G World Cup", 80, 130);
-    ctx.fillStyle = "#f3fff9";
+    ctx.fillStyle = "#fff4f2";
     ctx.font = "900 84px Arial";
     ctx.fillText(scoreText, 80, 260);
     ctx.font = "800 42px Arial";
     ctx.fillText(`${result.winner} ${result.type === "tournament" ? "champions" : "wins"}`, 80, 350);
-    ctx.fillStyle = "#a8beb7";
+    ctx.fillStyle = "#d5aaa5";
     ctx.font = "500 30px Arial";
     ctx.fillText(`MVP ${result.mvp.name}`, 80, 438);
     ctx.font = "500 24px Arial";
@@ -77,7 +77,7 @@ export function Result() {
   return (
     <div className="grid gap-5">
       <Panel className="overflow-hidden">
-        <div className="bg-[radial-gradient(circle_at_top,rgba(70,255,190,0.22),transparent_55%)] p-6 sm:p-8">
+        <div className="bg-[radial-gradient(circle_at_top,rgba(242,13,34,0.24),transparent_55%)] p-6 sm:p-8">
           <Badge tone="accent">{room.wagerAmount === "free" ? "Free battle" : "Testnet wager"}</Badge>
           <h1 className="mt-4 text-5xl font-black">{result.winner} {result.type === "tournament" ? "champions" : "wins"}</h1>
           {result.type === "tournament" ? (

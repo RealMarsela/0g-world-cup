@@ -214,7 +214,7 @@ function Highlights({ result }: { result: MatchResult }) {
             <div
               className={`rounded-md border p-3 ${
                 highlight.kind === "goal"
-                  ? "border-emerald-300/40 bg-emerald-300/10"
+                  ? "border-gold/40 bg-gold/10"
                   : highlight.kind === "miss"
                     ? "border-amber-300/30 bg-amber-300/10"
                     : "border-white/10 bg-white/[0.035]"

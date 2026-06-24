@@ -110,4 +110,4 @@ Record at 1920x1080, browser zoom 100 percent, cursor visible, no bookmarks bar,
 
 ## Remotion Assembly Notes
 
-Use sports-broadcast pacing: fast intro, clear scoreboard cards, proof callouts that feel like match analysis. Footage should occupy roughly 1:35-1:50. Use green, trophy gold, black, and proof-cyan accents.
+Use sports-broadcast pacing: fast intro, clear scoreboard cards, proof callouts that feel like match analysis. Footage should occupy roughly 1:35-1:50. Use the red-black orbital logo language, trophy gold winner highlights, black stadium atmosphere, and supplied 0G World Cup art pack.

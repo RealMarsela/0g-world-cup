@@ -17,7 +17,7 @@ export function Badge({
   const tones = {
     default: "border-white/12 bg-white/[0.04] text-muted",
     accent: "border-accent/40 bg-accent/10 text-accent",
-    ok: "border-emerald-400/35 bg-emerald-400/10 text-emerald-200",
+    ok: "border-gold/40 bg-gold/10 text-gold",
     warn: "border-amber-300/35 bg-amber-300/10 text-amber-100",
   };
   return (
@@ -40,7 +40,7 @@ export function Button({
   children: ReactNode;
 }) {
   const variants = {
-    primary: "bg-accent text-black shadow-[0_0_28px_rgba(70,255,190,0.22)] hover:bg-accent-2",
+    primary: "bg-accent text-white shadow-[0_0_28px_rgba(242,13,34,0.28)] hover:bg-accent-2",
     secondary: "border border-white/14 bg-white/[0.05] text-strong hover:bg-white/[0.09]",
     ghost: "text-muted hover:bg-white/[0.06] hover:text-strong",
   };
@@ -130,7 +130,7 @@ export function Tabs({
           aria-pressed={value === tab.value}
           className={`min-h-10 rounded px-3 text-sm font-semibold transition ${
             value === tab.value
-              ? "bg-accent text-black"
+              ? "bg-accent text-white"
               : "text-muted hover:bg-white/[0.06] hover:text-strong"
           }`}
           onClick={() => onChange(tab.value)}
@@ -244,7 +244,7 @@ export function ShadcnSelect({
           <RadixSelect.Viewport>
             {options.map((option) => (
               <RadixSelect.Item
-                className="relative flex min-h-10 cursor-pointer select-none items-center rounded px-3 text-sm text-muted outline-none data-[highlighted]:bg-accent data-[highlighted]:text-black data-[state=checked]:text-accent"
+                className="relative flex min-h-10 cursor-pointer select-none items-center rounded px-3 text-sm text-muted outline-none data-[highlighted]:bg-accent data-[highlighted]:text-white data-[state=checked]:text-accent"
                 key={option}
                 value={option}
               >

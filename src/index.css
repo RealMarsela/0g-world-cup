@@ -1,15 +1,21 @@
 @import "tailwindcss";
 
 @theme {
-  --color-page: #07110f;
-  --color-panel: #0d1a18;
-  --color-panel-2: #11231f;
-  --color-line: #21433c;
-  --color-strong: #f3fff9;
-  --color-muted: #a8beb7;
-  --color-faint: #68827a;
-  --color-accent: #46ffbe;
-  --color-accent-2: #7dffd3;
+  --color-page: #07070c;
+  --color-panel: #111016;
+  --color-panel-2: #1a1116;
+  --color-line: #3c181e;
+  --color-strong: #fff4f2;
+  --color-muted: #d5aaa5;
+  --color-faint: #8d625f;
+  --color-accent: #f20d22;
+  --color-accent-2: #ff4150;
+  --color-gold: #f6c760;
+  --color-surface: #120f14;
+  --color-surface-2: #211219;
+  --color-border: #3c181e;
+  --color-text: #fff4f2;
+  --color-danger: #ff6a74;
   --font-display: "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
   --font-sans: "Geist", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "Geist Mono", ui-monospace, "SFMono-Regular", monospace;
@@ -25,8 +31,9 @@
     margin: 0;
     min-width: 320px;
     background:
-      radial-gradient(circle at 18% 0%, rgba(70, 255, 190, 0.18), transparent 28rem),
-      radial-gradient(circle at 90% 10%, rgba(46, 149, 255, 0.12), transparent 26rem),
+      radial-gradient(circle at 18% 0%, rgba(242, 13, 34, 0.24), transparent 29rem),
+      radial-gradient(circle at 90% 10%, rgba(246, 199, 96, 0.12), transparent 25rem),
+      linear-gradient(180deg, rgba(30, 4, 8, 0.7), transparent 22rem),
       var(--color-page);
     color: var(--color-strong);
     font-family: var(--font-sans);
@@ -48,12 +55,14 @@
 
 @layer components {
   .panel {
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(242, 13, 34, 0.18);
     border-radius: 8px;
     background:
-      linear-gradient(180deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.025)),
-      rgba(7, 17, 15, 0.72);
-    box-shadow: 0 20px 80px rgba(0, 0, 0, 0.18);
+      linear-gradient(180deg, rgba(255, 255, 255, 0.055), rgba(242, 13, 34, 0.035)),
+      rgba(12, 9, 14, 0.82);
+    box-shadow:
+      0 20px 80px rgba(0, 0, 0, 0.32),
+      inset 0 1px 0 rgba(255, 255, 255, 0.05);
   }
 
   .nav-link {
@@ -75,10 +84,27 @@
 
   .hero-grid {
     background-image:
-      linear-gradient(rgba(70, 255, 190, 0.08) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(70, 255, 190, 0.08) 1px, transparent 1px);
+      linear-gradient(rgba(242, 13, 34, 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(242, 13, 34, 0.1) 1px, transparent 1px);
     background-size: 48px 48px;
     mask-image: radial-gradient(circle at 50% 20%, #000 25%, transparent 72%);
+  }
+
+  .orbital-brand {
+    background:
+      radial-gradient(circle at 30% 28%, rgba(255, 65, 80, 0.86), transparent 0.7rem),
+      radial-gradient(circle at 38% 38%, #f20d22 0 1.9rem, #08080d 2rem 2.55rem, #f20d22 2.65rem 3.45rem, #08080d 3.55rem 4.1rem, #f20d22 4.2rem 5.6rem, transparent 5.7rem),
+      #07070c;
+    box-shadow:
+      0 0 34px rgba(242, 13, 34, 0.35),
+      inset 0 0 28px rgba(0, 0, 0, 0.7);
+  }
+
+  .brand-rings {
+    background:
+      radial-gradient(ellipse at 24% 16%, rgba(255, 65, 80, 0.55), transparent 18rem),
+      repeating-radial-gradient(ellipse at 22% 18%, rgba(242, 13, 34, 0.22) 0 1px, transparent 2px 26px),
+      linear-gradient(135deg, rgba(242, 13, 34, 0.18), transparent 40%);
   }
 
   .score-tile {
@@ -103,12 +129,12 @@
   .player-card {
     position: relative;
     overflow: hidden;
-    border: 1px solid rgba(70, 255, 190, 0.18);
+    border: 1px solid rgba(242, 13, 34, 0.24);
     border-radius: 8px;
     background:
-      linear-gradient(135deg, rgba(70, 255, 190, 0.14), transparent 34%),
-      linear-gradient(220deg, rgba(46, 149, 255, 0.13), transparent 42%),
-      rgba(13, 26, 24, 0.92);
+      linear-gradient(135deg, rgba(242, 13, 34, 0.18), transparent 34%),
+      linear-gradient(220deg, rgba(246, 199, 96, 0.12), transparent 42%),
+      rgba(16, 13, 18, 0.94);
   }
 
   .player-card::after {

@@ -16,15 +16,15 @@ const links = [
 export function AppShell({ children }: { children: ReactNode }) {
   return (
     <div className="min-h-screen bg-page text-strong">
-      <header className="sticky top-0 z-30 border-b border-white/10 bg-page/82 backdrop-blur-xl">
+      <header className="sticky top-0 z-30 border-b border-accent/20 bg-page/88 backdrop-blur-xl">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6">
           <Link to="/" className="flex items-center gap-3">
-            <span className="grid size-10 place-items-center rounded-md border border-accent/40 bg-accent/10 text-accent">
-              <Trophy size={20} />
+            <span className="grid size-11 place-items-center overflow-hidden rounded-md border border-accent/40 bg-black shadow-[0_0_26px_rgba(242,13,34,0.22)]">
+              <img src="/logo.png" alt="" className="h-full w-full object-cover" />
             </span>
             <span>
               <span className="block text-sm font-bold tracking-[0.16em]">0G WORLD CUP</span>
-              <span className="block text-[11px] uppercase tracking-[0.18em] text-faint">Full XI Draft</span>
+              <span className="block text-[11px] uppercase tracking-[0.18em] text-faint">Redline AI Arena</span>
             </span>
           </Link>
           <nav className="hidden items-center gap-1 md:flex">
@@ -41,7 +41,7 @@ export function AppShell({ children }: { children: ReactNode }) {
         </div>
       </header>
       <main className="mx-auto max-w-7xl px-4 pb-52 pt-6 sm:px-6 md:pb-8 lg:pt-8">{children}</main>
-      <nav className="fixed inset-x-3 bottom-3 z-40 grid grid-cols-4 rounded-md border border-white/10 bg-black/80 p-1 backdrop-blur-xl md:hidden">
+      <nav className="fixed inset-x-3 bottom-3 z-40 grid grid-cols-4 rounded-md border border-accent/20 bg-black/85 p-1 backdrop-blur-xl md:hidden">
         {[
           ["/solo", "Solo", Trophy],
           ["/room/create", "Room", Users],

@@ -40,9 +40,10 @@ export function DraftPitch({
       </div>
 
       <div
-        className="relative min-h-[540px] overflow-hidden rounded-lg border border-emerald-200/20 bg-[linear-gradient(90deg,rgba(10,82,50,0.96),rgba(17,114,67,0.96),rgba(10,82,50,0.96))]"
+        className="relative min-h-[540px] overflow-hidden rounded-lg border border-accent/22 bg-[radial-gradient(circle_at_50%_50%,rgba(242,13,34,0.18),transparent_34%),linear-gradient(90deg,rgba(9,9,14,0.98),rgba(30,10,14,0.98),rgba(9,9,14,0.98))]"
         data-testid="draft-pitch"
       >
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(242,13,34,0.08)_1px,transparent_1px),linear-gradient(rgba(242,13,34,0.08)_1px,transparent_1px)] bg-[size:52px_52px]" />
         <PitchLines />
         {slotsForFormation(formation).map((slot) => {
           const pick = pickForSlot(picks, slot.id);

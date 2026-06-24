@@ -59,7 +59,7 @@ export function SoloTournamentView({
         <div className="inline-grid grid-cols-3 gap-1 rounded-md border border-white/10 bg-black/24 p-1" data-testid="cup-tabs">
           {(["match", "groups", "bracket"] as CupTab[]).map((tab) => (
             <button
-              className={`min-h-10 rounded px-5 text-sm font-semibold capitalize transition ${activeTab === tab ? "bg-accent text-black" : "text-muted hover:bg-white/[0.06] hover:text-strong"}`}
+              className={`min-h-10 rounded px-5 text-sm font-semibold capitalize transition ${activeTab === tab ? "bg-accent text-white" : "text-muted hover:bg-white/[0.06] hover:text-strong"}`}
               key={tab}
               onClick={() => onSetActiveTab(tab)}
               type="button"
@@ -250,7 +250,7 @@ function HighlightCard({ event }: { event: LiveMatch["events"][number] }) {
     <div
       className={`rounded-md border p-3 transition ${
         isGoal
-          ? "animate-pulse border-emerald-300/45 bg-emerald-300/10 shadow-[0_0_22px_rgba(70,255,190,0.16)]"
+          ? "animate-pulse border-gold/45 bg-gold/10 shadow-[0_0_22px_rgba(246,199,96,0.18)]"
           : isMiss
             ? "border-amber-300/35 bg-amber-300/8"
             : "border-white/10 bg-white/[0.035]"
@@ -260,7 +260,7 @@ function HighlightCard({ event }: { event: LiveMatch["events"][number] }) {
         <Badge tone={isGoal ? "ok" : isMiss ? "warn" : "accent"}>{event.minute}'</Badge>
         <div className="min-w-0">
           <div className="flex flex-wrap items-center gap-2">
-            <span className={`text-xs font-black uppercase tracking-[0.16em] ${isGoal ? "text-emerald-200" : isMiss ? "text-amber-100" : "text-accent"}`}>
+            <span className={`text-xs font-black uppercase tracking-[0.16em] ${isGoal ? "text-gold" : isMiss ? "text-amber-100" : "text-accent"}`}>
               {event.kind ?? "info"}
             </span>
             {event.team && <span className="truncate text-xs text-faint">{event.team}</span>}

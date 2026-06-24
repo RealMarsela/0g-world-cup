@@ -31,7 +31,7 @@ export function AppProviders({ children }: { children: ReactNode }) {
         },
         appearance: {
           theme: "dark",
-          accentColor: "#46ffbe",
+          accentColor: "#f20d22",
           logo: "https://0g-world-cup.pages.dev/logo.png",
           walletChainType: "ethereum-only",
           showWalletLoginFirst: false,
