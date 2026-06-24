@@ -11,40 +11,40 @@
         "mode": "human-vs-agent",
         "generatedAt": "1970-01-01T00:00:00.000Z",
         "chainId": 16602,
-        "snapshotVersion": "0g-world-cup-local-2026-06-23",
-        "snapshotHash": "0xa689451a",
-        "lineupHash": "0x0d2d4599",
-        "resultHash": "0xf01db476",
-        "storageUri": "0g://local-demo/f01db476",
-        "receiptHash": "0xa508b642",
+        "snapshotVersion": "0g-world-cup-history-1970-2022",
+        "snapshotHash": "0x10083228b84402ab9d2ac1f65629aaeebddd2bcdc20597ac2cca3a44b9d44026",
+        "lineupHash": "0xa3da3213",
+        "resultHash": "0x3f445530",
+        "storageUri": "0g://local-demo/3f445530",
+        "receiptHash": "0x54ee22f4",
         "services": [
           {
             "name": "chain",
             "label": "0G Chain",
             "status": "ready",
             "summary": "Galileo contracts are configured for lineup, escrow, and result commitments.",
-            "artifact": "0xdB49AF99A4C0D1CFaa3bd31D1a8F2792107dad68, 0xbFe4c871074b97746D7b80d3Bf0715237C91477a, 0x8BD7bE5e0BA7cf870910b22A3eD891FCDfa4e7C7",
-            "explorerUrl": "https://chainscan-galileo.0g.ai/address/0x8BD7bE5e0BA7cf870910b22A3eD891FCDfa4e7C7"
+            "artifact": "0x37AE4f4BA75b203f45137E7d6C2059d0a0F36475, 0xeDf443C63A85daFBE7BF673C5b32a0560aCa832d, 0xc90115A1A35a7B2F2741B2683eE122c25a43dBf6",
+            "explorerUrl": "https://chainscan-galileo.0g.ai/address/0xc90115A1A35a7B2F2741B2683eE122c25a43dBf6"
           },
           {
             "name": "storage",
             "label": "0G Storage",
             "status": "ready",
-            "summary": "Receipt payload is deterministic and ready for the live storage upload script.",
-            "artifact": "0g://local-demo/f01db476"
+            "summary": "Receipt payload is local and deterministic; live 0G Storage proof is shown in the artifact matrix.",
+            "artifact": "0g://local-demo/3f445530"
           },
           {
             "name": "compute",
             "label": "0G Compute",
             "status": "fallback",
-            "summary": "Simulation is using the deterministic local engine until a Router key is configured.",
-            "artifact": "deterministic fallback"
+            "summary": "This result is deterministic background or local fallback output, not a live 0G Compute adjudication.",
+            "artifact": "0G Compute Router"
           },
           {
             "name": "da",
             "label": "0G DA",
             "status": "ready",
-            "summary": "Match and tournament receipts are shaped into a DA-ready blob; live submission requires a running DA Client.",
+            "summary": "Match and tournament receipts are shaped into a byte-ready blob; live DA submission status is shown in the artifact matrix.",
             "artifact": "events:3"
           },
           {
@@ -58,15 +58,118 @@
       }
     },
     {
+      "kind": "data-pipeline",
+      "value": {
+        "schema": "0g-world-cup-data-pipeline-proof-v1",
+        "status": "verified",
+        "selectedSource": "local-json-demo",
+        "adapterAttempts": [
+          {
+            "name": "balldontlie-fifa-world-cup",
+            "status": "missing-api-key"
+          },
+          {
+            "name": "api-football",
+            "status": "missing-api-key"
+          },
+          {
+            "name": "sportmonks",
+            "status": "missing-api-key"
+          },
+          {
+            "name": "jfjelstul-worldcup",
+            "status": "available-set-USE_JFJELSTUL_FALLBACK=1"
+          },
+          {
+            "name": "local-json-demo",
+            "status": "used"
+          }
+        ],
+        "workSnapshotVersion": "0g-world-cup-local-2026-06-23",
+        "workPlayerCount": 48,
+        "workSnapshotHash": "0x33301f5a9061cc4e38501ab2aaab237b9aeba2917ff0bc5b2b08e5e14d407f33",
+        "publishedSnapshotHash": "0x33301f5a9061cc4e38501ab2aaab237b9aeba2917ff0bc5b2b08e5e14d407f33",
+        "publishedReceipt": {
+          "version": "0g-world-cup-local-2026-06-23",
+          "snapshotHash": "0x33301f5a9061cc4e38501ab2aaab237b9aeba2917ff0bc5b2b08e5e14d407f33",
+          "zeroGStorageUri": "0g://local-demo/33301f5a9061cc4e38501ab2aaab237b9aeba2917ff0bc5b2b08e5e14d407f33",
+          "cloudflare": "local-only-missing-cloudflare-credentials",
+          "zeroGStorage": "local-uri-only-missing-0g-storage-credentials"
+        },
+        "cloudflareManifest": {
+          "d1Seed": {
+            "path": "data/published/0g-world-cup-local-2026-06-23.d1.sql",
+            "exists": true,
+            "bytes": 36722,
+            "sha256": "0x7eaa0a398906380023ecf423a97ab8fb07a04a360028cbcd7319db21899bbd55"
+          },
+          "r2ObjectKey": "snapshots/0g-world-cup-local-2026-06-23.json",
+          "kv": {
+            "key": "active-player-snapshot",
+            "value": {
+              "version": "0g-world-cup-local-2026-06-23",
+              "snapshotHash": "0x33301f5a9061cc4e38501ab2aaab237b9aeba2917ff0bc5b2b08e5e14d407f33",
+              "r2ObjectKey": "snapshots/0g-world-cup-local-2026-06-23.json"
+            }
+          },
+          "manifestFile": {
+            "path": "data/published/0g-world-cup-local-2026-06-23.cloudflare-manifest.json",
+            "exists": true,
+            "bytes": 418,
+            "sha256": "0x3c8b4c0a79bddf2e5fc6cce079d195dfa8938cca20b83f9e9d89733abe3ba993"
+          }
+        },
+        "historicalSnapshot": {
+          "version": "0g-world-cup-history-1970-2022",
+          "playerCount": 8379,
+          "teamCount": 368,
+          "snapshotHash": "0x10083228b84402ab9d2ac1f65629aaeebddd2bcdc20597ac2cca3a44b9d44026",
+          "storageUri": "0g://storage/0x536d977d3ccda6855efe75441df32fd3961259477750b80c7b1ab41dd68b4fee",
+          "rootHash": "0x536d977d3ccda6855efe75441df32fd3961259477750b80c7b1ab41dd68b4fee",
+          "txHash": "0x6e572975026660140b36ee0135dc486b5b07204d953a3add8b89d5a27ee7d283"
+        },
+        "checks": {
+          "adapterAttemptsRecorded": true,
+          "selectedSourceProducedRows": true,
+          "normalizedMatchesImported": true,
+          "ratedMatchesNormalized": true,
+          "ratedIdsUnique": true,
+          "ratedPositionsComplete": true,
+          "ratingFormulaDocumented": true,
+          "publishedHashMatchesReceipt": true,
+          "publishedMatchesRated": true,
+          "d1SeedExists": true,
+          "cloudflareManifestExists": true,
+          "receiptHasZeroGPointer": true,
+          "historicalSnapshotDeep": true,
+          "historicalIdsUnique": true,
+          "historicalPositionsComplete": true,
+          "historicalCovers1970To2022": true,
+          "historicalHashMatchesPlayers": true,
+          "historicalReceiptMatches": true,
+          "historical0GStorageLive": true
+        },
+        "pipelineHash": "0x48b1cc0f9968fa2ede5256204fe6a7fcbf8bad4d6e37a52459d77e74e6e0f483",
+        "env": {
+          "rpc": "https://evmrpc-testnet.0g.ai",
+          "storageIndexer": "https://indexer-storage-testnet-turbo.0g.ai",
+          "computeEndpoint": "https://router-api.0g.ai/v1",
+          "daClientGrpc": "",
+          "hasStorageSigner": true,
+          "hasComputeKey": true,
+          "hasDaClient": false
+        }
+      }
+    },
+    {
       "kind": "storage-receipt",
       "value": {
         "status": "live",
         "roomId": "room-human-vs-agent-storage",
-        "rootHash": "0xc7620208c2d553b2a12e473548da871536449bf38471f49f3da3bb1b22c84ef5",
-        "txHash": "0x5d131ab4b60297b51f354798c1766a9bc388a86489b78a1bda475d8085cb214c",
-        "storageUri": "0g://storage/0xc7620208c2d553b2a12e473548da871536449bf38471f49f3da3bb1b22c84ef5",
-        "indexerRpc": "https://indexer-storage-testnet-turbo.0g.ai",
-        "reused": "Existing 0G Storage root is already discoverable; skipped duplicate upload."
+        "rootHash": "0x950d13bcd9ea7816c323e7e6b0cfcbd409ac3a4cdd18b29dcb3935c55ad9d75b",
+        "txHash": "0x4d0b82969d959a74b3e2717880e7516dc5aea4788838c0be509216fa8caf54e2",
+        "storageUri": "0g://storage/0x950d13bcd9ea7816c323e7e6b0cfcbd409ac3a4cdd18b29dcb3935c55ad9d75b",
+        "indexerRpc": "https://indexer-storage-testnet-turbo.0g.ai"
       }
     },
     {
@@ -74,10 +177,10 @@
       "value": {
         "status": "live",
         "roomId": "room-human-vs-agent-storage-bundle",
-        "bundleHash": "0xc4be6949db38fa174dde499bf65d682a28775480a63f6b620949252329ff0cf6",
-        "rootHash": "0xd2d4fc1dc70a4f5ed5d89c16758da4e9152c23882cef2bfbe48050f3622c15b1",
-        "txHash": "0x31c55b88753fc2af9566ecdde71c2dfb5b548ebdc11e493cb208f6abfa07b124",
-        "storageUri": "0g://storage/0xd2d4fc1dc70a4f5ed5d89c16758da4e9152c23882cef2bfbe48050f3622c15b1",
+        "bundleHash": "0x8c4e06ef14926a8da200fea81d0e09b25bebe3fc0ac6477fbd2de1af313470d1",
+        "rootHash": "0x7231c4535d696a9ebfbd13c46394a392b928852c6aea766280523a4e0d065914",
+        "txHash": "0x14d3e8945af51dc07bdc24b69165ce8b86365bc5fde7ed72485d195152beeafd",
+        "storageUri": "0g://storage/0x7231c4535d696a9ebfbd13c46394a392b928852c6aea766280523a4e0d065914",
         "indexerRpc": "https://indexer-storage-testnet-turbo.0g.ai",
         "items": [
           "player-snapshot",
@@ -87,11 +190,11 @@
           "proof-receipt"
         ],
         "itemHashes": {
-          "snapshot": "0xa242615c40c18099effb0f9dc2aaf7f4978d5b47e27a3cb8e69885ae6e66468d",
-          "draftLog": "0xee20799b2749014514b1c711cff6ba7d5bb4873a5d103c4a22dbd1d05c60bb65",
-          "matchTranscript": "0x17028a9e70340ce096475372f9c2c9e0e27a7bd5c1b0b4b43a733141e9bc3f6f",
-          "shareMetadata": "0x6c48e71e734eeb91fb6bd354cd9e45f12a36ac0a87e3e703e13b9ce918dd6f9d",
-          "proofReceipt": "0xe571dc4e4388b46acee47730c4e89b4c7b7be525ff3c341e8c65c93cf674ce3c"
+          "snapshot": "0x3725962b3712a82cb96d0a2176678a97e6e7544d353296f5c0463f1fdf415f32",
+          "draftLog": "0xd3c3cfa00c431219e2cb0a3abbe5cfd596dbd1b58bb5e67a6a69c70b3b65848b",
+          "matchTranscript": "0xabaa51e9ccd3ea097fc0af54bf29970d163e986da0ba1f10cd6fcbd8cc41212c",
+          "shareMetadata": "0x04602c904775b72e5e1ff18963f4ef737a3121c164e7c01d2dff5f148109cc53",
+          "proofReceipt": "0x34e819ad26e4045677f4e303c4798ba8a796aa30ababaa1e699dc7375cd3ad8d"
         }
       }
     },
@@ -100,27 +203,27 @@
       "value": {
         "status": "live",
         "indexerRpc": "https://indexer-storage-testnet-turbo.0g.ai",
-        "storageRoot": "0xc7620208c2d553b2a12e473548da871536449bf38471f49f3da3bb1b22c84ef5",
-        "bundleRoot": "0xd2d4fc1dc70a4f5ed5d89c16758da4e9152c23882cef2bfbe48050f3622c15b1",
-        "storageUri": "0g://storage/0xc7620208c2d553b2a12e473548da871536449bf38471f49f3da3bb1b22c84ef5",
-        "bundleStorageUri": "0g://storage/0xd2d4fc1dc70a4f5ed5d89c16758da4e9152c23882cef2bfbe48050f3622c15b1",
+        "storageRoot": "0x950d13bcd9ea7816c323e7e6b0cfcbd409ac3a4cdd18b29dcb3935c55ad9d75b",
+        "bundleRoot": "0x7231c4535d696a9ebfbd13c46394a392b928852c6aea766280523a4e0d065914",
+        "storageUri": "0g://storage/0x950d13bcd9ea7816c323e7e6b0cfcbd409ac3a4cdd18b29dcb3935c55ad9d75b",
+        "bundleStorageUri": "0g://storage/0x7231c4535d696a9ebfbd13c46394a392b928852c6aea766280523a4e0d065914",
         "downloadedRoots": [
-          "0xc7620208c2d553b2a12e473548da871536449bf38471f49f3da3bb1b22c84ef5",
-          "0xd2d4fc1dc70a4f5ed5d89c16758da4e9152c23882cef2bfbe48050f3622c15b1"
+          "0x950d13bcd9ea7816c323e7e6b0cfcbd409ac3a4cdd18b29dcb3935c55ad9d75b",
+          "0x7231c4535d696a9ebfbd13c46394a392b928852c6aea766280523a4e0d065914"
         ],
-        "byteCount": 92166,
-        "contentHash": "0x525a5f791b50b67eba9d029253926b75c5ec70b1fba6f7bc778bd11bf65e71f7",
+        "byteCount": 42403,
+        "contentHash": "0xc96ffaba345488d634439386941fc09d5970157fbdfcc92671c41ca90fcd7032",
         "proofPacket": {
           "roomId": "room-human-vs-agent-storage",
-          "byteCount": 32488,
-          "contentHash": "0x3cca565dc1568eef0783567366c9c6850b7df85dccb27e3cdc1bf997b989e1cd",
-          "downloadedMerkleRoot": "0xc7620208c2d553b2a12e473548da871536449bf38471f49f3da3bb1b22c84ef5"
+          "byteCount": 35719,
+          "contentHash": "0x2343e9141f8e1fe1f7b51f1b9e89e7957e6d377e7ffa29fd8be313f677fa2102",
+          "downloadedMerkleRoot": "0x950d13bcd9ea7816c323e7e6b0cfcbd409ac3a4cdd18b29dcb3935c55ad9d75b"
         },
         "storageBundle": {
           "roomId": "room-human-vs-agent-storage-bundle",
-          "byteCount": 59678,
-          "contentHash": "0xc4be6949db38fa174dde499bf65d682a28775480a63f6b620949252329ff0cf6",
-          "downloadedMerkleRoot": "0xd2d4fc1dc70a4f5ed5d89c16758da4e9152c23882cef2bfbe48050f3622c15b1",
+          "byteCount": 6684,
+          "contentHash": "0x8c4e06ef14926a8da200fea81d0e09b25bebe3fc0ac6477fbd2de1af313470d1",
+          "downloadedMerkleRoot": "0x7231c4535d696a9ebfbd13c46394a392b928852c6aea766280523a4e0d065914",
           "itemHashMatches": {
             "snapshot": true,
             "draftLog": true,
@@ -163,7 +266,7 @@
       "value": {
         "status": "live",
         "chainId": 16602,
-        "blockNumber": "40355133",
+        "blockNumber": "40491482",
         "contracts": {
           "draft": {
             "address": "0x37AE4f4BA75b203f45137E7d6C2059d0a0F36475",
@@ -206,13 +309,50 @@
           "exists": true,
           "nextTokenId": "4"
         },
+        "agenticTokensReadback": [
+          {
+            "agentId": "agent-zero-nine",
+            "tokenId": "2",
+            "owner": "0x3D325E51934AE5c7EBf9f37a8Ddf772F48F766Fb",
+            "encryptedMetadataHash": "0x57ca841db653ecb857f73a76fb694122c11aefc0e7fce617747e87bde7377d3b",
+            "storageUri": "0g://storage/0x5f7bdadd19e7dd63d84a49c1bb4ee61027e59e21019315f7889fbc194062d90c",
+            "displayName": "ZeroNine Scout",
+            "authorizedExecutor": "0x0000000000000000000000000000000000000000",
+            "exists": true,
+            "checks": {
+              "tokenExists": true,
+              "ownerMatches": true,
+              "metadataMatches": true,
+              "storageMatches": true
+            }
+          },
+          {
+            "agentId": "agent-keepernet",
+            "tokenId": "3",
+            "owner": "0x3D325E51934AE5c7EBf9f37a8Ddf772F48F766Fb",
+            "encryptedMetadataHash": "0x54b24bd4083a7906b52ea935d387edbd126d46b2c9f76c5358ac8c4dea607935",
+            "storageUri": "0g://storage/0x91d00606b9624a166f6c87b7b019f9550902f99574494157b03953397991ecea",
+            "displayName": "KeeperNet Oracle",
+            "authorizedExecutor": "0x0000000000000000000000000000000000000000",
+            "exists": true,
+            "checks": {
+              "tokenExists": true,
+              "ownerMatches": true,
+              "metadataMatches": true,
+              "storageMatches": true
+            }
+          }
+        ],
         "checks": {
           "contractsHaveCode": true,
           "resultExists": true,
           "resultStorageMatches": true,
           "agentTokenExists": true,
           "agentMetadataMatches": true,
-          "agentStorageMatches": true
+          "agentStorageMatches": true,
+          "everyAgenticTokenExists": true,
+          "everyAgenticMetadataMatches": true,
+          "everyAgenticStorageMatches": true
         }
       }
     },
@@ -327,7 +467,7 @@
       "value": {
         "status": "live",
         "chainId": 16602,
-        "blockNumber": "40357643",
+        "blockNumber": "40491494",
         "contract": "0xeDf443C63A85daFBE7BF673C5b32a0560aCa832d",
         "roomId": "room-testnet-wager-1v1-e2e",
         "roomHash": "0x5c8c62397e93ca4a120eb99b8a4cf8447acc469058ca39efb9174fbd47954830",
@@ -459,11 +599,11 @@
           "settle": "40357614"
         },
         "balances": {
-          "projectBefore0g": "0.038195258288620725",
-          "projectAfter0g": "0.038417174288134078",
-          "winnerBefore0g": "0.036769551994360716",
+          "projectBefore0g": "0.030817244283269921",
+          "projectAfter0g": "0.030817244283269921",
+          "winnerBefore0g": "0.056269551994360716",
           "winnerAfter0g": "0.056269551994360716",
-          "winnerDeltaWei": "19500000000000000"
+          "winnerDeltaWei": "0"
         },
         "events": {
           "secondDeposit": {
@@ -484,20 +624,20 @@
           "before": {
             "browserDeposited": true,
             "projectDeposited": true,
-            "canStart": true,
+            "canStart": false,
             "totalDepositedWei": "20000000000000000",
             "wagerAmountWei": "10000000000000000",
             "depositCount": "2",
-            "settled": false
+            "settled": true
           },
           "afterSecondDeposit": {
             "browserDeposited": true,
             "projectDeposited": true,
-            "canStart": true,
+            "canStart": false,
             "totalDepositedWei": "20000000000000000",
             "wagerAmountWei": "10000000000000000",
             "depositCount": "2",
-            "settled": false
+            "settled": true
           },
           "afterSettlement": {
             "browserDeposited": true,
@@ -541,7 +681,7 @@
       "kind": "compute-status",
       "value": {
         "status": "blocked",
-        "reason": "0G Compute Router request failed: 402 {\"error\":{\"message\":\"Insufficient balance\",\"type\":\"payment_error\",\"code\":\"insufficient_balance\"},\"request_id\":\"9af5bf2e-4f9d-475a-86ee-eb50221654ec\"}",
+        "reason": "0G Compute Router request failed: 402 {\"error\":{\"message\":\"Insufficient balance\",\"type\":\"payment_error\",\"code\":\"insufficient_balance\"},\"request_id\":\"aa979914-0b51-40e4-bc94-f96f262c952d\"}",
         "endpoint": "https://router-api.0g.ai/v1",
         "model": "glm-5.1",
         "env": {
@@ -573,8 +713,11 @@
         "wallet": {
           "configured": true,
           "address": "0x3D325E51934AE5c7EBf9f37a8Ddf772F48F766Fb",
-          "nativeBalanceOg": "0.038417174288134078",
-          "canFundMinimumLedger": false
+          "nativeBalanceOg": "0.030817244283269921",
+          "minimumLedgerOg": 3,
+          "requiredTopUpOg": "2.969182755716730071",
+          "canFundMinimumLedger": false,
+          "balanceReadable": true
         },
         "broker": {
           "initialized": true,
@@ -615,12 +758,13 @@
         "checks": {
           "sdkInstalled": true,
           "walletConfigured": true,
+          "walletBalanceReadable": true,
           "walletCanFundMinimumLedger": false,
           "brokerInitialized": true,
           "servicesListed": true,
           "ledgerReadable": false
         },
-        "reason": "Direct 0G Compute providers are discoverable, but wallet balance is below the 3 0G ledger minimum for broker funding.",
+        "reason": "Direct 0G Compute providers are discoverable, but wallet balance is below the 3 0G ledger minimum for broker funding. Top up 0x3D325E51934AE5c7EBf9f37a8Ddf772F48F766Fb with at least 2.969183 0G, then rerun with OG_COMPUTE_BROKER_AUTOFUND=1 to create the broker ledger.",
         "env": {
           "rpc": "https://evmrpc-testnet.0g.ai",
           "storageIndexer": "https://indexer-storage-testnet-turbo.0g.ai",
@@ -648,13 +792,13 @@
           "mvpPlayerId": "WC-1970:SLV:P-10096:97",
           "highlights": [],
           "tacticalSummary": "0G Compute is blocked.",
-          "winExplanation": "0G Compute Router failed: 0G Compute request failed: 402 {\"error\":{\"message\":\"Insufficient balance\",\"type\":\"payment_error\",\"code\":\"insufficient_balance\"},\"request_id\":\"ff5b97b3-a473-4476-a846-4b84a9433c06\"} | Direct 0G Compute broker failed: Direct 0G Compute broker ledger is not ready and OG_COMPUTE_BROKER_AUTOFUND is not enabled: Account does not exist. Please create an account first using \"add-account\". (Address: 0x3D325E51934AE5c7EBf9f37a8Ddf772F48F766Fb)",
+          "winExplanation": "0G Compute Router failed: 0G Compute request failed: 402 {\"error\":{\"message\":\"Insufficient balance\",\"type\":\"payment_error\",\"code\":\"insufficient_balance\"},\"request_id\":\"c426d339-9155-44f4-8dee-922f5d9aff42\"} | Direct 0G Compute broker failed: Direct 0G Compute broker ledger is not ready and OG_COMPUTE_BROKER_AUTOFUND is not enabled: Account does not exist. Please create an account first using \"add-account\". (Address: 0x3D325E51934AE5c7EBf9f37a8Ddf772F48F766Fb)",
           "resultHash": "",
           "storageUri": "",
           "computeMode": "0G Compute blocked",
-          "blocker": "0G Compute Router failed: 0G Compute request failed: 402 {\"error\":{\"message\":\"Insufficient balance\",\"type\":\"payment_error\",\"code\":\"insufficient_balance\"},\"request_id\":\"ff5b97b3-a473-4476-a846-4b84a9433c06\"} | Direct 0G Compute broker failed: Direct 0G Compute broker ledger is not ready and OG_COMPUTE_BROKER_AUTOFUND is not enabled: Account does not exist. Please create an account first using \"add-account\". (Address: 0x3D325E51934AE5c7EBf9f37a8Ddf772F48F766Fb)"
+          "blocker": "0G Compute Router failed: 0G Compute request failed: 402 {\"error\":{\"message\":\"Insufficient balance\",\"type\":\"payment_error\",\"code\":\"insufficient_balance\"},\"request_id\":\"c426d339-9155-44f4-8dee-922f5d9aff42\"} | Direct 0G Compute broker failed: Direct 0G Compute broker ledger is not ready and OG_COMPUTE_BROKER_AUTOFUND is not enabled: Account does not exist. Please create an account first using \"add-account\". (Address: 0x3D325E51934AE5c7EBf9f37a8Ddf772F48F766Fb)"
         },
-        "reason": "0G Compute Router failed: 0G Compute request failed: 402 {\"error\":{\"message\":\"Insufficient balance\",\"type\":\"payment_error\",\"code\":\"insufficient_balance\"},\"request_id\":\"ff5b97b3-a473-4476-a846-4b84a9433c06\"} | Direct 0G Compute broker failed: Direct 0G Compute broker ledger is not ready and OG_COMPUTE_BROKER_AUTOFUND is not enabled: Account does not exist. Please create an account first using \"add-account\". (Address: 0x3D325E51934AE5c7EBf9f37a8Ddf772F48F766Fb)",
+        "reason": "0G Compute Router failed: 0G Compute request failed: 402 {\"error\":{\"message\":\"Insufficient balance\",\"type\":\"payment_error\",\"code\":\"insufficient_balance\"},\"request_id\":\"c426d339-9155-44f4-8dee-922f5d9aff42\"} | Direct 0G Compute broker failed: Direct 0G Compute broker ledger is not ready and OG_COMPUTE_BROKER_AUTOFUND is not enabled: Account does not exist. Please create an account first using \"add-account\". (Address: 0x3D325E51934AE5c7EBf9f37a8Ddf772F48F766Fb)",
         "env": {
           "rpc": "https://evmrpc-testnet.0g.ai",
           "storageIndexer": "https://indexer-storage-testnet-turbo.0g.ai",
@@ -711,14 +855,42 @@
             "statusCode": 200,
             "body": {
               "schema": "0g-da-sidecar-status-v1",
-              "status": "blocked",
-              "daClientGrpc": "",
+              "status": "configured",
+              "daClientGrpc": "127.0.0.1:51001",
               "retrieverUrl": "",
               "maxBlobBytes": 32505852,
-              "reason": "Missing OG_DA_CLIENT_GRPC_URL. Run 0G DA Client plus Encoder/Retriever, then restart this sidecar."
+              "reason": "DA Client endpoint configured. Live gRPC submitter can be enabled against this sidecar host."
             }
           },
-          "daClientGrpc": "",
+          "daClientGrpc": "127.0.0.1:51001",
+          "stackStatus": "blocked",
+          "stackReason": "0G DA stack is not live yet: DAEntrance 0xE75A073dA5bb7b0eC622170Fd268f35E675a957B has no bytecode on https://evmrpc-testnet.0g.ai; documented candidates checked 0xE75A073dA5bb7b0eC622170Fd268f35E675a957B:0b, 0x857C0A28A8634614BB2C96039Cf4a20AFF709Aa9:0b.",
+          "daEntrance": {
+            "address": "0xE75A073dA5bb7b0eC622170Fd268f35E675a957B",
+            "reachable": true,
+            "hasCode": false,
+            "codeBytes": 0,
+            "reason": "No contract bytecode at DAEntrance on configured RPC."
+          },
+          "daEntranceCandidates": [
+            {
+              "address": "0xE75A073dA5bb7b0eC622170Fd268f35E675a957B",
+              "reachable": true,
+              "hasCode": false,
+              "codeBytes": 0,
+              "reason": "No contract bytecode at DAEntrance on configured RPC."
+            },
+            {
+              "address": "0x857C0A28A8634614BB2C96039Cf4a20AFF709Aa9",
+              "reachable": true,
+              "hasCode": false,
+              "codeBytes": 0,
+              "reason": "No contract bytecode at DAEntrance on configured RPC."
+            }
+          ],
+          "anyDocumentedDaEntranceHasCode": false,
+          "daEntranceHasCode": false,
+          "officialMaxBlobBytes": 32505852,
           "localPorts": [
             {
               "host": "127.0.0.1",
@@ -728,28 +900,426 @@
             {
               "host": "127.0.0.1",
               "port": 51001,
-              "listening": false,
-              "reason": "connect ECONNREFUSED 127.0.0.1:51001"
+              "listening": true
             },
             {
               "host": "127.0.0.1",
               "port": 34000,
-              "listening": false,
-              "reason": "connect ECONNREFUSED 127.0.0.1:34000"
+              "listening": true
             },
             {
               "host": "127.0.0.1",
               "port": 34005,
-              "listening": false,
-              "reason": "connect ECONNREFUSED 127.0.0.1:34005"
+              "listening": true
             }
           ],
-          "hasDaClientGrpc": false,
-          "daClientListening": false,
-          "encoderListening": false,
-          "retrieverListening": false,
-          "reason": "No reachable OG_DA_CLIENT_GRPC_URL/51001 DA Client was found. Live DA submission remains blocked."
+          "hasDaClientGrpc": true,
+          "daClientListening": true,
+          "encoderListening": true,
+          "retrieverListening": true,
+          "reason": "0G DA stack is not live yet: DAEntrance 0xE75A073dA5bb7b0eC622170Fd268f35E675a957B has no bytecode on https://evmrpc-testnet.0g.ai; documented candidates checked 0xE75A073dA5bb7b0eC622170Fd268f35E675a957B:0b, 0x857C0A28A8634614BB2C96039Cf4a20AFF709Aa9:0b."
         },
+        "env": {
+          "rpc": "https://evmrpc-testnet.0g.ai",
+          "storageIndexer": "https://indexer-storage-testnet-turbo.0g.ai",
+          "computeEndpoint": "https://router-api.0g.ai/v1",
+          "daClientGrpc": "127.0.0.1:51001",
+          "hasStorageSigner": true,
+          "hasComputeKey": true,
+          "hasDaClient": true
+        }
+      }
+    },
+    {
+      "kind": "runtime-finalize",
+      "value": {
+        "schema": "0g-world-cup-runtime-finalize-proof-v1",
+        "status": "blocked",
+        "roomId": "room-human-vs-agent-api-e2e",
+        "error": "FINALIZE_REQUIRES_COMPUTE_RESULT",
+        "reason": "Runtime finalization only accepts a real 0G Compute-authoritative result.",
+        "computeAuthority": "deterministic-background",
+        "checks": {
+          "rejectedDeterministicResult": true,
+          "requiresComputeAuthority": true,
+          "storageSkipped": true,
+          "chainSkipped": true
+        }
+      }
+    },
+    {
+      "kind": "integration-matrix",
+      "value": {
+        "schema": "0g-world-cup-integration-matrix-v1",
+        "status": "externally-blocked",
+        "generatedAt": "1970-01-01T00:00:00.000Z",
+        "coverage": [
+          {
+            "id": "data-pipeline-import-publish",
+            "label": "Player data import, rating, publish pipeline",
+            "layer": "data",
+            "status": "verified",
+            "artifacts": [
+              "data-pipeline-latest.json"
+            ],
+            "uiSurface": "/proof/:roomId",
+            "proof": "48 local pipeline players / 8379 historical players"
+          },
+          {
+            "id": "historical-player-snapshot",
+            "label": "Historical World Cup player snapshot",
+            "layer": "data",
+            "status": "verified",
+            "artifacts": [
+              "player-snapshot-latest.json"
+            ],
+            "uiSurface": "/proof/:roomId",
+            "proof": "8379 players / 368 squads"
+          },
+          {
+            "id": "storage-proof-packet",
+            "label": "0G Storage proof packet",
+            "layer": "storage",
+            "status": "verified",
+            "artifacts": [
+              "storage-latest.json",
+              "storage-readback-latest.json"
+            ],
+            "uiSurface": "/proof/:roomId",
+            "proof": "0x950d13bcd9ea7816c323e7e6b0cfcbd409ac3a4cdd18b29dcb3935c55ad9d75b"
+          },
+          {
+            "id": "storage-product-bundle",
+            "label": "0G Storage product bundle readback",
+            "layer": "storage",
+            "status": "verified",
+            "artifacts": [
+              "storage-bundle-latest.json",
+              "storage-readback-latest.json"
+            ],
+            "uiSurface": "/proof/:roomId",
+            "proof": "0x8c4e06ef14926a8da200fea81d0e09b25bebe3fc0ac6477fbd2de1af313470d1"
+          },
+          {
+            "id": "chain-contracts",
+            "label": "0G Chain deployed contracts",
+            "layer": "chain",
+            "status": "verified",
+            "artifacts": [
+              "chain-readback-latest.json"
+            ],
+            "uiSurface": "/proof/:roomId",
+            "proof": "Draft, Escrow, Results, and Agentic ID contract bytecode checked"
+          },
+          {
+            "id": "chain-result-commitment",
+            "label": "0G Chain result commitment",
+            "layer": "chain",
+            "status": "verified",
+            "artifacts": [
+              "chain-result-latest.json",
+              "chain-events-latest.json"
+            ],
+            "uiSurface": "/proof/:roomId",
+            "proof": "0x4e450701f7c69c122e3f9bb81dc6249f4f20077fd521503548767bc210926a3c"
+          },
+          {
+            "id": "browser-wallet-wager-actions",
+            "label": "Browser wallet commit and wager deposit",
+            "layer": "wallet",
+            "status": "verified",
+            "artifacts": [
+              "browser-wallet-latest.json"
+            ],
+            "uiSurface": "/proof/:roomId",
+            "proof": "0x03318f31c16c56f9536a0236d06e4fe64fc978f6501cf3e484f9b44892ce815b"
+          },
+          {
+            "id": "wager-settlement",
+            "label": "0G wager settlement and payout",
+            "layer": "chain",
+            "status": "verified",
+            "artifacts": [
+              "wager-settlement-latest.json"
+            ],
+            "uiSurface": "/proof/:roomId",
+            "proof": "0x2c49f366a57bb0eeb1e7f57398d159169d64637573cd8b717660e8eac5c71a8a"
+          },
+          {
+            "id": "compute-router",
+            "label": "0G Compute Router",
+            "layer": "compute",
+            "status": "external-blocked",
+            "artifacts": [
+              "compute-latest.json",
+              "infra-diagnostics-latest.json"
+            ],
+            "uiSurface": "/simulate/:roomId and /proof/:roomId",
+            "proof": "0G Compute Router request failed: 402 {\"error\":{\"message\":\"Insufficient balance\",\"type\":\"payment_error\",\"code\":\"insufficient_balance\"},\"request_id\":\"aa979914-0b51-40e4-bc94-f96f262c952d\"}"
+          },
+          {
+            "id": "compute-broker",
+            "label": "Direct 0G Compute broker",
+            "layer": "compute",
+            "status": "external-blocked",
+            "artifacts": [
+              "compute-broker-latest.json"
+            ],
+            "uiSurface": "/proof/:roomId",
+            "proof": "Direct 0G Compute providers are discoverable, but wallet balance is below the 3 0G ledger minimum for broker funding. Top up 0x3D325E51934AE5c7EBf9f37a8Ddf772F48F766Fb with at least 2.969183 0G, then rerun with OG_COMPUTE_BROKER_AUTOFUND=1 to create the broker ledger."
+          },
+          {
+            "id": "runtime-compute-authority",
+            "label": "Runtime match compute authority",
+            "layer": "compute",
+            "status": "external-blocked",
+            "artifacts": [
+              "compute-runtime-latest.json",
+              "runtime-finalize-latest.json"
+            ],
+            "uiSurface": "/simulate/:roomId",
+            "proof": "0G Compute Router failed: 0G Compute request failed: 402 {\"error\":{\"message\":\"Insufficient balance\",\"type\":\"payment_error\",\"code\":\"insufficient_balance\"},\"request_id\":\"c426d339-9155-44f4-8dee-922f5d9aff42\"} | Direct 0G Compute broker failed: Direct 0G Compute broker ledger is not ready and OG_COMPUTE_BROKER_AUTOFUND is not enabled: Account does not exist. Please create an account first using \"add-account\". (Address: 0x3D325E51934AE5c7EBf9f37a8Ddf772F48F766Fb)"
+          },
+          {
+            "id": "runtime-finalization-guard",
+            "label": "Runtime finalization guard",
+            "layer": "compute",
+            "status": "verified",
+            "artifacts": [
+              "runtime-finalize-latest.json"
+            ],
+            "uiSurface": "/simulate/:roomId and /proof/:roomId",
+            "proof": "Runtime finalization only accepts a real 0G Compute-authoritative result."
+          },
+          {
+            "id": "da-byte-ready-batch",
+            "label": "0G DA byte-ready batch",
+            "layer": "da",
+            "status": "ready",
+            "artifacts": [
+              "da-latest.json",
+              "da-batch-payload-latest.json"
+            ],
+            "uiSurface": "/proof/:roomId",
+            "proof": "DA blob is byte-ready and below the documented 0G DA max size."
+          },
+          {
+            "id": "da-local-stack",
+            "label": "0G DA local sidecar/client stack",
+            "layer": "da",
+            "status": "external-blocked",
+            "artifacts": [
+              "da-stack-readiness-latest.json"
+            ],
+            "uiSurface": "/proof/:roomId",
+            "proof": "0G DA stack is not live yet: DAEntrance 0xE75A073dA5bb7b0eC622170Fd268f35E675a957B has no bytecode on https://evmrpc-testnet.0g.ai; documented candidates checked 0xE75A073dA5bb7b0eC622170Fd268f35E675a957B:0b, 0x857C0A28A8634614BB2C96039Cf4a20AFF709Aa9:0b."
+          },
+          {
+            "id": "da-sidecar-submit",
+            "label": "0G DA sidecar submit",
+            "layer": "da",
+            "status": "external-blocked",
+            "artifacts": [
+              "da-sidecar-latest.json"
+            ],
+            "uiSurface": "/proof/:roomId",
+            "proof": "DA sidecar submit skipped because readiness preflight is blocked: 0G DA stack is not live yet: DAEntrance 0xE75A073dA5bb7b0eC622170Fd268f35E675a957B has no bytecode on https://evmrpc-testnet.0g.ai."
+          },
+          {
+            "id": "cloudflare-tunnel-bridge",
+            "label": "Cloudflare tunnel bridge",
+            "layer": "ui",
+            "status": "local-only",
+            "artifacts": [
+              "cloudflare-tunnel-latest.json"
+            ],
+            "uiSurface": "/proof/:roomId",
+            "proof": "No public tunnel URL is configured; proofs are using localhost. This is fine for local testing, but use OG_DA_SIDECAR_URL=https://... or OG_APP_PUBLIC_URL=https://... for judge/cross-app access."
+          },
+          {
+            "id": "agentic-id-mint",
+            "label": "Agentic ID mint",
+            "layer": "agentic",
+            "status": "verified",
+            "artifacts": [
+              "agentic-id-latest.json",
+              "chain-events-latest.json"
+            ],
+            "uiSurface": "/agents and /proof/:roomId",
+            "proof": "0xdc7b52f288a7425f2c1b9b16cf38770a6f1f6dc50bde7d0811df8628ffececb6"
+          },
+          {
+            "id": "agentic-registry",
+            "label": "Agentic registry",
+            "layer": "agentic",
+            "status": "verified",
+            "artifacts": [
+              "agentic-registry-latest.json"
+            ],
+            "uiSurface": "/agents and /proof/:roomId",
+            "proof": "2 agents"
+          },
+          {
+            "id": "agentic-storage-readback",
+            "label": "Agentic ID encrypted metadata readback",
+            "layer": "agentic",
+            "status": "verified",
+            "artifacts": [
+              "agentic-id-readback-latest.json"
+            ],
+            "uiSurface": "/proof/:roomId",
+            "proof": "0x57ca841db653ecb857f73a76fb694122c11aefc0e7fce617747e87bde7377d3b"
+          },
+          {
+            "id": "agent-manager-live-readback",
+            "label": "Agent Manager live readback",
+            "layer": "agentic",
+            "status": "verified",
+            "artifacts": [
+              "agent-manager-readback-latest.json"
+            ],
+            "uiSurface": "/agents and /proof/:roomId",
+            "proof": "0xb84db2f6fe3b756dca51a575a32ae72ae0bc046897649accddd16f8c31601ab6"
+          }
+        ],
+        "counts": {
+          "verified": 13,
+          "ready": 1,
+          "external-blocked": 5,
+          "local-only": 1,
+          "missing": 0
+        },
+        "coverageHash": "0xd245761ad99202082359fa6eaa881c93d838b2bdde73913ce6f77969242f1301",
+        "blockers": [
+          {
+            "id": "compute-router",
+            "label": "0G Compute Router",
+            "layer": "compute",
+            "status": "external-blocked",
+            "artifacts": [
+              "compute-latest.json",
+              "infra-diagnostics-latest.json"
+            ],
+            "uiSurface": "/simulate/:roomId and /proof/:roomId",
+            "proof": "0G Compute Router request failed: 402 {\"error\":{\"message\":\"Insufficient balance\",\"type\":\"payment_error\",\"code\":\"insufficient_balance\"},\"request_id\":\"aa979914-0b51-40e4-bc94-f96f262c952d\"}"
+          },
+          {
+            "id": "compute-broker",
+            "label": "Direct 0G Compute broker",
+            "layer": "compute",
+            "status": "external-blocked",
+            "artifacts": [
+              "compute-broker-latest.json"
+            ],
+            "uiSurface": "/proof/:roomId",
+            "proof": "Direct 0G Compute providers are discoverable, but wallet balance is below the 3 0G ledger minimum for broker funding. Top up 0x3D325E51934AE5c7EBf9f37a8Ddf772F48F766Fb with at least 2.969183 0G, then rerun with OG_COMPUTE_BROKER_AUTOFUND=1 to create the broker ledger."
+          },
+          {
+            "id": "runtime-compute-authority",
+            "label": "Runtime match compute authority",
+            "layer": "compute",
+            "status": "external-blocked",
+            "artifacts": [
+              "compute-runtime-latest.json",
+              "runtime-finalize-latest.json"
+            ],
+            "uiSurface": "/simulate/:roomId",
+            "proof": "0G Compute Router failed: 0G Compute request failed: 402 {\"error\":{\"message\":\"Insufficient balance\",\"type\":\"payment_error\",\"code\":\"insufficient_balance\"},\"request_id\":\"c426d339-9155-44f4-8dee-922f5d9aff42\"} | Direct 0G Compute broker failed: Direct 0G Compute broker ledger is not ready and OG_COMPUTE_BROKER_AUTOFUND is not enabled: Account does not exist. Please create an account first using \"add-account\". (Address: 0x3D325E51934AE5c7EBf9f37a8Ddf772F48F766Fb)"
+          },
+          {
+            "id": "da-local-stack",
+            "label": "0G DA local sidecar/client stack",
+            "layer": "da",
+            "status": "external-blocked",
+            "artifacts": [
+              "da-stack-readiness-latest.json"
+            ],
+            "uiSurface": "/proof/:roomId",
+            "proof": "0G DA stack is not live yet: DAEntrance 0xE75A073dA5bb7b0eC622170Fd268f35E675a957B has no bytecode on https://evmrpc-testnet.0g.ai; documented candidates checked 0xE75A073dA5bb7b0eC622170Fd268f35E675a957B:0b, 0x857C0A28A8634614BB2C96039Cf4a20AFF709Aa9:0b."
+          },
+          {
+            "id": "da-sidecar-submit",
+            "label": "0G DA sidecar submit",
+            "layer": "da",
+            "status": "external-blocked",
+            "artifacts": [
+              "da-sidecar-latest.json"
+            ],
+            "uiSurface": "/proof/:roomId",
+            "proof": "DA sidecar submit skipped because readiness preflight is blocked: 0G DA stack is not live yet: DAEntrance 0xE75A073dA5bb7b0eC622170Fd268f35E675a957B has no bytecode on https://evmrpc-testnet.0g.ai."
+          },
+          {
+            "id": "cloudflare-tunnel-bridge",
+            "label": "Cloudflare tunnel bridge",
+            "layer": "ui",
+            "status": "local-only",
+            "artifacts": [
+              "cloudflare-tunnel-latest.json"
+            ],
+            "uiSurface": "/proof/:roomId",
+            "proof": "No public tunnel URL is configured; proofs are using localhost. This is fine for local testing, but use OG_DA_SIDECAR_URL=https://... or OG_APP_PUBLIC_URL=https://... for judge/cross-app access."
+          }
+        ],
+        "env": {
+          "rpc": "https://evmrpc-testnet.0g.ai",
+          "storageIndexer": "https://indexer-storage-testnet-turbo.0g.ai",
+          "computeEndpoint": "https://router-api.0g.ai/v1",
+          "daClientGrpc": "",
+          "hasStorageSigner": true,
+          "hasComputeKey": true,
+          "hasDaClient": false
+        }
+      }
+    },
+    {
+      "kind": "cloudflare-tunnel",
+      "value": {
+        "schema": "0g-world-cup-cloudflare-tunnel-proof-v1",
+        "status": "local-only",
+        "generatedAt": "1970-01-01T00:00:00.000Z",
+        "cloudflared": {
+          "installed": true,
+          "version": "cloudflared version 2025.8.1 (built 2025-08-21T09:53:31Z)"
+        },
+        "tunnel": {
+          "docsUrl": "https://developers.cloudflare.com/pages/how-to/preview-with-cloudflare-tunnel/",
+          "role": "Optional public bridge for local app/DA sidecar demos. 0G Chain, 0G Storage, and 0G DA artifacts remain the source of truth.",
+          "recommendedCommand": "cloudflared tunnel --url http://127.0.0.1:51080",
+          "sidecarUrl": "http://127.0.0.1:51080",
+          "sidecarUrlFingerprint": "c332c79e28e5",
+          "appUrl": "http://localhost:3022",
+          "appUrlFingerprint": "8fbe927a352a",
+          "configuredPublicSidecar": false,
+          "configuredPublicApp": false,
+          "sidecarHealth": {
+            "reachable": true,
+            "statusCode": 200,
+            "contentType": "application/json"
+          },
+          "appHealth": {
+            "reachable": true,
+            "statusCode": 200,
+            "contentType": "text/html"
+          }
+        },
+        "costModel": {
+          "tunnel": "Cloudflare Tunnel is suitable for lightweight demo ingress; Workers/Durable Object usage is billed separately.",
+          "workersPaidMinimumUsdPerMonth": 5,
+          "requestsIncludedPerMonth": 10000000,
+          "requestsOverageUsdPerMillion": 0.3,
+          "cpuIncludedMsPerMonth": 30000000,
+          "cpuOverageUsdPerMillionMs": 0.02,
+          "staticAssetRequests": "free and unlimited under Workers pricing docs"
+        },
+        "checks": {
+          "cloudflaredInstalled": true,
+          "sidecarReachable": true,
+          "appReachable": true,
+          "publicSidecarConfigured": false,
+          "publicAppConfigured": false,
+          "noSecretsInArtifact": true
+        },
+        "reason": "No public tunnel URL is configured; proofs are using localhost. This is fine for local testing, but use OG_DA_SIDECAR_URL=https://... or OG_APP_PUBLIC_URL=https://... for judge/cross-app access.",
         "env": {
           "rpc": "https://evmrpc-testnet.0g.ai",
           "storageIndexer": "https://indexer-storage-testnet-turbo.0g.ai",
@@ -765,11 +1335,14 @@
       "kind": "da-stack-readiness",
       "value": {
         "schema": "0g-world-cup-da-stack-readiness-v1",
-        "status": "ready",
+        "status": "blocked",
         "generatedAt": "1970-01-01T00:00:00.000Z",
         "officialDocs": {
           "url": "https://docs.0g.ai/developer-hub/building-on-0g/da-integration",
           "requirement": "0G DA live submission requires DA Client, Encoder, and Retriever. Common local ports: DA Client gRPC 51001, Encoder 34000, Retriever 34005.",
+          "testnetOverviewUrl": "https://docs.0g.ai/developer-hub/testnet/testnet-overview",
+          "testnetOverviewDaEntrance": "0xE75A073dA5bb7b0eC622170Fd268f35E675a957B",
+          "integrationGuideDaEntrance": "0x857C0A28A8634614BB2C96039Cf4a20AFF709Aa9",
           "maxBlobBytes": 32505852
         },
         "docker": {
@@ -821,6 +1394,30 @@
         "endpoints": {
           "sidecarUrl": "http://127.0.0.1:51080",
           "daClientGrpc": "127.0.0.1:51001",
+          "rpcUrl": "https://evmrpc-testnet.0g.ai",
+          "daEntrance": {
+            "address": "0xE75A073dA5bb7b0eC622170Fd268f35E675a957B",
+            "reachable": true,
+            "hasCode": false,
+            "codeBytes": 0,
+            "reason": "No contract bytecode at DAEntrance on configured RPC."
+          },
+          "daEntranceCandidates": [
+            {
+              "address": "0xE75A073dA5bb7b0eC622170Fd268f35E675a957B",
+              "reachable": true,
+              "hasCode": false,
+              "codeBytes": 0,
+              "reason": "No contract bytecode at DAEntrance on configured RPC."
+            },
+            {
+              "address": "0x857C0A28A8634614BB2C96039Cf4a20AFF709Aa9",
+              "reachable": true,
+              "hasCode": false,
+              "codeBytes": 0,
+              "reason": "No contract bytecode at DAEntrance on configured RPC."
+            }
+          ],
           "ports": [
             {
               "host": "127.0.0.1",
@@ -848,17 +1445,19 @@
             "statusCode": 200,
             "body": {
               "schema": "0g-da-sidecar-status-v1",
-              "status": "blocked",
-              "daClientGrpc": "",
+              "status": "configured",
+              "daClientGrpc": "127.0.0.1:51001",
               "retrieverUrl": "",
               "maxBlobBytes": 32505852,
-              "reason": "Missing OG_DA_CLIENT_GRPC_URL. Run 0G DA Client plus Encoder/Retriever, then restart this sidecar."
+              "reason": "DA Client endpoint configured. Live gRPC submitter can be enabled against this sidecar host."
             }
           },
           "sidecarListening": true,
           "daClientListening": true,
           "encoderListening": true,
-          "retrieverListening": true
+          "retrieverListening": true,
+          "daEntranceHasCode": false,
+          "anyDocumentedDaEntranceHasCode": false
         },
         "checks": {
           "dockerInstalled": true,
@@ -875,9 +1474,10 @@
           "sidecarReachable": true,
           "daClientListening": true,
           "encoderListening": true,
-          "retrieverListening": true
+          "retrieverListening": true,
+          "documentedDaEntranceHasCode": false
         },
-        "reason": "0G DA Client, Encoder, Retriever, and sidecar are all reachable.",
+        "reason": "0G DA stack is not live yet: DAEntrance 0xE75A073dA5bb7b0eC622170Fd268f35E675a957B has no bytecode on https://evmrpc-testnet.0g.ai; documented candidates checked 0xE75A073dA5bb7b0eC622170Fd268f35E675a957B:0b, 0x857C0A28A8634614BB2C96039Cf4a20AFF709Aa9:0b.",
         "env": {
           "rpc": "https://evmrpc-testnet.0g.ai",
           "storageIndexer": "https://indexer-storage-testnet-turbo.0g.ai",
@@ -910,19 +1510,77 @@
       }
     },
     {
+      "kind": "agentic-registry",
+      "value": {
+        "status": "minted",
+        "schema": "0g-world-cup-agentic-registry-v1",
+        "count": 2,
+        "agents": [
+          {
+            "status": "live",
+            "agentId": "agent-zero-nine",
+            "displayName": "ZeroNine Scout",
+            "ownerWallet": "0x3D325E51934AE5c7EBf9f37a8Ddf772F48F766Fb",
+            "imageUrl": "/agents/agent-1.jpg",
+            "policyHash": "0xdc106aea7be9c83d9a94ad439e265f4fc4975b66fc159cbaf99a2c233ff5553a",
+            "agenticTokenId": "2",
+            "agenticStatus": "minted",
+            "encryptedMetadataHash": "0x57ca841db653ecb857f73a76fb694122c11aefc0e7fce617747e87bde7377d3b",
+            "rootHash": "0x5f7bdadd19e7dd63d84a49c1bb4ee61027e59e21019315f7889fbc194062d90c",
+            "txHash": "0xa4d4bb5a6d667e683794361f3872e643affeb533f13d3acb2f1b9eb915846bc3",
+            "storageUri": "0g://storage/0x5f7bdadd19e7dd63d84a49c1bb4ee61027e59e21019315f7889fbc194062d90c",
+            "mintTxHash": "0xdc7b52f288a7425f2c1b9b16cf38770a6f1f6dc50bde7d0811df8628ffececb6",
+            "mintBlockNumber": "40353244",
+            "contract": "0x38Cc945DAB9A0fe2b04E7F70cea3a41B3837A5ab",
+            "owner": "0x3D325E51934AE5c7EBf9f37a8Ddf772F48F766Fb",
+            "reused": "Existing 0G Storage Agentic ID metadata root is already discoverable."
+          },
+          {
+            "status": "live",
+            "agentId": "agent-keepernet",
+            "displayName": "KeeperNet Oracle",
+            "ownerWallet": "0x3D325E51934AE5c7EBf9f37a8Ddf772F48F766Fb",
+            "imageUrl": "/agents/agent-2.jpg",
+            "policyHash": "0xbb95ff95ff15463bf88402d9c22df3e29f833b79faa1ecd4963c3072a75e3420",
+            "agenticTokenId": "3",
+            "agenticStatus": "minted",
+            "encryptedMetadataHash": "0x54b24bd4083a7906b52ea935d387edbd126d46b2c9f76c5358ac8c4dea607935",
+            "rootHash": "0x91d00606b9624a166f6c87b7b019f9550902f99574494157b03953397991ecea",
+            "txHash": "0x2ee9e7feaba5535e34ae564b45a3a5212958a061b43c9adb0d3de2e70a2d30e3",
+            "storageUri": "0g://storage/0x91d00606b9624a166f6c87b7b019f9550902f99574494157b03953397991ecea",
+            "mintTxHash": "0x4894d2fb8cb6502308d6feabbc4a4f52094d02ed55a95f77863025f61c78045a",
+            "mintBlockNumber": "40353365",
+            "contract": "0x38Cc945DAB9A0fe2b04E7F70cea3a41B3837A5ab",
+            "owner": "0x3D325E51934AE5c7EBf9f37a8Ddf772F48F766Fb",
+            "reused": "Existing 0G Storage Agentic ID metadata root is already discoverable."
+          }
+        ],
+        "env": {
+          "rpc": "https://evmrpc-testnet.0g.ai",
+          "storageIndexer": "https://indexer-storage-testnet-turbo.0g.ai",
+          "computeEndpoint": "https://router-api.0g.ai/v1",
+          "daClientGrpc": "",
+          "hasStorageSigner": true,
+          "hasComputeKey": true,
+          "hasDaClient": false
+        },
+        "contract": "0x38Cc945DAB9A0fe2b04E7F70cea3a41B3837A5ab",
+        "owner": "0x3D325E51934AE5c7EBf9f37a8Ddf772F48F766Fb"
+      }
+    },
+    {
       "kind": "agentic-id-readback",
       "value": {
         "status": "live",
         "agentId": "agent-zero-nine",
         "displayName": "ZeroNine Scout",
-        "tokenId": "2",
         "contract": "0x38Cc945DAB9A0fe2b04E7F70cea3a41B3837A5ab",
         "indexerRpc": "https://indexer-storage-testnet-turbo.0g.ai",
         "rootHash": "0x5f7bdadd19e7dd63d84a49c1bb4ee61027e59e21019315f7889fbc194062d90c",
         "storageUri": "0g://storage/0x5f7bdadd19e7dd63d84a49c1bb4ee61027e59e21019315f7889fbc194062d90c",
         "encryptedMetadataHash": "0x57ca841db653ecb857f73a76fb694122c11aefc0e7fce617747e87bde7377d3b",
         "contentHash": "0x57ca841db653ecb857f73a76fb694122c11aefc0e7fce617747e87bde7377d3b",
-        "byteCount": 1907,
+        "byteCount": 3768,
         "downloadedMerkleRoot": "0x5f7bdadd19e7dd63d84a49c1bb4ee61027e59e21019315f7889fbc194062d90c",
         "decryptedSchema": "0g-world-cup-agentic-id-v1",
         "decryptedAllowedModes": [
@@ -930,13 +1588,159 @@
           "agent-vs-agent",
           "testnet-wager-1v1"
         ],
+        "agents": [
+          {
+            "agentId": "agent-zero-nine",
+            "displayName": "ZeroNine Scout",
+            "contract": "0x38Cc945DAB9A0fe2b04E7F70cea3a41B3837A5ab",
+            "indexerRpc": "https://indexer-storage-testnet-turbo.0g.ai",
+            "rootHash": "0x5f7bdadd19e7dd63d84a49c1bb4ee61027e59e21019315f7889fbc194062d90c",
+            "storageUri": "0g://storage/0x5f7bdadd19e7dd63d84a49c1bb4ee61027e59e21019315f7889fbc194062d90c",
+            "encryptedMetadataHash": "0x57ca841db653ecb857f73a76fb694122c11aefc0e7fce617747e87bde7377d3b",
+            "contentHash": "0x57ca841db653ecb857f73a76fb694122c11aefc0e7fce617747e87bde7377d3b",
+            "byteCount": 1907,
+            "downloadedMerkleRoot": "0x5f7bdadd19e7dd63d84a49c1bb4ee61027e59e21019315f7889fbc194062d90c",
+            "decryptedSchema": "0g-world-cup-agentic-id-v1",
+            "decryptedAllowedModes": [
+              "human-vs-agent",
+              "agent-vs-agent",
+              "testnet-wager-1v1"
+            ],
+            "checks": {
+              "merkleRootMatches": true,
+              "encryptedMetadataHashMatches": true,
+              "storageUriMatches": true,
+              "decryptedAgentMatches": true,
+              "decryptedNameMatches": true,
+              "decryptedPolicyMatches": true
+            }
+          },
+          {
+            "agentId": "agent-keepernet",
+            "displayName": "KeeperNet Oracle",
+            "contract": "0x38Cc945DAB9A0fe2b04E7F70cea3a41B3837A5ab",
+            "indexerRpc": "https://indexer-storage-testnet-turbo.0g.ai",
+            "rootHash": "0x91d00606b9624a166f6c87b7b019f9550902f99574494157b03953397991ecea",
+            "storageUri": "0g://storage/0x91d00606b9624a166f6c87b7b019f9550902f99574494157b03953397991ecea",
+            "encryptedMetadataHash": "0x54b24bd4083a7906b52ea935d387edbd126d46b2c9f76c5358ac8c4dea607935",
+            "contentHash": "0x54b24bd4083a7906b52ea935d387edbd126d46b2c9f76c5358ac8c4dea607935",
+            "byteCount": 1861,
+            "downloadedMerkleRoot": "0x91d00606b9624a166f6c87b7b019f9550902f99574494157b03953397991ecea",
+            "decryptedSchema": "0g-world-cup-agentic-id-v1",
+            "decryptedAllowedModes": [
+              "agent-vs-agent",
+              "testnet-wager-1v1"
+            ],
+            "checks": {
+              "merkleRootMatches": true,
+              "encryptedMetadataHashMatches": true,
+              "storageUriMatches": true,
+              "decryptedAgentMatches": true,
+              "decryptedNameMatches": true,
+              "decryptedPolicyMatches": true
+            }
+          }
+        ],
         "checks": {
+          "everyAgentDownloaded": true,
+          "everyMerkleRootMatches": true,
+          "everyEncryptedMetadataHashMatches": true,
+          "everyStorageUriMatches": true,
+          "everyDecryptedAgentMatches": true,
+          "everyDecryptedPolicyMatches": true,
           "merkleRootMatches": true,
           "encryptedMetadataHashMatches": true,
-          "storageUriMatches": true,
           "decryptedAgentMatches": true,
-          "decryptedNameMatches": true,
           "decryptedPolicyMatches": true
+        }
+      }
+    },
+    {
+      "kind": "agent-manager-readback",
+      "value": {
+        "schema": "0g-world-cup-agent-manager-readback-v1",
+        "status": "live",
+        "count": 2,
+        "agents": [
+          {
+            "agentId": "agent-zero-nine",
+            "displayName": "ZeroNine Scout",
+            "imageUrl": "/agents/agent-1.jpg",
+            "tokenId": "2",
+            "agenticStatus": "minted",
+            "contract": "0x38Cc945DAB9A0fe2b04E7F70cea3a41B3837A5ab",
+            "onChainOwner": "0x3D325E51934AE5c7EBf9f37a8Ddf772F48F766Fb",
+            "authorizedExecutor": "0x0000000000000000000000000000000000000000",
+            "encryptedMetadataHash": "0x57ca841db653ecb857f73a76fb694122c11aefc0e7fce617747e87bde7377d3b",
+            "storageUri": "0g://storage/0x5f7bdadd19e7dd63d84a49c1bb4ee61027e59e21019315f7889fbc194062d90c",
+            "storageRoot": "0x5f7bdadd19e7dd63d84a49c1bb4ee61027e59e21019315f7889fbc194062d90c",
+            "policyHash": "0xdc106aea7be9c83d9a94ad439e265f4fc4975b66fc159cbaf99a2c233ff5553a",
+            "eventTxHash": "0xdc7b52f288a7425f2c1b9b16cf38770a6f1f6dc50bde7d0811df8628ffececb6",
+            "eventBlockNumber": "40353244",
+            "fullTokenReadback": true,
+            "metadataReadback": true,
+            "checks": {
+              "registryMinted": true,
+              "chainEventFound": true,
+              "chainEventTokenMatches": true,
+              "chainEventOwnerMatches": true,
+              "chainEventMetadataMatches": true,
+              "chainEventStorageMatches": true,
+              "fullTokenReadback": true,
+              "metadataReadback": true
+            }
+          },
+          {
+            "agentId": "agent-keepernet",
+            "displayName": "KeeperNet Oracle",
+            "imageUrl": "/agents/agent-2.jpg",
+            "tokenId": "3",
+            "agenticStatus": "minted",
+            "contract": "0x38Cc945DAB9A0fe2b04E7F70cea3a41B3837A5ab",
+            "onChainOwner": "0x3D325E51934AE5c7EBf9f37a8Ddf772F48F766Fb",
+            "authorizedExecutor": "0x0000000000000000000000000000000000000000",
+            "encryptedMetadataHash": "0x54b24bd4083a7906b52ea935d387edbd126d46b2c9f76c5358ac8c4dea607935",
+            "storageUri": "0g://storage/0x91d00606b9624a166f6c87b7b019f9550902f99574494157b03953397991ecea",
+            "storageRoot": "0x91d00606b9624a166f6c87b7b019f9550902f99574494157b03953397991ecea",
+            "policyHash": "0xbb95ff95ff15463bf88402d9c22df3e29f833b79faa1ecd4963c3072a75e3420",
+            "eventTxHash": "0x4894d2fb8cb6502308d6feabbc4a4f52094d02ed55a95f77863025f61c78045a",
+            "eventBlockNumber": "40353365",
+            "fullTokenReadback": true,
+            "metadataReadback": true,
+            "checks": {
+              "registryMinted": true,
+              "chainEventFound": true,
+              "chainEventTokenMatches": true,
+              "chainEventOwnerMatches": true,
+              "chainEventMetadataMatches": true,
+              "chainEventStorageMatches": true,
+              "fullTokenReadback": true,
+              "metadataReadback": true
+            }
+          }
+        ],
+        "readbackHash": "0xb84db2f6fe3b756dca51a575a32ae72ae0bc046897649accddd16f8c31601ab6",
+        "checks": {
+          "registryCountMatches": true,
+          "registryLive": true,
+          "chainReadbackLive": true,
+          "chainEventsLive": true,
+          "everyAgentMinted": true,
+          "everyAgentHasChainEvent": true,
+          "everyChainEventMatches": true,
+          "defaultAgentTokenReadback": true,
+          "defaultAgentMetadataReadback": true,
+          "allAgentTokenReadback": true,
+          "allAgentMetadataReadback": true
+        },
+        "env": {
+          "rpc": "https://evmrpc-testnet.0g.ai",
+          "storageIndexer": "https://indexer-storage-testnet-turbo.0g.ai",
+          "computeEndpoint": "https://router-api.0g.ai/v1",
+          "daClientGrpc": "",
+          "hasStorageSigner": true,
+          "hasComputeKey": true,
+          "hasDaClient": false
         }
       }
     }

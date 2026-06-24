@@ -1,8 +1,10 @@
 import { existsSync, readFileSync } from "node:fs";
 import { loadLocalEnv, publicEnvSummary, writeProofArtifact } from "./env";
-import "./build-da-batch";
 
 loadLocalEnv();
+
+await import("./diagnose-da-stack");
+await import("./build-da-batch");
 
 type DaBatchArtifact = {
   blobHash: string;

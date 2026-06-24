@@ -1,5 +1,6 @@
 import { existsSync, readFileSync } from "node:fs";
 import { createPublicClient, http, keccak256, toBytes } from "viem";
+import { registeredAgents } from "../../src/worldcup/agents";
 import { loadLocalEnv, writeProofArtifact } from "./env";
 
 loadLocalEnv();
@@ -18,6 +19,10 @@ type AgenticArtifact = Record<string, unknown> & {
   owner?: string;
   storageUri?: string;
   tokenId?: string;
+};
+
+type AgenticRegistryArtifact = Record<string, unknown> & {
+  agents?: AgenticArtifact[];
 };
 
 const resultAbi = [
@@ -79,6 +84,9 @@ async function codeStatus(client: ReturnType<typeof createPublicClient>, address
 
 const chain = readArtifact<ChainArtifact>("chain-result-latest.json");
 const agentic = readArtifact<AgenticArtifact>("agentic-id-latest.json");
+const agenticRegistry = existsSync("proof-artifacts/agentic-registry-latest.json")
+  ? readArtifact<AgenticRegistryArtifact>("agentic-registry-latest.json")
+  : { agents: [] };
 if (!chain.roomId) throw new Error("chain-result-latest.json missing roomId.");
 if (!chain.storageUri) throw new Error("chain-result-latest.json missing storageUri.");
 if (!agentic.tokenId) throw new Error("agentic-id-latest.json missing tokenId.");
@@ -111,6 +119,39 @@ const agentToken = await client.readContract({
   args: [BigInt(agentic.tokenId)],
 });
 
+const agenticTokensReadback = await Promise.all(
+  (agenticRegistry.agents?.length ? agenticRegistry.agents : [agentic]).map(async (agent) => {
+    const registered = registeredAgents.find((candidate) => candidate.id === agent.agentId);
+    const tokenId = String(agent.agenticTokenId ?? agent.tokenId ?? registered?.agenticTokenId ?? "");
+    if (!tokenId) throw new Error(`Missing Agentic ID token id for ${String(agent.agentId ?? "unknown")}.`);
+    const token = await client.readContract({
+      address: CONTRACTS.agentId as `0x${string}`,
+      abi: agentIdAbi,
+      functionName: "agents",
+      args: [BigInt(tokenId)],
+    });
+    const encryptedMetadataHash = String(agent.encryptedMetadataHash ?? "");
+    const storageUri = String(agent.storageUri ?? "");
+    const checks = {
+      tokenExists: token[5],
+      ownerMatches: !agent.owner || String(token[0]).toLowerCase() === String(agent.owner).toLowerCase(),
+      metadataMatches: encryptedMetadataHash !== "" && token[1].toLowerCase() === encryptedMetadataHash.toLowerCase(),
+      storageMatches: storageUri !== "" && token[2] === storageUri,
+    };
+    return {
+      agentId: agent.agentId,
+      tokenId,
+      owner: token[0],
+      encryptedMetadataHash: token[1],
+      storageUri: token[2],
+      displayName: token[3],
+      authorizedExecutor: token[4],
+      exists: token[5],
+      checks,
+    };
+  }),
+);
+
 const nextTokenId = await client.readContract({
   address: CONTRACTS.agentId as `0x${string}`,
   abi: agentIdAbi,
@@ -124,6 +165,9 @@ const checks = {
   agentTokenExists: agentToken[5],
   agentMetadataMatches: agentToken[1].toLowerCase() === agentic.encryptedMetadataHash.toLowerCase(),
   agentStorageMatches: agentToken[2] === agentic.storageUri,
+  everyAgenticTokenExists: agenticTokensReadback.length === registeredAgents.length && agenticTokensReadback.every((token) => token.checks.tokenExists),
+  everyAgenticMetadataMatches: agenticTokensReadback.every((token) => token.checks.metadataMatches),
+  everyAgenticStorageMatches: agenticTokensReadback.every((token) => token.checks.storageMatches),
 };
 
 const artifact = {
@@ -156,6 +200,7 @@ const artifact = {
     exists: agentToken[5],
     nextTokenId: nextTokenId.toString(),
   },
+  agenticTokensReadback,
   checks,
 };
 

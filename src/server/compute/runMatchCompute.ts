@@ -4,7 +4,7 @@ import { completeDraft } from "../../worldcup/game";
 import type { MatchComputeInput, MatchComputeOutput } from "../../worldcup/computeTypes";
 import { buildMatchComputeInput } from "../../worldcup/matchCompute";
 import type { DraftRoom } from "../../worldcup/types";
-import { getComputeEnv, loadLocalEnv } from "../env";
+import { getComputeEnvCandidates, loadLocalEnv } from "../env";
 
 type RouterChoice = {
   message?: {
@@ -45,6 +45,25 @@ function sha256(value: string) {
   return `0x${createHash("sha256").update(value).digest("hex")}`;
 }
 
+function numberEnv(name: string, fallback: number) {
+  const value = Number(process.env[name]);
+  return Number.isFinite(value) && value > 0 ? value : fallback;
+}
+
+async function withTimeout<T>(label: string, task: Promise<T>, ms: number): Promise<T> {
+  let timer: ReturnType<typeof setTimeout> | undefined;
+  try {
+    return await Promise.race([
+      task,
+      new Promise<never>((_, reject) => {
+        timer = setTimeout(() => reject(new Error(`${label} timed out after ${ms}ms`)), ms);
+      }),
+    ]);
+  } finally {
+    if (timer) clearTimeout(timer);
+  }
+}
+
 function stableJson(value: unknown): string {
   if (Array.isArray(value)) return `[${value.map(stableJson).join(",")}]`;
   if (value && typeof value === "object") {
@@ -56,10 +75,11 @@ function stableJson(value: unknown): string {
   return JSON.stringify(value);
 }
 
-async function getModel(endpoint: string, apiKey: string, configuredModel: string) {
+async function getModel(endpoint: string, apiKey: string, configuredModel: string, timeoutMs: number) {
   if (configuredModel) return configuredModel;
   const response = await fetch(`${endpoint}/models`, {
     headers: { Authorization: `Bearer ${apiKey}` },
+    signal: AbortSignal.timeout(timeoutMs),
   });
   if (!response.ok) throw new Error(`0G Compute model list failed: ${response.status} ${await response.text()}`);
   const json = (await response.json()) as { data?: { id?: string }[] };
@@ -204,6 +224,71 @@ ${JSON.stringify(compactRoom)}`,
   ];
 }
 
+function buildRepairPrompt(input: MatchComputeInput, invalidContent: string, validationError: string) {
+  return [
+    {
+      role: "system",
+      content:
+        "You repair 0G World Cup match adjudication JSON. Return only valid JSON. Do not explain anything outside the JSON.",
+    },
+    {
+      role: "user",
+      content: `The previous 0G Compute response failed validation: ${validationError}
+
+Repair it for the same match input. Keep the same football logic where possible, but return a complete valid object with:
+- integer homeScore and awayScore
+- winnerTeamId equal to one of the team ids
+- mvpPlayerId equal to one drafted player id
+- 8 to 14 highlights sorted by minute
+- every goal highlight must match the final score count
+- every highlight must include id, minute, teamId, teamName, playerId, playerName, kind, narration, scoreAfter
+- tacticalSummary and winExplanation
+
+Original match input:
+${JSON.stringify(input)}
+
+Invalid response to repair:
+${invalidContent}`,
+    },
+  ];
+}
+
+function computeRequestBody(model: string, messages: { role: string; content: string }[]) {
+  return {
+    model,
+    messages,
+    temperature: 0.15,
+    max_tokens: Math.min(numberEnv("OG_COMPUTE_MAX_TOKENS", 1_800), 2_048),
+    verify_tee: true,
+    chat_template_kwargs: { enable_thinking: false },
+  };
+}
+
+async function fetchRouterCompletion(input: {
+  endpoint: string;
+  apiKey: string;
+  model: string;
+  requestBody: ReturnType<typeof computeRequestBody>;
+  timeoutMs: number;
+}) {
+  const response = await fetch(`${input.endpoint}/chat/completions`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${input.apiKey}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(input.requestBody),
+    signal: AbortSignal.timeout(input.timeoutMs),
+  });
+  if (!response.ok) {
+    throw new Error(`0G Compute request failed: ${response.status} ${await response.text()}`);
+  }
+  const router = (await response.json()) as RouterResponse;
+  const content = router.choices?.[0]?.message?.content;
+  if (!content) throw new Error("0G Compute Router returned no assistant content.");
+  return { router, content };
+}
+
 function serviceAddress(service: BrokerService) {
   return service.provider || service.providerAddress || service.address || "";
 }
@@ -246,26 +331,36 @@ async function runBrokerCompute(room: DraftRoom, input: MatchComputeInput): Prom
     const wallet = new ethers.Wallet(privateKey, provider);
     const { createZGComputeNetworkBroker } = await import("@0gfoundation/0g-compute-ts-sdk");
     const broker = await createZGComputeNetworkBroker(wallet);
-    await ensureBrokerLedger(broker, wallet);
+    const brokerOperationTimeoutMs = numberEnv("OG_COMPUTE_BROKER_OPERATION_TIMEOUT_MS", 12_000);
+    await withTimeout("Direct 0G Compute broker ledger", ensureBrokerLedger(broker, wallet), brokerOperationTimeoutMs);
 
-    const services = await broker.inference.listService();
+    const services = await withTimeout("Direct 0G Compute broker service list", broker.inference.listService(), brokerOperationTimeoutMs);
     const service = pickBrokerService(Array.isArray(services) ? services as BrokerService[] : []);
     const providerAddress = service ? serviceAddress(service) : "";
     if (!providerAddress) return blockedOutput(room, "Direct 0G Compute broker listed no usable providers.");
 
-    const metadata = await broker.inference.getServiceMetadata(providerAddress);
+    const metadata = await withTimeout(
+      "Direct 0G Compute broker metadata",
+      broker.inference.getServiceMetadata(providerAddress),
+      brokerOperationTimeoutMs,
+    );
     const endpoint = String(metadata.endpoint || "").replace(/\/$/, "");
     const model = String(metadata.model || service?.model || service?.serviceName || "");
     if (!endpoint || !model) return blockedOutput(room, "Direct 0G Compute broker provider metadata is missing endpoint/model.");
 
     const messages = buildPrompt(input);
-    const requestBody = { model, messages, temperature: 0.15 };
+    const requestBody = computeRequestBody(model, messages);
     const requestHash = sha256(stableJson({ endpoint, model, providerAddress, input, messages }));
-    const headers = await broker.inference.getRequestHeaders(providerAddress, JSON.stringify(requestBody));
+    const headers = await withTimeout(
+      "Direct 0G Compute broker request headers",
+      broker.inference.getRequestHeaders(providerAddress, JSON.stringify(requestBody)),
+      brokerOperationTimeoutMs,
+    );
     const response = await fetch(`${endpoint}/chat/completions`, {
       method: "POST",
       headers: { "Content-Type": "application/json", ...headers },
       body: JSON.stringify(requestBody),
+      signal: AbortSignal.timeout(numberEnv("OG_COMPUTE_FETCH_TIMEOUT_MS", 12_000)),
     });
     if (!response.ok) {
       return blockedOutput(room, `Direct 0G Compute broker request failed: ${response.status} ${await response.text()}`);
@@ -279,7 +374,11 @@ async function runBrokerCompute(room: DraftRoom, input: MatchComputeInput): Prom
     let teeVerified: boolean | null = router.x_0g_trace?.tee_verified ?? null;
     if (chatId && teeVerified !== true) {
       try {
-        teeVerified = await broker.inference.processResponse(providerAddress, chatId);
+        teeVerified = await withTimeout(
+          "Direct 0G Compute broker response verification",
+          broker.inference.processResponse(providerAddress, chatId),
+          brokerOperationTimeoutMs,
+        );
       } catch {
         teeVerified ??= null;
       }
@@ -321,41 +420,72 @@ export async function runMatchCompute(roomInput: DraftRoom): Promise<MatchComput
   loadLocalEnv();
   const room = completeDraft(roomInput);
   const input = buildMatchComputeInput(room);
-  const env = getComputeEnv();
+  const computeEnvs = getComputeEnvCandidates();
+  const fetchTimeoutMs = numberEnv("OG_COMPUTE_FETCH_TIMEOUT_MS", 12_000);
+  const brokerTimeoutMs = numberEnv("OG_COMPUTE_BROKER_TOTAL_TIMEOUT_MS", 18_000);
 
-  let routerBlocker = "";
-  try {
-    if (!env.apiKey) {
-      throw new Error("Missing OG_COMPUTE_API_KEY or VITE_OG_COMPUTE_API_KEY.");
+  const routerBlockers: string[] = [];
+  if (!computeEnvs.length) {
+    routerBlockers.push("Missing OG_COMPUTE_API_KEY, VITE_OG_COMPUTE_API_KEY, or ZEROG_ROUTER_API_KEY.");
+  }
+  for (const env of computeEnvs) {
+    try {
+      const model = await getModel(env.endpoint, env.apiKey, env.model, fetchTimeoutMs);
+      const messages = buildPrompt(input);
+      const requestBody = computeRequestBody(model, messages);
+      const requestHash = sha256(stableJson({ endpoint: env.endpoint, model, source: env.source, input, messages }));
+      const { router, content } = await fetchRouterCompletion({
+        endpoint: env.endpoint,
+        apiKey: env.apiKey,
+        model,
+        requestBody,
+        timeoutMs: fetchTimeoutMs,
+      });
+      try {
+        return normalizeOutput(JSON.parse(extractJson(content)), input, router, env.endpoint, model, requestHash, "router");
+      } catch (validationError) {
+        const repairMessages = buildRepairPrompt(
+          input,
+          content,
+          validationError instanceof Error ? validationError.message : String(validationError),
+        );
+        const repairRequestBody = computeRequestBody(model, repairMessages);
+        const repairRequestHash = sha256(
+          stableJson({ endpoint: env.endpoint, model, source: env.source, input, repairMessages, previousRequestHash: requestHash }),
+        );
+        const repair = await fetchRouterCompletion({
+          endpoint: env.endpoint,
+          apiKey: env.apiKey,
+          model,
+          requestBody: repairRequestBody,
+          timeoutMs: fetchTimeoutMs,
+        });
+        return normalizeOutput(
+          JSON.parse(extractJson(repair.content)),
+          input,
+          repair.router,
+          env.endpoint,
+          model,
+          repairRequestHash,
+          "router",
+        );
+      }
+    } catch (error) {
+      routerBlockers.push(`${env.source} failed: ${error instanceof Error ? error.message : String(error)}`);
     }
-    const model = await getModel(env.endpoint, env.apiKey, env.model);
-    const messages = buildPrompt(input);
-    const requestBody = {
-      model,
-      messages,
-      temperature: 0.15,
-    };
-    const requestHash = sha256(stableJson({ endpoint: env.endpoint, model, input, messages }));
-    const response = await fetch(`${env.endpoint}/chat/completions`, {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${env.apiKey}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(requestBody),
-    });
-    if (!response.ok) {
-      throw new Error(`0G Compute request failed: ${response.status} ${await response.text()}`);
-    }
-    const router = (await response.json()) as RouterResponse;
-    const content = router.choices?.[0]?.message?.content;
-    if (!content) throw new Error("0G Compute Router returned no assistant content.");
-    return normalizeOutput(JSON.parse(extractJson(content)), input, router, env.endpoint, model, requestHash, "router");
-  } catch (error) {
-    routerBlocker = `0G Compute Router failed: ${error instanceof Error ? error.message : String(error)}`;
   }
 
-  const brokerOutput = await runBrokerCompute(room, input);
+  let brokerOutput: MatchComputeOutput;
+  try {
+    brokerOutput = await withTimeout("Direct 0G Compute broker", runBrokerCompute(room, input), brokerTimeoutMs);
+  } catch (error) {
+    brokerOutput = blockedOutput(room, `Direct 0G Compute broker failed: ${error instanceof Error ? error.message : String(error)}`);
+  }
   if (brokerOutput.authority === "compute") return brokerOutput;
-  return blockedOutput(room, `${routerBlocker} | ${brokerOutput.blocker ?? "Direct 0G Compute broker did not produce a result."}`);
+  return blockedOutput(
+    room,
+    `0G Compute Router failed: ${routerBlockers.join(" | ")} | ${
+      brokerOutput.blocker ?? "Direct 0G Compute broker did not produce a result."
+    }`,
+  );
 }

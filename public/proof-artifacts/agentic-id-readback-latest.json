@@ -2,14 +2,13 @@
   "status": "live",
   "agentId": "agent-zero-nine",
   "displayName": "ZeroNine Scout",
-  "tokenId": "2",
   "contract": "0x38Cc945DAB9A0fe2b04E7F70cea3a41B3837A5ab",
   "indexerRpc": "https://indexer-storage-testnet-turbo.0g.ai",
   "rootHash": "0x5f7bdadd19e7dd63d84a49c1bb4ee61027e59e21019315f7889fbc194062d90c",
   "storageUri": "0g://storage/0x5f7bdadd19e7dd63d84a49c1bb4ee61027e59e21019315f7889fbc194062d90c",
   "encryptedMetadataHash": "0x57ca841db653ecb857f73a76fb694122c11aefc0e7fce617747e87bde7377d3b",
   "contentHash": "0x57ca841db653ecb857f73a76fb694122c11aefc0e7fce617747e87bde7377d3b",
-  "byteCount": 1907,
+  "byteCount": 3768,
   "downloadedMerkleRoot": "0x5f7bdadd19e7dd63d84a49c1bb4ee61027e59e21019315f7889fbc194062d90c",
   "decryptedSchema": "0g-world-cup-agentic-id-v1",
   "decryptedAllowedModes": [
@@ -17,12 +16,69 @@
     "agent-vs-agent",
     "testnet-wager-1v1"
   ],
+  "agents": [
+    {
+      "agentId": "agent-zero-nine",
+      "displayName": "ZeroNine Scout",
+      "contract": "0x38Cc945DAB9A0fe2b04E7F70cea3a41B3837A5ab",
+      "indexerRpc": "https://indexer-storage-testnet-turbo.0g.ai",
+      "rootHash": "0x5f7bdadd19e7dd63d84a49c1bb4ee61027e59e21019315f7889fbc194062d90c",
+      "storageUri": "0g://storage/0x5f7bdadd19e7dd63d84a49c1bb4ee61027e59e21019315f7889fbc194062d90c",
+      "encryptedMetadataHash": "0x57ca841db653ecb857f73a76fb694122c11aefc0e7fce617747e87bde7377d3b",
+      "contentHash": "0x57ca841db653ecb857f73a76fb694122c11aefc0e7fce617747e87bde7377d3b",
+      "byteCount": 1907,
+      "downloadedMerkleRoot": "0x5f7bdadd19e7dd63d84a49c1bb4ee61027e59e21019315f7889fbc194062d90c",
+      "decryptedSchema": "0g-world-cup-agentic-id-v1",
+      "decryptedAllowedModes": [
+        "human-vs-agent",
+        "agent-vs-agent",
+        "testnet-wager-1v1"
+      ],
+      "checks": {
+        "merkleRootMatches": true,
+        "encryptedMetadataHashMatches": true,
+        "storageUriMatches": true,
+        "decryptedAgentMatches": true,
+        "decryptedNameMatches": true,
+        "decryptedPolicyMatches": true
+      }
+    },
+    {
+      "agentId": "agent-keepernet",
+      "displayName": "KeeperNet Oracle",
+      "contract": "0x38Cc945DAB9A0fe2b04E7F70cea3a41B3837A5ab",
+      "indexerRpc": "https://indexer-storage-testnet-turbo.0g.ai",
+      "rootHash": "0x91d00606b9624a166f6c87b7b019f9550902f99574494157b03953397991ecea",
+      "storageUri": "0g://storage/0x91d00606b9624a166f6c87b7b019f9550902f99574494157b03953397991ecea",
+      "encryptedMetadataHash": "0x54b24bd4083a7906b52ea935d387edbd126d46b2c9f76c5358ac8c4dea607935",
+      "contentHash": "0x54b24bd4083a7906b52ea935d387edbd126d46b2c9f76c5358ac8c4dea607935",
+      "byteCount": 1861,
+      "downloadedMerkleRoot": "0x91d00606b9624a166f6c87b7b019f9550902f99574494157b03953397991ecea",
+      "decryptedSchema": "0g-world-cup-agentic-id-v1",
+      "decryptedAllowedModes": [
+        "agent-vs-agent",
+        "testnet-wager-1v1"
+      ],
+      "checks": {
+        "merkleRootMatches": true,
+        "encryptedMetadataHashMatches": true,
+        "storageUriMatches": true,
+        "decryptedAgentMatches": true,
+        "decryptedNameMatches": true,
+        "decryptedPolicyMatches": true
+      }
+    }
+  ],
   "checks": {
+    "everyAgentDownloaded": true,
+    "everyMerkleRootMatches": true,
+    "everyEncryptedMetadataHashMatches": true,
+    "everyStorageUriMatches": true,
+    "everyDecryptedAgentMatches": true,
+    "everyDecryptedPolicyMatches": true,
     "merkleRootMatches": true,
     "encryptedMetadataHashMatches": true,
-    "storageUriMatches": true,
     "decryptedAgentMatches": true,
-    "decryptedNameMatches": true,
     "decryptedPolicyMatches": true
   }
 }

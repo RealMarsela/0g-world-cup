@@ -1,9 +1,9 @@
 {
   "status": "ready",
   "blobReady": true,
-  "blobBytes": 28209,
+  "blobBytes": 54363,
   "maxBlobBytes": 32505852,
-  "blobHash": "0x9e0f1b6e33319d84f60413e74fa81ed835ea6e8baacc5239c54621ef66b36618",
+  "blobHash": "0x77f1336dda44c33cbc3d8c3d2aad4370bc1f821663d08264ee6c4367764aff34",
   "daClientGrpc": "127.0.0.1:51001",
   "reason": "DA client endpoint configured; submit through the running 0G DA Client.",
   "env": {

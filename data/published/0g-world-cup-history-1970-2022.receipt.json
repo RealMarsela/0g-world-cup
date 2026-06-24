@@ -3,11 +3,10 @@
   "snapshotHash": "0x10083228b84402ab9d2ac1f65629aaeebddd2bcdc20597ac2cca3a44b9d44026",
   "playerCount": 8379,
   "teamCount": 368,
-  "publishedAt": "2026-06-23T18:31:44.136Z",
-  "zeroGStorage": "pending-finality",
+  "publishedAt": "2026-06-24T11:48:37.535Z",
+  "zeroGStorage": "live",
   "zeroGStorageUri": "0g://storage/0x536d977d3ccda6855efe75441df32fd3961259477750b80c7b1ab41dd68b4fee",
   "rootHash": "0x536d977d3ccda6855efe75441df32fd3961259477750b80c7b1ab41dd68b4fee",
-  "txHash": "0xed3a0e4cc9a2043ebe61526a372eaaa21e878185316d25e1125c8d13482f73fa",
-  "contentHash": "0x13a918dcfe9f88e967712de26a22a33e6ed8745555ff8fce2362994c7212780c",
-  "reason": "0G Storage transaction submitted and segments uploaded; SDK finality wait was still pending for the 4.35 MB historical snapshot."
+  "txHash": "0x6e572975026660140b36ee0135dc486b5b07204d953a3add8b89d5a27ee7d283",
+  "contentHash": "0x13a918dcfe9f88e967712de26a22a33e6ed8745555ff8fce2362994c7212780c"
 }

@@ -1,4 +1,4 @@
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { ethers } from "ethers";
 import { loadLocalEnv, publicEnvSummary, writeProofArtifact } from "./env";
 
@@ -17,6 +17,17 @@ function readSdkVersion() {
       readFileSync("node_modules/@0gfoundation/0g-compute-ts-sdk/package.json", "utf8"),
     ) as { version?: string };
     return packageJson.version ?? "unknown";
+  } catch {
+    return null;
+  }
+}
+
+function readPreviousWalletProof() {
+  const path = "public/proof-artifacts/compute-broker-latest.json";
+  if (!existsSync(path)) return null;
+  try {
+    const previous = JSON.parse(readFileSync(path, "utf8")) as { wallet?: UnknownRecord };
+    return previous.wallet ?? null;
   } catch {
     return null;
   }
@@ -109,6 +120,7 @@ const artifact: UnknownRecord = {
   checks: {
     sdkInstalled: Boolean(sdkVersion),
     walletConfigured: Boolean(privateKey),
+    walletBalanceReadable: false,
     walletCanFundMinimumLedger: false,
     brokerInitialized: false,
     servicesListed: false,
@@ -134,17 +146,42 @@ if (!privateKey) {
 
 const provider = new ethers.JsonRpcProvider(rpcUrl);
 const wallet = new ethers.Wallet(privateKey, provider);
-const balanceWei = await withTimeout("wallet balance", provider.getBalance(wallet.address));
-const balanceOg = Number(ethers.formatEther(balanceWei));
-const canFundMinimumLedger = balanceOg >= minimumLedgerOg;
+let canFundMinimumLedger = false;
+let requiredTopUpOg: number | null = null;
+let balanceError = "";
 
-artifact.wallet = {
-  configured: true,
-  address: wallet.address,
-  nativeBalanceOg: ethers.formatEther(balanceWei),
-  canFundMinimumLedger,
-};
-(artifact.checks as UnknownRecord).walletCanFundMinimumLedger = canFundMinimumLedger;
+try {
+  const balanceWei = await withTimeout("wallet balance", provider.getBalance(wallet.address));
+  const balanceOg = Number(ethers.formatEther(balanceWei));
+  canFundMinimumLedger = balanceOg >= minimumLedgerOg;
+  requiredTopUpOg = Math.max(0, minimumLedgerOg - balanceOg);
+
+  artifact.wallet = {
+    configured: true,
+    address: wallet.address,
+    nativeBalanceOg: ethers.formatEther(balanceWei),
+    minimumLedgerOg,
+    requiredTopUpOg: requiredTopUpOg.toFixed(18).replace(/0+$/, "").replace(/\.$/, ""),
+    canFundMinimumLedger,
+    balanceReadable: true,
+  };
+  (artifact.checks as UnknownRecord).walletBalanceReadable = true;
+  (artifact.checks as UnknownRecord).walletCanFundMinimumLedger = canFundMinimumLedger;
+} catch (error) {
+  balanceError = safeMessage(error);
+  const previousWallet = readPreviousWalletProof();
+  artifact.wallet = {
+    configured: true,
+    address: wallet.address,
+    nativeBalanceOg: previousWallet?.nativeBalanceOg ?? null,
+    minimumLedgerOg,
+    requiredTopUpOg: previousWallet?.requiredTopUpOg ?? null,
+    canFundMinimumLedger: false,
+    balanceReadable: false,
+    balanceError,
+    valuesFromPreviousArtifact: Boolean(previousWallet?.nativeBalanceOg || previousWallet?.requiredTopUpOg),
+  };
+}
 
 try {
   const { createZGComputeNetworkBroker } = await import("@0gfoundation/0g-compute-ts-sdk");
@@ -202,9 +239,12 @@ if (checks.servicesListed && checks.ledgerReadable) {
   artifact.status = "ready";
   artifact.reason =
     "Direct 0G Compute broker is discoverable and the wallet ledger is readable; run an inference proof only when a provider account has spendable funds.";
+} else if (checks.servicesListed && !checks.walletBalanceReadable) {
+  artifact.reason =
+    `Direct 0G Compute providers are discoverable, but the wallet balance could not be read from ${rpcUrl}: ${balanceError || "unknown balance read error"}. Funding cannot be verified until the RPC balance read succeeds.`;
 } else if (checks.servicesListed && !canFundMinimumLedger) {
   artifact.reason =
-    `Direct 0G Compute providers are discoverable, but wallet balance is below the ${minimumLedgerOg} 0G ledger minimum for broker funding.`;
+    `Direct 0G Compute providers are discoverable, but wallet balance is below the ${minimumLedgerOg} 0G ledger minimum for broker funding. Top up ${wallet.address} with at least ${(requiredTopUpOg ?? minimumLedgerOg).toFixed(6)} 0G, then rerun with OG_COMPUTE_BROKER_AUTOFUND=1 to create the broker ledger.`;
 } else if (checks.brokerInitialized) {
   artifact.reason =
     "Direct 0G Compute broker initialized, but provider discovery or ledger read is blocked. See broker/ledger error fields.";

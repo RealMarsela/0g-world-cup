@@ -1,0 +1,321 @@
+{
+  "schema": "0g-world-cup-integration-matrix-v1",
+  "status": "externally-blocked",
+  "generatedAt": "1970-01-01T00:00:00.000Z",
+  "coverage": [
+    {
+      "id": "data-pipeline-import-publish",
+      "label": "Player data import, rating, publish pipeline",
+      "layer": "data",
+      "status": "verified",
+      "artifacts": [
+        "data-pipeline-latest.json"
+      ],
+      "uiSurface": "/proof/:roomId",
+      "proof": "48 local pipeline players / 8379 historical players"
+    },
+    {
+      "id": "historical-player-snapshot",
+      "label": "Historical World Cup player snapshot",
+      "layer": "data",
+      "status": "verified",
+      "artifacts": [
+        "player-snapshot-latest.json"
+      ],
+      "uiSurface": "/proof/:roomId",
+      "proof": "8379 players / 368 squads"
+    },
+    {
+      "id": "storage-proof-packet",
+      "label": "0G Storage proof packet",
+      "layer": "storage",
+      "status": "verified",
+      "artifacts": [
+        "storage-latest.json",
+        "storage-readback-latest.json"
+      ],
+      "uiSurface": "/proof/:roomId",
+      "proof": "0x950d13bcd9ea7816c323e7e6b0cfcbd409ac3a4cdd18b29dcb3935c55ad9d75b"
+    },
+    {
+      "id": "storage-product-bundle",
+      "label": "0G Storage product bundle readback",
+      "layer": "storage",
+      "status": "verified",
+      "artifacts": [
+        "storage-bundle-latest.json",
+        "storage-readback-latest.json"
+      ],
+      "uiSurface": "/proof/:roomId",
+      "proof": "0x8c4e06ef14926a8da200fea81d0e09b25bebe3fc0ac6477fbd2de1af313470d1"
+    },
+    {
+      "id": "chain-contracts",
+      "label": "0G Chain deployed contracts",
+      "layer": "chain",
+      "status": "verified",
+      "artifacts": [
+        "chain-readback-latest.json"
+      ],
+      "uiSurface": "/proof/:roomId",
+      "proof": "Draft, Escrow, Results, and Agentic ID contract bytecode checked"
+    },
+    {
+      "id": "chain-result-commitment",
+      "label": "0G Chain result commitment",
+      "layer": "chain",
+      "status": "verified",
+      "artifacts": [
+        "chain-result-latest.json",
+        "chain-events-latest.json"
+      ],
+      "uiSurface": "/proof/:roomId",
+      "proof": "0x4e450701f7c69c122e3f9bb81dc6249f4f20077fd521503548767bc210926a3c"
+    },
+    {
+      "id": "browser-wallet-wager-actions",
+      "label": "Browser wallet commit and wager deposit",
+      "layer": "wallet",
+      "status": "verified",
+      "artifacts": [
+        "browser-wallet-latest.json"
+      ],
+      "uiSurface": "/proof/:roomId",
+      "proof": "0x03318f31c16c56f9536a0236d06e4fe64fc978f6501cf3e484f9b44892ce815b"
+    },
+    {
+      "id": "wager-settlement",
+      "label": "0G wager settlement and payout",
+      "layer": "chain",
+      "status": "verified",
+      "artifacts": [
+        "wager-settlement-latest.json"
+      ],
+      "uiSurface": "/proof/:roomId",
+      "proof": "0x2c49f366a57bb0eeb1e7f57398d159169d64637573cd8b717660e8eac5c71a8a"
+    },
+    {
+      "id": "compute-router",
+      "label": "0G Compute Router",
+      "layer": "compute",
+      "status": "external-blocked",
+      "artifacts": [
+        "compute-latest.json",
+        "infra-diagnostics-latest.json"
+      ],
+      "uiSurface": "/simulate/:roomId and /proof/:roomId",
+      "proof": "0G Compute Router request failed: 402 {\"error\":{\"message\":\"Insufficient balance\",\"type\":\"payment_error\",\"code\":\"insufficient_balance\"},\"request_id\":\"aa979914-0b51-40e4-bc94-f96f262c952d\"}"
+    },
+    {
+      "id": "compute-broker",
+      "label": "Direct 0G Compute broker",
+      "layer": "compute",
+      "status": "external-blocked",
+      "artifacts": [
+        "compute-broker-latest.json"
+      ],
+      "uiSurface": "/proof/:roomId",
+      "proof": "Direct 0G Compute providers are discoverable, but wallet balance is below the 3 0G ledger minimum for broker funding. Top up 0x3D325E51934AE5c7EBf9f37a8Ddf772F48F766Fb with at least 2.969183 0G, then rerun with OG_COMPUTE_BROKER_AUTOFUND=1 to create the broker ledger."
+    },
+    {
+      "id": "runtime-compute-authority",
+      "label": "Runtime match compute authority",
+      "layer": "compute",
+      "status": "external-blocked",
+      "artifacts": [
+        "compute-runtime-latest.json",
+        "runtime-finalize-latest.json"
+      ],
+      "uiSurface": "/simulate/:roomId",
+      "proof": "0G Compute Router failed: 0G Compute request failed: 402 {\"error\":{\"message\":\"Insufficient balance\",\"type\":\"payment_error\",\"code\":\"insufficient_balance\"},\"request_id\":\"c426d339-9155-44f4-8dee-922f5d9aff42\"} | Direct 0G Compute broker failed: Direct 0G Compute broker ledger is not ready and OG_COMPUTE_BROKER_AUTOFUND is not enabled: Account does not exist. Please create an account first using \"add-account\". (Address: 0x3D325E51934AE5c7EBf9f37a8Ddf772F48F766Fb)"
+    },
+    {
+      "id": "runtime-finalization-guard",
+      "label": "Runtime finalization guard",
+      "layer": "compute",
+      "status": "verified",
+      "artifacts": [
+        "runtime-finalize-latest.json"
+      ],
+      "uiSurface": "/simulate/:roomId and /proof/:roomId",
+      "proof": "Runtime finalization only accepts a real 0G Compute-authoritative result."
+    },
+    {
+      "id": "da-byte-ready-batch",
+      "label": "0G DA byte-ready batch",
+      "layer": "da",
+      "status": "ready",
+      "artifacts": [
+        "da-latest.json",
+        "da-batch-payload-latest.json"
+      ],
+      "uiSurface": "/proof/:roomId",
+      "proof": "DA blob is byte-ready and below the documented 0G DA max size."
+    },
+    {
+      "id": "da-local-stack",
+      "label": "0G DA local sidecar/client stack",
+      "layer": "da",
+      "status": "external-blocked",
+      "artifacts": [
+        "da-stack-readiness-latest.json"
+      ],
+      "uiSurface": "/proof/:roomId",
+      "proof": "0G DA stack is not live yet: DAEntrance 0xE75A073dA5bb7b0eC622170Fd268f35E675a957B has no bytecode on https://evmrpc-testnet.0g.ai; documented candidates checked 0xE75A073dA5bb7b0eC622170Fd268f35E675a957B:0b, 0x857C0A28A8634614BB2C96039Cf4a20AFF709Aa9:0b."
+    },
+    {
+      "id": "da-sidecar-submit",
+      "label": "0G DA sidecar submit",
+      "layer": "da",
+      "status": "external-blocked",
+      "artifacts": [
+        "da-sidecar-latest.json"
+      ],
+      "uiSurface": "/proof/:roomId",
+      "proof": "DA sidecar submit skipped because readiness preflight is blocked: 0G DA stack is not live yet: DAEntrance 0xE75A073dA5bb7b0eC622170Fd268f35E675a957B has no bytecode on https://evmrpc-testnet.0g.ai; documented candidates checked 0xE75A073dA5bb7b0eC622170Fd268f35E675a957B:0b, 0x857C0A28A8634614BB2C96039Cf4a20AFF709Aa9:0b."
+    },
+    {
+      "id": "cloudflare-tunnel-bridge",
+      "label": "Cloudflare tunnel bridge",
+      "layer": "ui",
+      "status": "local-only",
+      "artifacts": [
+        "cloudflare-tunnel-latest.json"
+      ],
+      "uiSurface": "/proof/:roomId",
+      "proof": "No public tunnel URL is configured; proofs are using localhost. This is fine for local testing, but use OG_DA_SIDECAR_URL=https://... or OG_APP_PUBLIC_URL=https://... for judge/cross-app access."
+    },
+    {
+      "id": "agentic-id-mint",
+      "label": "Agentic ID mint",
+      "layer": "agentic",
+      "status": "verified",
+      "artifacts": [
+        "agentic-id-latest.json",
+        "chain-events-latest.json"
+      ],
+      "uiSurface": "/agents and /proof/:roomId",
+      "proof": "0xdc7b52f288a7425f2c1b9b16cf38770a6f1f6dc50bde7d0811df8628ffececb6"
+    },
+    {
+      "id": "agentic-registry",
+      "label": "Agentic registry",
+      "layer": "agentic",
+      "status": "verified",
+      "artifacts": [
+        "agentic-registry-latest.json"
+      ],
+      "uiSurface": "/agents and /proof/:roomId",
+      "proof": "2 agents"
+    },
+    {
+      "id": "agentic-storage-readback",
+      "label": "Agentic ID encrypted metadata readback",
+      "layer": "agentic",
+      "status": "verified",
+      "artifacts": [
+        "agentic-id-readback-latest.json"
+      ],
+      "uiSurface": "/proof/:roomId",
+      "proof": "0x57ca841db653ecb857f73a76fb694122c11aefc0e7fce617747e87bde7377d3b"
+    },
+    {
+      "id": "agent-manager-live-readback",
+      "label": "Agent Manager live readback",
+      "layer": "agentic",
+      "status": "verified",
+      "artifacts": [
+        "agent-manager-readback-latest.json"
+      ],
+      "uiSurface": "/agents and /proof/:roomId",
+      "proof": "0xb84db2f6fe3b756dca51a575a32ae72ae0bc046897649accddd16f8c31601ab6"
+    }
+  ],
+  "counts": {
+    "verified": 13,
+    "ready": 1,
+    "external-blocked": 5,
+    "local-only": 1,
+    "missing": 0
+  },
+  "coverageHash": "0xedc3b91107ee28ba9e74ddb184bed0f6473c5e86f0b3460493d89ea72603883d",
+  "blockers": [
+    {
+      "id": "compute-router",
+      "label": "0G Compute Router",
+      "layer": "compute",
+      "status": "external-blocked",
+      "artifacts": [
+        "compute-latest.json",
+        "infra-diagnostics-latest.json"
+      ],
+      "uiSurface": "/simulate/:roomId and /proof/:roomId",
+      "proof": "0G Compute Router request failed: 402 {\"error\":{\"message\":\"Insufficient balance\",\"type\":\"payment_error\",\"code\":\"insufficient_balance\"},\"request_id\":\"aa979914-0b51-40e4-bc94-f96f262c952d\"}"
+    },
+    {
+      "id": "compute-broker",
+      "label": "Direct 0G Compute broker",
+      "layer": "compute",
+      "status": "external-blocked",
+      "artifacts": [
+        "compute-broker-latest.json"
+      ],
+      "uiSurface": "/proof/:roomId",
+      "proof": "Direct 0G Compute providers are discoverable, but wallet balance is below the 3 0G ledger minimum for broker funding. Top up 0x3D325E51934AE5c7EBf9f37a8Ddf772F48F766Fb with at least 2.969183 0G, then rerun with OG_COMPUTE_BROKER_AUTOFUND=1 to create the broker ledger."
+    },
+    {
+      "id": "runtime-compute-authority",
+      "label": "Runtime match compute authority",
+      "layer": "compute",
+      "status": "external-blocked",
+      "artifacts": [
+        "compute-runtime-latest.json",
+        "runtime-finalize-latest.json"
+      ],
+      "uiSurface": "/simulate/:roomId",
+      "proof": "0G Compute Router failed: 0G Compute request failed: 402 {\"error\":{\"message\":\"Insufficient balance\",\"type\":\"payment_error\",\"code\":\"insufficient_balance\"},\"request_id\":\"c426d339-9155-44f4-8dee-922f5d9aff42\"} | Direct 0G Compute broker failed: Direct 0G Compute broker ledger is not ready and OG_COMPUTE_BROKER_AUTOFUND is not enabled: Account does not exist. Please create an account first using \"add-account\". (Address: 0x3D325E51934AE5c7EBf9f37a8Ddf772F48F766Fb)"
+    },
+    {
+      "id": "da-local-stack",
+      "label": "0G DA local sidecar/client stack",
+      "layer": "da",
+      "status": "external-blocked",
+      "artifacts": [
+        "da-stack-readiness-latest.json"
+      ],
+      "uiSurface": "/proof/:roomId",
+      "proof": "0G DA stack is not live yet: DAEntrance 0xE75A073dA5bb7b0eC622170Fd268f35E675a957B has no bytecode on https://evmrpc-testnet.0g.ai; documented candidates checked 0xE75A073dA5bb7b0eC622170Fd268f35E675a957B:0b, 0x857C0A28A8634614BB2C96039Cf4a20AFF709Aa9:0b."
+    },
+    {
+      "id": "da-sidecar-submit",
+      "label": "0G DA sidecar submit",
+      "layer": "da",
+      "status": "external-blocked",
+      "artifacts": [
+        "da-sidecar-latest.json"
+      ],
+      "uiSurface": "/proof/:roomId",
+      "proof": "DA sidecar submit skipped because readiness preflight is blocked: 0G DA stack is not live yet: DAEntrance 0xE75A073dA5bb7b0eC622170Fd268f35E675a957B has no bytecode on https://evmrpc-testnet.0g.ai; documented candidates checked 0xE75A073dA5bb7b0eC622170Fd268f35E675a957B:0b, 0x857C0A28A8634614BB2C96039Cf4a20AFF709Aa9:0b."
+    },
+    {
+      "id": "cloudflare-tunnel-bridge",
+      "label": "Cloudflare tunnel bridge",
+      "layer": "ui",
+      "status": "local-only",
+      "artifacts": [
+        "cloudflare-tunnel-latest.json"
+      ],
+      "uiSurface": "/proof/:roomId",
+      "proof": "No public tunnel URL is configured; proofs are using localhost. This is fine for local testing, but use OG_DA_SIDECAR_URL=https://... or OG_APP_PUBLIC_URL=https://... for judge/cross-app access."
+    }
+  ],
+  "env": {
+    "rpc": "https://evmrpc-testnet.0g.ai",
+    "storageIndexer": "https://indexer-storage-testnet-turbo.0g.ai",
+    "computeEndpoint": "https://router-api.0g.ai/v1",
+    "daClientGrpc": "",
+    "hasStorageSigner": true,
+    "hasComputeKey": true,
+    "hasDaClient": false
+  }
+}

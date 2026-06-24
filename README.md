@@ -26,6 +26,16 @@ forge test
 pnpm dev
 ```
 
+## Full Verification
+
+Use the brute gate when a change touches gameplay, contracts, proof scripts, proof artifacts, or UI proof surfaces:
+
+```bash
+pnpm test:brute
+```
+
+It runs typecheck, app logic tests, Foundry contracts, the complete 0G proof lane, proof artifact/doc invariants, Playwright E2E, and production build. The 0G proof lane is honest about external blockers: currently Compute records funding blockers and DA records the Galileo DAEntrance bytecode blocker instead of claiming fake live results.
+
 ## 0G Setup
 
 ```bash
@@ -47,13 +57,18 @@ pnpm proof:compute
 pnpm proof:compute-broker
 pnpm proof:compute-runtime
 pnpm proof:infra-diagnostics
+pnpm proof:integration-matrix
 pnpm da:stack:prepare
 pnpm proof:da-stack
 pnpm proof:agentic-id
 pnpm proof:agentic-mint
+pnpm proof:agentic-registry
+pnpm proof:agentic-registry-mint
 pnpm proof:agentic-readback
+pnpm proof:agent-manager-readback
 pnpm proof:da
 pnpm proof:da-sidecar
+pnpm test:0g
 ```
 
 Deploy contracts when a funded deployer is approved:
@@ -103,9 +118,12 @@ For cross-app testing, expose only the HTTP sidecar with Cloudflare Tunnel:
 ```bash
 cloudflared tunnel --url http://127.0.0.1:51080
 export OG_DA_SIDECAR_URL=https://your-tunnel.trycloudflare.com
+pnpm proof:cloudflare-tunnel
 ```
 
-Without `OG_DA_CLIENT_GRPC_URL`, `pnpm proof:da-sidecar` writes an honest blocked artifact with the exact missing-client reason.
+Cloudflare Tunnel is an ingress bridge only. It is useful for judging, cross-app testing, and sharing the local DA sidecar while the 0G DA Client is machine-local; it is not the final source of truth. Chain, Storage, DA payloads, and Compute receipts remain committed through the 0G proof scripts. Current Cloudflare Workers pricing docs list the paid account minimum at $5/month with 10M included monthly Worker requests and 30M included CPU-ms; lightweight tunnel demos should not meaningfully add Workers cost unless we also put room coordination/Functions traffic on Workers.
+
+`pnpm proof:da` and `pnpm proof:da-sidecar` refresh the DA stack preflight before writing new artifacts. If `OG_DA_CLIENT_GRPC_URL` is not exported but the sidecar health endpoint reports a configured DA Client, the proof scripts derive the local endpoint from the sidecar. If neither source exists, they write an honest blocked artifact with the exact missing-client reason.
 
 ## 0G DA Local Stack
 
@@ -116,9 +134,9 @@ pnpm da:stack:prepare
 pnpm proof:da-stack
 ```
 
-`pnpm da:stack:prepare` writes ignored files under `.da-stack/`: the DA Client `envfile.env`, Retriever config, and local instructions. `pnpm proof:da-stack` checks Docker, Colima, Docker Compose, generated files, the sidecar, DA Client `51001`, Encoder `34000`, and Retriever `34005`, then writes `proof-artifacts/da-stack-readiness-latest.json`.
+`pnpm da:stack:prepare` writes ignored files under `.da-stack/`: the DA Client `envfile.env`, Retriever config, and local instructions. `pnpm proof:da-stack` checks Docker, Colima, Docker Compose, generated files, the sidecar, DA Client `51001`, Encoder `34000`, and Retriever `34005`, validates the configured DAEntrance bytecode on the selected RPC, then writes `proof-artifacts/da-stack-readiness-latest.json`.
 
-Current machine state is honestly blocked: Docker CLI exists, Colima is installed but stopped, Docker Compose is unavailable, sidecar `51080` is reachable, and DA Client/Encoder/Retriever ports are closed.
+Current machine state: Docker, Colima, Docker Compose, the HTTP sidecar `51080`, DA Client `51001`, Encoder `34000`, and Retriever `34005` are reachable. Live DA submission is still blocked by the Galileo DAEntrance preflight: both documented candidates currently have no bytecode on `https://evmrpc-testnet.0g.ai` (`0xE75A073dA5bb7b0eC622170Fd268f35E675a957B` from the Testnet overview and `0x857C0A28A8634614BB2C96039Cf4a20AFF709Aa9` from the DA integration envfile example), so `pnpm proof:da-sidecar` skips the doomed submit and writes the exact blocker.
 
 ## Demo Script
 
@@ -139,9 +157,10 @@ Current machine state is honestly blocked: Docker CLI exists, Colima is installe
 - 0G Escrow readiness readback is live: `pnpm proof:escrow-readiness` reads `canStart(room, 2)` plus `escrows(room)` from Galileo, so the UI shows the current two-unique-depositor start gate instead of relying only on local contract tests.
 - Browser wallet E2E is current-deployment live: Privy wallet `0x23761115c5f38ca51f0d425d00DE6E34029239EC` committed lineup tx `0xed5c6244d5976be40f2b35d2f7f41d8777864b707b5385eb45cd972d4f37cffe` to `WorldCupDraft` and deposited `0.01 0G` tx `0x03318f31c16c56f9536a0236d06e4fe64fc978f6501cf3e484f9b44892ce815b` to `WorldCupEscrow`; `pnpm proof:browser-wallet` verifies receipts, events, commitment state, `hasDeposited`, and settled escrow state.
 - Testnet wager settlement is live: project wallet `0x3D325E51934AE5c7EBf9f37a8Ddf772F48F766Fb` added the second `0.01 0G` deposit tx `0xc3094aee3d19c7d04b95da43ad3041f60d735eb67457d9b38fa278d4dc4ec663`, then settled tx `0x2c49f366a57bb0eeb1e7f57398d159169d64637573cd8b717660e8eac5c71a8a` to the browser wallet winner; `pnpm proof:wager-settlement` verifies `canStart` was true before settlement, `Settled` emitted, `0.0195 0G` payout, `0.0005 0G` fee, and `canStart=false` after settlement.
-- 0G Storage upload is live through `@0gfoundation/0g-storage-ts-sdk`; latest proof root `0xc7620208c2d553b2a12e473548da871536449bf38471f49f3da3bb1b22c84ef5`, tx `0x5d131ab4b60297b51f354798c1766a9bc388a86489b78a1bda475d8085cb214c`.
-- 0G Storage bundle upload is live for product evidence: player snapshot, draft log, match transcript, share metadata, and proof receipt, root `0xd2d4fc1dc70a4f5ed5d89c16758da4e9152c23882cef2bfbe48050f3622c15b1`, tx `0x31c55b88753fc2af9566ecdde71c2dfb5b548ebdc11e493cb208f6abfa07b124`.
+- 0G Storage upload is live through `@0gfoundation/0g-storage-ts-sdk`; latest proof root `0x2df8c6d9d2bf657e2f3cfc5c1c64371dc247e5b6d17257539e66e5882e889c05`, tx `0x324a2629d3e1761044ae44525fd568ae8dac953a7fd2b884d7a25cbdc1bc6e95`.
+- 0G Storage bundle upload is live for product evidence: player snapshot, draft log, match transcript, share metadata, and proof receipt, bundle hash `0x8c4e06ef14926a8da200fea81d0e09b25bebe3fc0ac6477fbd2de1af313470d1`, root `0x7231c4535d696a9ebfbd13c46394a392b928852c6aea766280523a4e0d065914`, tx `0x14d3e8945af51dc07bdc24b69165ce8b86365bc5fde7ed72485d195152beeafd`.
 - 0G Storage readback is live: `pnpm proof:storage-readback` downloads both Storage roots with SDK proof mode, recomputes Merkle roots, and validates the product bundle item hashes.
-- 0G Compute runtime is wired into match kickoff/finalization, but the hosted Router response is blocked by `402 insufficient_balance`; `pnpm proof:infra-diagnostics` probes both `glm-5.1` and `glm-5.2` on the same ScribeZero router key fingerprint and both return insufficient balance. Direct broker diagnostics are also wired through `@0gfoundation/0g-compute-ts-sdk`: `pnpm proof:compute-broker` initializes the broker, lists two providers, reads chatbot metadata at `https://compute-network-6.integratenetwork.work/v1/proxy`, and records that the project wallet has only `0.038417174288134078 0G`, below the 3 0G ledger minimum. `pnpm proof:compute-runtime` now proves the app kickoff path tries Router first, then direct broker, and blocks with both exact funding reasons instead of finalizing a fake score.
-- 0G DA builds a byte-ready availability batch from proof, Storage, Chain, browser wallet, wager settlement, Router Compute, direct broker diagnostics, runtime Compute, DA stack readiness, infra diagnostics, and Agentic artifacts; latest blob hash `0x2a4955216d8615c99f80bdfc732f9d5dc82ba4f8d5beb96b65e56d13efdf0ee0`. `pnpm proof:da-sidecar` can submit that blob through the local sidecar to a configured 0G DA Client gRPC endpoint. Official 0G docs require running a DA Client plus Encoder/Retriever; diagnostics show the sidecar is reachable on `51080` but no DA Client on `51001`, Encoder on `34000`, or Retriever on `34005` is listening locally.
+- 0G Compute runtime is wired into match kickoff/finalization, but the hosted Router response is blocked by `402 insufficient_balance`; `pnpm proof:infra-diagnostics` probes both `glm-5.1` and `glm-5.2` on the same ScribeZero router key fingerprint and both return insufficient balance. Direct broker diagnostics are also wired through `@0gfoundation/0g-compute-ts-sdk`: `pnpm proof:compute-broker` initializes the broker, lists two providers, reads chatbot metadata at `https://compute-network-6.integratenetwork.work/v1/proxy`, and records that the project wallet has only `0.030817244283269921 0G`, below the 3 0G ledger minimum. The exact required top-up is `2.969182755716730071 0G`; after funding, rerun `OG_COMPUTE_BROKER_AUTOFUND=1 pnpm proof:compute-runtime`. `pnpm proof:compute-runtime` now proves the app kickoff path tries Router first, then direct broker, and blocks with both exact funding reasons instead of finalizing a fake score.
+- 0G DA builds a byte-ready availability batch from proof, data pipeline, Storage, Chain, browser wallet, wager settlement, Router Compute, direct broker diagnostics, runtime Compute, runtime finalization guard, integration matrix, Cloudflare tunnel readiness, DA stack readiness, infra diagnostics, and Agentic ID/registry/readback artifacts; latest blob hash `0x77f1336dda44c33cbc3d8c3d2aad4370bc1f821663d08264ee6c4367764aff34`. `pnpm proof:da-sidecar` can submit that blob through the local sidecar to a configured 0G DA Client gRPC endpoint. Official 0G docs require running a DA Client plus Encoder/Retriever; diagnostics now show the sidecar, DA Client, Encoder, and Retriever ports are listening locally, but live submit is blocked because both documented Galileo DAEntrance candidates have no bytecode on the configured RPC.
 - Two Agentic ID agents are live in the registry with real project images, encrypted metadata on 0G Storage, and minted Agentic ID tokens on Galileo: ZeroNine token `2`, KeeperNet token `3`.
+- Agent Manager live readback is wired into scripts and UI: `pnpm proof:agent-manager-readback` verifies both registry agents against Galileo `AgentMinted` events, contract token state where available, 0G Storage metadata roots, and writes readback hash `0xb84db2f6fe3b756dca51a575a32ae72ae0bc046897649accddd16f8c31601ab6` for `/agents` and `/proof/:roomId`.

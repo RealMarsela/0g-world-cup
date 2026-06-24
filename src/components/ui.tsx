@@ -127,6 +127,7 @@ export function Tabs({
         <button
           key={tab.value}
           type="button"
+          aria-pressed={value === tab.value}
           className={`min-h-10 rounded px-3 text-sm font-semibold transition ${
             value === tab.value
               ? "bg-accent text-black"

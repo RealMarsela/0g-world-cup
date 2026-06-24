@@ -1,7 +1,7 @@
 {
   "status": "live",
   "chainId": 16602,
-  "blockNumber": "40355133",
+  "blockNumber": "40491482",
   "contracts": {
     "draft": {
       "address": "0x37AE4f4BA75b203f45137E7d6C2059d0a0F36475",
@@ -44,12 +44,49 @@
     "exists": true,
     "nextTokenId": "4"
   },
+  "agenticTokensReadback": [
+    {
+      "agentId": "agent-zero-nine",
+      "tokenId": "2",
+      "owner": "0x3D325E51934AE5c7EBf9f37a8Ddf772F48F766Fb",
+      "encryptedMetadataHash": "0x57ca841db653ecb857f73a76fb694122c11aefc0e7fce617747e87bde7377d3b",
+      "storageUri": "0g://storage/0x5f7bdadd19e7dd63d84a49c1bb4ee61027e59e21019315f7889fbc194062d90c",
+      "displayName": "ZeroNine Scout",
+      "authorizedExecutor": "0x0000000000000000000000000000000000000000",
+      "exists": true,
+      "checks": {
+        "tokenExists": true,
+        "ownerMatches": true,
+        "metadataMatches": true,
+        "storageMatches": true
+      }
+    },
+    {
+      "agentId": "agent-keepernet",
+      "tokenId": "3",
+      "owner": "0x3D325E51934AE5c7EBf9f37a8Ddf772F48F766Fb",
+      "encryptedMetadataHash": "0x54b24bd4083a7906b52ea935d387edbd126d46b2c9f76c5358ac8c4dea607935",
+      "storageUri": "0g://storage/0x91d00606b9624a166f6c87b7b019f9550902f99574494157b03953397991ecea",
+      "displayName": "KeeperNet Oracle",
+      "authorizedExecutor": "0x0000000000000000000000000000000000000000",
+      "exists": true,
+      "checks": {
+        "tokenExists": true,
+        "ownerMatches": true,
+        "metadataMatches": true,
+        "storageMatches": true
+      }
+    }
+  ],
   "checks": {
     "contractsHaveCode": true,
     "resultExists": true,
     "resultStorageMatches": true,
     "agentTokenExists": true,
     "agentMetadataMatches": true,
-    "agentStorageMatches": true
+    "agentStorageMatches": true,
+    "everyAgenticTokenExists": true,
+    "everyAgenticMetadataMatches": true,
+    "everyAgenticStorageMatches": true
   }
 }

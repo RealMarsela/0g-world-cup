@@ -6,10 +6,13 @@ import {
   HAS_PRIVY,
   zeroGGalileo,
 } from "./config/chain";
+import { canUseBrowserEmbeddedWallets } from "./config/runtimeOrigin";
 import { ToastProvider } from "./components/toast";
 
 export function AppProviders({ children }: { children: ReactNode }) {
-  if (!HAS_PRIVY) {
+  const embeddedWalletsAvailable = canUseBrowserEmbeddedWallets();
+
+  if (!HAS_PRIVY || !embeddedWalletsAvailable) {
     // Read-only mode — app fully browseable without a wallet.
     return <ToastProvider>{children}</ToastProvider>;
   }
@@ -24,6 +27,7 @@ export function AppProviders({ children }: { children: ReactNode }) {
         loginMethods: ["email", "google", "wallet"],
         embeddedWallets: {
           ethereum: { createOnLogin: "users-without-wallets" },
+          showWalletUIs: true,
         },
         appearance: {
           theme: "dark",

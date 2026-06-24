@@ -14,8 +14,11 @@
   "wallet": {
     "configured": true,
     "address": "0x3D325E51934AE5c7EBf9f37a8Ddf772F48F766Fb",
-    "nativeBalanceOg": "0.038417174288134078",
-    "canFundMinimumLedger": false
+    "nativeBalanceOg": "0.030817244283269921",
+    "minimumLedgerOg": 3,
+    "requiredTopUpOg": "2.969182755716730071",
+    "canFundMinimumLedger": false,
+    "balanceReadable": true
   },
   "broker": {
     "initialized": true,
@@ -56,12 +59,13 @@
   "checks": {
     "sdkInstalled": true,
     "walletConfigured": true,
+    "walletBalanceReadable": true,
     "walletCanFundMinimumLedger": false,
     "brokerInitialized": true,
     "servicesListed": true,
     "ledgerReadable": false
   },
-  "reason": "Direct 0G Compute providers are discoverable, but wallet balance is below the 3 0G ledger minimum for broker funding.",
+  "reason": "Direct 0G Compute providers are discoverable, but wallet balance is below the 3 0G ledger minimum for broker funding. Top up 0x3D325E51934AE5c7EBf9f37a8Ddf772F48F766Fb with at least 2.969183 0G, then rerun with OG_COMPUTE_BROKER_AUTOFUND=1 to create the broker ledger.",
   "env": {
     "rpc": "https://evmrpc-testnet.0g.ai",
     "storageIndexer": "https://indexer-storage-testnet-turbo.0g.ai",

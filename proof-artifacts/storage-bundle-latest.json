@@ -1,10 +1,10 @@
 {
   "status": "live",
   "roomId": "room-human-vs-agent-storage-bundle",
-  "bundleHash": "0xc4be6949db38fa174dde499bf65d682a28775480a63f6b620949252329ff0cf6",
-  "rootHash": "0xd2d4fc1dc70a4f5ed5d89c16758da4e9152c23882cef2bfbe48050f3622c15b1",
-  "txHash": "0x31c55b88753fc2af9566ecdde71c2dfb5b548ebdc11e493cb208f6abfa07b124",
-  "storageUri": "0g://storage/0xd2d4fc1dc70a4f5ed5d89c16758da4e9152c23882cef2bfbe48050f3622c15b1",
+  "bundleHash": "0x8c4e06ef14926a8da200fea81d0e09b25bebe3fc0ac6477fbd2de1af313470d1",
+  "rootHash": "0x7231c4535d696a9ebfbd13c46394a392b928852c6aea766280523a4e0d065914",
+  "txHash": "0x14d3e8945af51dc07bdc24b69165ce8b86365bc5fde7ed72485d195152beeafd",
+  "storageUri": "0g://storage/0x7231c4535d696a9ebfbd13c46394a392b928852c6aea766280523a4e0d065914",
   "indexerRpc": "https://indexer-storage-testnet-turbo.0g.ai",
   "items": [
     "player-snapshot",
@@ -14,10 +14,10 @@
     "proof-receipt"
   ],
   "itemHashes": {
-    "snapshot": "0xa242615c40c18099effb0f9dc2aaf7f4978d5b47e27a3cb8e69885ae6e66468d",
-    "draftLog": "0xee20799b2749014514b1c711cff6ba7d5bb4873a5d103c4a22dbd1d05c60bb65",
-    "matchTranscript": "0x17028a9e70340ce096475372f9c2c9e0e27a7bd5c1b0b4b43a733141e9bc3f6f",
-    "shareMetadata": "0x6c48e71e734eeb91fb6bd354cd9e45f12a36ac0a87e3e703e13b9ce918dd6f9d",
-    "proofReceipt": "0xe571dc4e4388b46acee47730c4e89b4c7b7be525ff3c341e8c65c93cf674ce3c"
+    "snapshot": "0x3725962b3712a82cb96d0a2176678a97e6e7544d353296f5c0463f1fdf415f32",
+    "draftLog": "0xd3c3cfa00c431219e2cb0a3abbe5cfd596dbd1b58bb5e67a6a69c70b3b65848b",
+    "matchTranscript": "0xabaa51e9ccd3ea097fc0af54bf29970d163e986da0ba1f10cd6fcbd8cc41212c",
+    "shareMetadata": "0x04602c904775b72e5e1ff18963f4ef737a3121c164e7c01d2dff5f148109cc53",
+    "proofReceipt": "0x34e819ad26e4045677f4e303c4798ba8a796aa30ababaa1e699dc7375cd3ad8d"
   }
 }

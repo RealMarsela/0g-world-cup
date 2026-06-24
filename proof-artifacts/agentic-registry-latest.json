@@ -19,7 +19,8 @@
       "mintTxHash": "0xdc7b52f288a7425f2c1b9b16cf38770a6f1f6dc50bde7d0811df8628ffececb6",
       "mintBlockNumber": "40353244",
       "contract": "0x38Cc945DAB9A0fe2b04E7F70cea3a41B3837A5ab",
-      "owner": "0x3D325E51934AE5c7EBf9f37a8Ddf772F48F766Fb"
+      "owner": "0x3D325E51934AE5c7EBf9f37a8Ddf772F48F766Fb",
+      "reused": "Existing 0G Storage Agentic ID metadata root is already discoverable."
     },
     {
       "status": "live",
@@ -37,11 +38,10 @@
       "mintTxHash": "0x4894d2fb8cb6502308d6feabbc4a4f52094d02ed55a95f77863025f61c78045a",
       "mintBlockNumber": "40353365",
       "contract": "0x38Cc945DAB9A0fe2b04E7F70cea3a41B3837A5ab",
-      "owner": "0x3D325E51934AE5c7EBf9f37a8Ddf772F48F766Fb"
+      "owner": "0x3D325E51934AE5c7EBf9f37a8Ddf772F48F766Fb",
+      "reused": "Existing 0G Storage Agentic ID metadata root is already discoverable."
     }
   ],
-  "contract": "0x38Cc945DAB9A0fe2b04E7F70cea3a41B3837A5ab",
-  "owner": "0x3D325E51934AE5c7EBf9f37a8Ddf772F48F766Fb",
   "env": {
     "rpc": "https://evmrpc-testnet.0g.ai",
     "storageIndexer": "https://indexer-storage-testnet-turbo.0g.ai",
@@ -50,5 +50,7 @@
     "hasStorageSigner": true,
     "hasComputeKey": true,
     "hasDaClient": false
-  }
+  },
+  "contract": "0x38Cc945DAB9A0fe2b04E7F70cea3a41B3837A5ab",
+  "owner": "0x3D325E51934AE5c7EBf9f37a8Ddf772F48F766Fb"
 }

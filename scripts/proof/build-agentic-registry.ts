@@ -99,12 +99,16 @@ for (const agent of registeredAgents) {
     ownerWallet: agent.ownerWallet,
     imageUrl: agent.imageUrl,
     policyHash: agent.policyHash,
-    agenticTokenId: agent.agenticTokenId || "",
-    agenticStatus: agent.agenticStatus,
+    agenticTokenId: String(old?.agenticTokenId || agent.agenticTokenId || ""),
+    agenticStatus: old?.agenticStatus === "minted" ? "minted" : agent.agenticStatus,
     encryptedMetadataHash,
     rootHash,
     txHash,
     storageUri: `0g://storage/${rootHash}`,
+    mintTxHash: old?.mintTxHash || undefined,
+    mintBlockNumber: old?.mintBlockNumber || undefined,
+    contract: old?.contract || undefined,
+    owner: old?.owner || undefined,
     reused: reused || undefined,
   });
 }

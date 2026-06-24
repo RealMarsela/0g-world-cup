@@ -6,7 +6,8 @@
     "url": "https://docs.0g.ai/developer-hub/building-on-0g/da-integration",
     "requirement": "0G DA live submission requires DA Client, Encoder, and Retriever. Common local ports: DA Client gRPC 51001, Encoder 34000, Retriever 34005.",
     "testnetOverviewUrl": "https://docs.0g.ai/developer-hub/testnet/testnet-overview",
-    "daEntrance": "0xE75A073dA5bb7b0eC622170Fd268f35E675a957B",
+    "testnetOverviewDaEntrance": "0xE75A073dA5bb7b0eC622170Fd268f35E675a957B",
+    "integrationGuideDaEntrance": "0x857C0A28A8634614BB2C96039Cf4a20AFF709Aa9",
     "maxBlobBytes": 32505852
   },
   "docker": {
@@ -66,6 +67,22 @@
       "codeBytes": 0,
       "reason": "No contract bytecode at DAEntrance on configured RPC."
     },
+    "daEntranceCandidates": [
+      {
+        "address": "0xE75A073dA5bb7b0eC622170Fd268f35E675a957B",
+        "reachable": false,
+        "hasCode": false,
+        "codeBytes": 0,
+        "reason": "fetch failed"
+      },
+      {
+        "address": "0x857C0A28A8634614BB2C96039Cf4a20AFF709Aa9",
+        "reachable": false,
+        "hasCode": false,
+        "codeBytes": 0,
+        "reason": "fetch failed"
+      }
+    ],
     "ports": [
       {
         "host": "127.0.0.1",
@@ -104,7 +121,8 @@
     "daClientListening": true,
     "encoderListening": true,
     "retrieverListening": true,
-    "daEntranceHasCode": false
+    "daEntranceHasCode": false,
+    "anyDocumentedDaEntranceHasCode": false
   },
   "checks": {
     "dockerInstalled": true,
@@ -121,9 +139,10 @@
     "sidecarReachable": true,
     "daClientListening": true,
     "encoderListening": true,
-    "retrieverListening": true
+    "retrieverListening": true,
+    "documentedDaEntranceHasCode": false
   },
-  "reason": "0G DA stack is not live yet: DAEntrance 0xE75A073dA5bb7b0eC622170Fd268f35E675a957B has no bytecode on https://evmrpc-testnet.0g.ai.",
+  "reason": "0G DA stack is not live yet: DAEntrance 0xE75A073dA5bb7b0eC622170Fd268f35E675a957B has no bytecode on https://evmrpc-testnet.0g.ai; documented candidates checked 0xE75A073dA5bb7b0eC622170Fd268f35E675a957B:0b, 0x857C0A28A8634614BB2C96039Cf4a20AFF709Aa9:0b.",
   "env": {
     "rpc": "https://evmrpc-testnet.0g.ai",
     "storageIndexer": "https://indexer-storage-testnet-turbo.0g.ai",

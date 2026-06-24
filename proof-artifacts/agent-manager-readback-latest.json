@@ -1,0 +1,86 @@
+{
+  "schema": "0g-world-cup-agent-manager-readback-v1",
+  "status": "live",
+  "count": 2,
+  "agents": [
+    {
+      "agentId": "agent-zero-nine",
+      "displayName": "ZeroNine Scout",
+      "imageUrl": "/agents/agent-1.jpg",
+      "tokenId": "2",
+      "agenticStatus": "minted",
+      "contract": "0x38Cc945DAB9A0fe2b04E7F70cea3a41B3837A5ab",
+      "onChainOwner": "0x3D325E51934AE5c7EBf9f37a8Ddf772F48F766Fb",
+      "authorizedExecutor": "0x0000000000000000000000000000000000000000",
+      "encryptedMetadataHash": "0x57ca841db653ecb857f73a76fb694122c11aefc0e7fce617747e87bde7377d3b",
+      "storageUri": "0g://storage/0x5f7bdadd19e7dd63d84a49c1bb4ee61027e59e21019315f7889fbc194062d90c",
+      "storageRoot": "0x5f7bdadd19e7dd63d84a49c1bb4ee61027e59e21019315f7889fbc194062d90c",
+      "policyHash": "0xdc106aea7be9c83d9a94ad439e265f4fc4975b66fc159cbaf99a2c233ff5553a",
+      "eventTxHash": "0xdc7b52f288a7425f2c1b9b16cf38770a6f1f6dc50bde7d0811df8628ffececb6",
+      "eventBlockNumber": "40353244",
+      "fullTokenReadback": true,
+      "metadataReadback": true,
+      "checks": {
+        "registryMinted": true,
+        "chainEventFound": true,
+        "chainEventTokenMatches": true,
+        "chainEventOwnerMatches": true,
+        "chainEventMetadataMatches": true,
+        "chainEventStorageMatches": true,
+        "fullTokenReadback": true,
+        "metadataReadback": true
+      }
+    },
+    {
+      "agentId": "agent-keepernet",
+      "displayName": "KeeperNet Oracle",
+      "imageUrl": "/agents/agent-2.jpg",
+      "tokenId": "3",
+      "agenticStatus": "minted",
+      "contract": "0x38Cc945DAB9A0fe2b04E7F70cea3a41B3837A5ab",
+      "onChainOwner": "0x3D325E51934AE5c7EBf9f37a8Ddf772F48F766Fb",
+      "authorizedExecutor": "0x0000000000000000000000000000000000000000",
+      "encryptedMetadataHash": "0x54b24bd4083a7906b52ea935d387edbd126d46b2c9f76c5358ac8c4dea607935",
+      "storageUri": "0g://storage/0x91d00606b9624a166f6c87b7b019f9550902f99574494157b03953397991ecea",
+      "storageRoot": "0x91d00606b9624a166f6c87b7b019f9550902f99574494157b03953397991ecea",
+      "policyHash": "0xbb95ff95ff15463bf88402d9c22df3e29f833b79faa1ecd4963c3072a75e3420",
+      "eventTxHash": "0x4894d2fb8cb6502308d6feabbc4a4f52094d02ed55a95f77863025f61c78045a",
+      "eventBlockNumber": "40353365",
+      "fullTokenReadback": true,
+      "metadataReadback": true,
+      "checks": {
+        "registryMinted": true,
+        "chainEventFound": true,
+        "chainEventTokenMatches": true,
+        "chainEventOwnerMatches": true,
+        "chainEventMetadataMatches": true,
+        "chainEventStorageMatches": true,
+        "fullTokenReadback": true,
+        "metadataReadback": true
+      }
+    }
+  ],
+  "readbackHash": "0xb84db2f6fe3b756dca51a575a32ae72ae0bc046897649accddd16f8c31601ab6",
+  "checks": {
+    "registryCountMatches": true,
+    "registryLive": true,
+    "chainReadbackLive": true,
+    "chainEventsLive": true,
+    "everyAgentMinted": true,
+    "everyAgentHasChainEvent": true,
+    "everyChainEventMatches": true,
+    "defaultAgentTokenReadback": true,
+    "defaultAgentMetadataReadback": true,
+    "allAgentTokenReadback": true,
+    "allAgentMetadataReadback": true
+  },
+  "env": {
+    "rpc": "https://evmrpc-testnet.0g.ai",
+    "storageIndexer": "https://indexer-storage-testnet-turbo.0g.ai",
+    "computeEndpoint": "https://router-api.0g.ai/v1",
+    "daClientGrpc": "",
+    "hasStorageSigner": true,
+    "hasComputeKey": true,
+    "hasDaClient": false
+  }
+}

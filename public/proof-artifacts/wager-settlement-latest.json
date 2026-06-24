@@ -17,11 +17,11 @@
     "settle": "40357614"
   },
   "balances": {
-    "projectBefore0g": "0.038195258288620725",
-    "projectAfter0g": "0.038417174288134078",
-    "winnerBefore0g": "0.036769551994360716",
+    "projectBefore0g": "0.030817244283269921",
+    "projectAfter0g": "0.030817244283269921",
+    "winnerBefore0g": "0.056269551994360716",
     "winnerAfter0g": "0.056269551994360716",
-    "winnerDeltaWei": "19500000000000000"
+    "winnerDeltaWei": "0"
   },
   "events": {
     "secondDeposit": {
@@ -42,20 +42,20 @@
     "before": {
       "browserDeposited": true,
       "projectDeposited": true,
-      "canStart": true,
+      "canStart": false,
       "totalDepositedWei": "20000000000000000",
       "wagerAmountWei": "10000000000000000",
       "depositCount": "2",
-      "settled": false
+      "settled": true
     },
     "afterSecondDeposit": {
       "browserDeposited": true,
       "projectDeposited": true,
-      "canStart": true,
+      "canStart": false,
       "totalDepositedWei": "20000000000000000",
       "wagerAmountWei": "10000000000000000",
       "depositCount": "2",
-      "settled": false
+      "settled": true
     },
     "afterSettlement": {
       "browserDeposited": true,

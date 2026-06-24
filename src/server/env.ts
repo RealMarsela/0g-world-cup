@@ -13,13 +13,60 @@ export function loadLocalEnv(path = ".env.local") {
   }
 }
 
+type ComputeEnv = {
+  apiKey: string;
+  endpoint: string;
+  model: string;
+  source: string;
+};
+
+const fallbackComputeEndpoint = "https://router-api-testnet.integratenetwork.work/v1";
+
+function uniqueComputeEnvs(candidates: ComputeEnv[]) {
+  const seen = new Set<string>();
+  return candidates.filter((candidate) => {
+    if (!candidate.apiKey) return false;
+    const fingerprint = `${candidate.source}:${candidate.apiKey}:${candidate.endpoint}:${candidate.model}`;
+    if (seen.has(fingerprint)) return false;
+    seen.add(fingerprint);
+    return true;
+  });
+}
+
+export function getComputeEnvCandidates(): ComputeEnv[] {
+  return uniqueComputeEnvs([
+    {
+      source: "OG_COMPUTE_API_KEY",
+      apiKey: process.env.OG_COMPUTE_API_KEY || "",
+      endpoint: process.env.OG_COMPUTE_ENDPOINT || process.env.VITE_OG_COMPUTE_ENDPOINT || fallbackComputeEndpoint,
+      model: process.env.OG_COMPUTE_MODEL || process.env.VITE_OG_COMPUTE_MODEL || "",
+    },
+    {
+      source: "VITE_OG_COMPUTE_API_KEY",
+      apiKey: process.env.VITE_OG_COMPUTE_API_KEY || "",
+      endpoint: process.env.VITE_OG_COMPUTE_ENDPOINT || process.env.OG_COMPUTE_ENDPOINT || fallbackComputeEndpoint,
+      model: process.env.VITE_OG_COMPUTE_MODEL || process.env.OG_COMPUTE_MODEL || "",
+    },
+    {
+      source: "ZEROG_ROUTER_API_KEY",
+      apiKey: process.env.ZEROG_ROUTER_API_KEY || "",
+      endpoint: process.env.ZEROG_COMPUTE_ROUTER || process.env.OG_COMPUTE_ENDPOINT || fallbackComputeEndpoint,
+      model: process.env.ZEROG_COMPUTE_MODEL || process.env.OG_COMPUTE_MODEL || "",
+    },
+  ]);
+}
+
 export function getComputeEnv() {
+  const [candidate] = getComputeEnvCandidates();
+  if (candidate) return candidate;
   return {
-    apiKey: process.env.OG_COMPUTE_API_KEY || process.env.VITE_OG_COMPUTE_API_KEY || "",
+    source: "missing",
+    apiKey: "",
     endpoint:
       process.env.OG_COMPUTE_ENDPOINT ||
       process.env.VITE_OG_COMPUTE_ENDPOINT ||
-      "https://router-api-testnet.integratenetwork.work/v1",
-    model: process.env.OG_COMPUTE_MODEL || process.env.VITE_OG_COMPUTE_MODEL || "",
+      process.env.ZEROG_COMPUTE_ROUTER ||
+      fallbackComputeEndpoint,
+    model: process.env.OG_COMPUTE_MODEL || process.env.VITE_OG_COMPUTE_MODEL || process.env.ZEROG_COMPUTE_MODEL || "",
   };
 }

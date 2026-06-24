@@ -71,12 +71,24 @@ export default defineConfig({
             const body = (await readJsonBody(req)) as { room?: DraftRoom; result?: MatchResult };
             if (!body.room || !body.result) throw new Error("Missing room or result payload.");
             if (body.result.computeAuthority !== "compute") {
-              res.statusCode = 409;
-              res.setHeader("Content-Type", "application/json");
-              res.end(JSON.stringify({
+              const artifact = {
+                schema: "0g-world-cup-runtime-finalize-proof-v1",
+                status: "blocked",
+                roomId: body.room.id,
                 error: "FINALIZE_REQUIRES_COMPUTE_RESULT",
                 reason: "Runtime finalization only accepts a real 0G Compute-authoritative result.",
-              }));
+                computeAuthority: body.result.computeAuthority,
+                checks: {
+                  rejectedDeterministicResult: true,
+                  requiresComputeAuthority: true,
+                  storageSkipped: true,
+                  chainSkipped: true,
+                },
+              };
+              writeRuntimeArtifact("runtime-finalize-latest.json", artifact);
+              res.statusCode = 409;
+              res.setHeader("Content-Type", "application/json");
+              res.end(JSON.stringify(artifact));
               return;
             }
             const storage = await uploadRoomBundle(body.room, body.result);

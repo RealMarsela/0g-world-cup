@@ -3,10 +3,26 @@
   "generatedAt": "1970-01-01T00:00:00.000Z",
   "compute": {
     "endpoint": "https://router-api.0g.ai/v1",
+    "candidates": [
+      {
+        "source": "OG_COMPUTE_API_KEY",
+        "endpoint": "https://router-api.0g.ai/v1",
+        "model": "glm-5.1",
+        "keyFingerprint": "3a3bbba8d102"
+      },
+      {
+        "source": "ZEROG_ROUTER_API_KEY",
+        "endpoint": "https://router-api-testnet.integratenetwork.work/v1",
+        "model": "qwen2.5-omni",
+        "keyFingerprint": "110ba05d72f7"
+      }
+    ],
     "hasKey": true,
     "keyFingerprint": "3a3bbba8d102",
     "probes": [
       {
+        "source": "OG_COMPUTE_API_KEY",
+        "endpoint": "https://router-api.0g.ai/v1",
         "model": "glm-5.1",
         "ok": false,
         "statusCode": 402,
@@ -18,6 +34,21 @@
         "teeVerified": null
       },
       {
+        "source": "OG_COMPUTE_API_KEY",
+        "endpoint": "https://router-api.0g.ai/v1",
+        "model": "qwen2.5-omni",
+        "ok": false,
+        "statusCode": 402,
+        "requestId": null,
+        "errorCode": "insufficient_balance",
+        "errorType": "payment_error",
+        "message": "Insufficient balance",
+        "provider": null,
+        "teeVerified": null
+      },
+      {
+        "source": "OG_COMPUTE_API_KEY",
+        "endpoint": "https://router-api.0g.ai/v1",
         "model": "glm-5.2",
         "ok": false,
         "statusCode": 402,
@@ -27,6 +58,36 @@
         "message": "Insufficient balance",
         "provider": null,
         "teeVerified": null
+      },
+      {
+        "source": "ZEROG_ROUTER_API_KEY",
+        "endpoint": "https://router-api-testnet.integratenetwork.work/v1",
+        "model": "qwen2.5-omni",
+        "ok": false,
+        "statusCode": 0,
+        "errorCode": "probe_failed",
+        "errorType": "network_or_parse",
+        "message": "fetch failed"
+      },
+      {
+        "source": "ZEROG_ROUTER_API_KEY",
+        "endpoint": "https://router-api-testnet.integratenetwork.work/v1",
+        "model": "glm-5.1",
+        "ok": false,
+        "statusCode": 0,
+        "errorCode": "probe_failed",
+        "errorType": "network_or_parse",
+        "message": "fetch failed"
+      },
+      {
+        "source": "ZEROG_ROUTER_API_KEY",
+        "endpoint": "https://router-api-testnet.integratenetwork.work/v1",
+        "model": "glm-5.2",
+        "ok": false,
+        "statusCode": 0,
+        "errorCode": "probe_failed",
+        "errorType": "network_or_parse",
+        "message": "fetch failed"
       }
     ],
     "live": false,
@@ -41,14 +102,42 @@
       "statusCode": 200,
       "body": {
         "schema": "0g-da-sidecar-status-v1",
-        "status": "blocked",
-        "daClientGrpc": "",
+        "status": "configured",
+        "daClientGrpc": "127.0.0.1:51001",
         "retrieverUrl": "",
         "maxBlobBytes": 32505852,
-        "reason": "Missing OG_DA_CLIENT_GRPC_URL. Run 0G DA Client plus Encoder/Retriever, then restart this sidecar."
+        "reason": "DA Client endpoint configured. Live gRPC submitter can be enabled against this sidecar host."
       }
     },
-    "daClientGrpc": "",
+    "daClientGrpc": "127.0.0.1:51001",
+    "stackStatus": "blocked",
+    "stackReason": "0G DA stack is not live yet: DAEntrance 0xE75A073dA5bb7b0eC622170Fd268f35E675a957B has no bytecode on https://evmrpc-testnet.0g.ai; documented candidates checked 0xE75A073dA5bb7b0eC622170Fd268f35E675a957B:0b, 0x857C0A28A8634614BB2C96039Cf4a20AFF709Aa9:0b.",
+    "daEntrance": {
+      "address": "0xE75A073dA5bb7b0eC622170Fd268f35E675a957B",
+      "reachable": true,
+      "hasCode": false,
+      "codeBytes": 0,
+      "reason": "No contract bytecode at DAEntrance on configured RPC."
+    },
+    "daEntranceCandidates": [
+      {
+        "address": "0xE75A073dA5bb7b0eC622170Fd268f35E675a957B",
+        "reachable": false,
+        "hasCode": false,
+        "codeBytes": 0,
+        "reason": "fetch failed"
+      },
+      {
+        "address": "0x857C0A28A8634614BB2C96039Cf4a20AFF709Aa9",
+        "reachable": false,
+        "hasCode": false,
+        "codeBytes": 0,
+        "reason": "fetch failed"
+      }
+    ],
+    "anyDocumentedDaEntranceHasCode": false,
+    "daEntranceHasCode": false,
+    "officialMaxBlobBytes": 32505852,
     "localPorts": [
       {
         "host": "127.0.0.1",
@@ -58,35 +147,32 @@
       {
         "host": "127.0.0.1",
         "port": 51001,
-        "listening": false,
-        "reason": "connect ECONNREFUSED 127.0.0.1:51001"
+        "listening": true
       },
       {
         "host": "127.0.0.1",
         "port": 34000,
-        "listening": false,
-        "reason": "connect ECONNREFUSED 127.0.0.1:34000"
+        "listening": true
       },
       {
         "host": "127.0.0.1",
         "port": 34005,
-        "listening": false,
-        "reason": "connect ECONNREFUSED 127.0.0.1:34005"
+        "listening": true
       }
     ],
-    "hasDaClientGrpc": false,
-    "daClientListening": false,
-    "encoderListening": false,
-    "retrieverListening": false,
-    "reason": "No reachable OG_DA_CLIENT_GRPC_URL/51001 DA Client was found. Live DA submission remains blocked."
+    "hasDaClientGrpc": true,
+    "daClientListening": true,
+    "encoderListening": true,
+    "retrieverListening": true,
+    "reason": "0G DA stack is not live yet: DAEntrance 0xE75A073dA5bb7b0eC622170Fd268f35E675a957B has no bytecode on https://evmrpc-testnet.0g.ai; documented candidates checked 0xE75A073dA5bb7b0eC622170Fd268f35E675a957B:0b, 0x857C0A28A8634614BB2C96039Cf4a20AFF709Aa9:0b."
   },
   "env": {
     "rpc": "https://evmrpc-testnet.0g.ai",
     "storageIndexer": "https://indexer-storage-testnet-turbo.0g.ai",
     "computeEndpoint": "https://router-api.0g.ai/v1",
-    "daClientGrpc": "",
+    "daClientGrpc": "127.0.0.1:51001",
     "hasStorageSigner": true,
     "hasComputeKey": true,
-    "hasDaClient": false
+    "hasDaClient": true
   }
 }

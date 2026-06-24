@@ -1,27 +1,27 @@
 {
   "status": "live",
   "indexerRpc": "https://indexer-storage-testnet-turbo.0g.ai",
-  "storageRoot": "0xc7620208c2d553b2a12e473548da871536449bf38471f49f3da3bb1b22c84ef5",
-  "bundleRoot": "0xd2d4fc1dc70a4f5ed5d89c16758da4e9152c23882cef2bfbe48050f3622c15b1",
-  "storageUri": "0g://storage/0xc7620208c2d553b2a12e473548da871536449bf38471f49f3da3bb1b22c84ef5",
-  "bundleStorageUri": "0g://storage/0xd2d4fc1dc70a4f5ed5d89c16758da4e9152c23882cef2bfbe48050f3622c15b1",
+  "storageRoot": "0x950d13bcd9ea7816c323e7e6b0cfcbd409ac3a4cdd18b29dcb3935c55ad9d75b",
+  "bundleRoot": "0x7231c4535d696a9ebfbd13c46394a392b928852c6aea766280523a4e0d065914",
+  "storageUri": "0g://storage/0x950d13bcd9ea7816c323e7e6b0cfcbd409ac3a4cdd18b29dcb3935c55ad9d75b",
+  "bundleStorageUri": "0g://storage/0x7231c4535d696a9ebfbd13c46394a392b928852c6aea766280523a4e0d065914",
   "downloadedRoots": [
-    "0xc7620208c2d553b2a12e473548da871536449bf38471f49f3da3bb1b22c84ef5",
-    "0xd2d4fc1dc70a4f5ed5d89c16758da4e9152c23882cef2bfbe48050f3622c15b1"
+    "0x950d13bcd9ea7816c323e7e6b0cfcbd409ac3a4cdd18b29dcb3935c55ad9d75b",
+    "0x7231c4535d696a9ebfbd13c46394a392b928852c6aea766280523a4e0d065914"
   ],
-  "byteCount": 92166,
-  "contentHash": "0x525a5f791b50b67eba9d029253926b75c5ec70b1fba6f7bc778bd11bf65e71f7",
+  "byteCount": 42403,
+  "contentHash": "0xc96ffaba345488d634439386941fc09d5970157fbdfcc92671c41ca90fcd7032",
   "proofPacket": {
     "roomId": "room-human-vs-agent-storage",
-    "byteCount": 32488,
-    "contentHash": "0x3cca565dc1568eef0783567366c9c6850b7df85dccb27e3cdc1bf997b989e1cd",
-    "downloadedMerkleRoot": "0xc7620208c2d553b2a12e473548da871536449bf38471f49f3da3bb1b22c84ef5"
+    "byteCount": 35719,
+    "contentHash": "0x2343e9141f8e1fe1f7b51f1b9e89e7957e6d377e7ffa29fd8be313f677fa2102",
+    "downloadedMerkleRoot": "0x950d13bcd9ea7816c323e7e6b0cfcbd409ac3a4cdd18b29dcb3935c55ad9d75b"
   },
   "storageBundle": {
     "roomId": "room-human-vs-agent-storage-bundle",
-    "byteCount": 59678,
-    "contentHash": "0xc4be6949db38fa174dde499bf65d682a28775480a63f6b620949252329ff0cf6",
-    "downloadedMerkleRoot": "0xd2d4fc1dc70a4f5ed5d89c16758da4e9152c23882cef2bfbe48050f3622c15b1",
+    "byteCount": 6684,
+    "contentHash": "0x8c4e06ef14926a8da200fea81d0e09b25bebe3fc0ac6477fbd2de1af313470d1",
+    "downloadedMerkleRoot": "0x7231c4535d696a9ebfbd13c46394a392b928852c6aea766280523a4e0d065914",
     "itemHashMatches": {
       "snapshot": true,
       "draftLog": true,

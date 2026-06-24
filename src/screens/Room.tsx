@@ -1,4 +1,5 @@
 import { Link, useParams } from "react-router-dom";
+import { ZeroGEscrowReadiness } from "../components/ZeroGEscrowReadiness";
 import { Badge, Button, Panel, Sheet } from "../components/ui";
 import { createRoomFromId, inferRoomMode } from "../worldcup/game";
 
@@ -6,6 +7,7 @@ export function Room() {
   const { id = "room-free-1v1" } = useParams();
   const mode = inferRoomMode(id);
   const room = createRoomFromId(id);
+  const isWager = mode.includes("wager") || mode.includes("pot") || room.wagerAmount !== "free";
   return (
     <div className="grid gap-5">
       <Panel className="p-5 sm:p-6">
@@ -25,6 +27,7 @@ export function Room() {
           </Panel>
         ))}
       </div>
+      {isWager && <ZeroGEscrowReadiness />}
       <section className="grid gap-4 lg:grid-cols-[1fr_320px]">
         <Link to={`/draft/${id}`}><Button>Enter draft</Button></Link>
         <Sheet title="Operational state">

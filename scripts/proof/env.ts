@@ -23,10 +23,13 @@ export function publicEnvSummary() {
     computeEndpoint:
       process.env.OG_COMPUTE_ENDPOINT ||
       process.env.VITE_OG_COMPUTE_ENDPOINT ||
+      process.env.ZEROG_COMPUTE_ROUTER ||
       "https://router-api-testnet.integratenetwork.work/v1",
     daClientGrpc: process.env.OG_DA_CLIENT_GRPC_URL || "",
     hasStorageSigner: Boolean(process.env.OG_PRIVATE_KEY),
-    hasComputeKey: Boolean(process.env.OG_COMPUTE_API_KEY || process.env.VITE_OG_COMPUTE_API_KEY),
+    hasComputeKey: Boolean(
+      process.env.OG_COMPUTE_API_KEY || process.env.VITE_OG_COMPUTE_API_KEY || process.env.ZEROG_ROUTER_API_KEY,
+    ),
     hasDaClient: Boolean(process.env.OG_DA_CLIENT_GRPC_URL),
   };
 }

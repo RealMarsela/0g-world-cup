@@ -1,0 +1,14 @@
+{
+  "schema": "0g-world-cup-runtime-finalize-proof-v1",
+  "status": "blocked",
+  "roomId": "room-human-vs-agent-api-e2e",
+  "error": "FINALIZE_REQUIRES_COMPUTE_RESULT",
+  "reason": "Runtime finalization only accepts a real 0G Compute-authoritative result.",
+  "computeAuthority": "deterministic-background",
+  "checks": {
+    "rejectedDeterministicResult": true,
+    "requiresComputeAuthority": true,
+    "storageSkipped": true,
+    "chainSkipped": true
+  }
+}

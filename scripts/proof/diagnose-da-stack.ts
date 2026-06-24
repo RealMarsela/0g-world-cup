@@ -8,9 +8,10 @@ loadLocalEnv();
 
 const execFileAsync = promisify(execFile);
 const sidecarUrl = process.env.OG_DA_SIDECAR_URL || "http://127.0.0.1:51080";
-const daClientGrpc = process.env.OG_DA_CLIENT_GRPC_URL || "";
+let daClientGrpc = process.env.OG_DA_CLIENT_GRPC_URL || "";
 const rpcUrl = process.env.OG_RPC_URL || process.env.VITE_OG_RPC_URL || "https://evmrpc-testnet.0g.ai";
-const defaultDaEntrance = "0xE75A073dA5bb7b0eC622170Fd268f35E675a957B";
+const testnetOverviewDaEntrance = "0xE75A073dA5bb7b0eC622170Fd268f35E675a957B";
+const integrationGuideDaEntrance = "0x857C0A28A8634614BB2C96039Cf4a20AFF709Aa9";
 
 function fileInfo(path: string, sensitive = false) {
   if (!existsSync(path)) return { path, exists: false };
@@ -137,6 +138,10 @@ const ports = await Promise.all([
   probeTcp("127.0.0.1", 34005),
 ]);
 const sidecar = await probeSidecar();
+if (!daClientGrpc && sidecar.reachable && typeof sidecar.body?.daClientGrpc === "string" && sidecar.body.daClientGrpc) {
+  daClientGrpc = sidecar.body.daClientGrpc;
+  process.env.OG_DA_CLIENT_GRPC_URL = daClientGrpc;
+}
 const daClientListening = ports.some((port) => port.port === 51001 && port.listening);
 const encoderListening = ports.some((port) => port.port === 34000 && port.listening);
 const retrieverListening = ports.some((port) => port.port === 34005 && port.listening);
@@ -150,8 +155,12 @@ const generatedFiles = {
 const daEntranceAddress =
   process.env.OG_DA_ENTRANCE_CONTRACT_ADDR ||
   readEnvValue(".da-stack/envfile.env", "BATCHER_DAENTRANCE_CONTRACT_ADDRESS") ||
-  defaultDaEntrance;
+  testnetOverviewDaEntrance;
 const daEntrance = await probeContractCode(daEntranceAddress);
+const daEntranceCandidates = await Promise.all(
+  Array.from(new Set([daEntranceAddress, testnetOverviewDaEntrance, integrationGuideDaEntrance])).map(probeContractCode),
+);
+const anyDocumentedDaEntranceHasCode = daEntranceCandidates.some((candidate) => candidate.hasCode);
 
 const ready =
   Boolean(daClientGrpc) &&
@@ -175,7 +184,12 @@ function blockedReason() {
   if (!daClientListening) missing.push("0G DA Client gRPC port 51001 is not listening");
   if (!encoderListening) missing.push("0G DA Encoder port 34000 is not listening");
   if (!retrieverListening) missing.push("0G DA Retriever port 34005 is not listening");
-  if (!daEntrance.hasCode) missing.push(`DAEntrance ${daEntrance.address} has no bytecode on ${rpcUrl}`);
+  if (!daEntrance.hasCode) {
+    const candidateSummary = daEntranceCandidates
+      .map((candidate) => `${candidate.address}:${candidate.codeBytes}b`)
+      .join(", ");
+    missing.push(`DAEntrance ${daEntrance.address} has no bytecode on ${rpcUrl}; documented candidates checked ${candidateSummary}`);
+  }
   return `0G DA stack is not live yet: ${missing.join("; ")}.`;
 }
 
@@ -188,7 +202,8 @@ const artifact = {
     requirement:
       "0G DA live submission requires DA Client, Encoder, and Retriever. Common local ports: DA Client gRPC 51001, Encoder 34000, Retriever 34005.",
     testnetOverviewUrl: "https://docs.0g.ai/developer-hub/testnet/testnet-overview",
-    daEntrance: defaultDaEntrance,
+    testnetOverviewDaEntrance,
+    integrationGuideDaEntrance,
     maxBlobBytes: 32_505_852,
   },
   docker: {
@@ -217,6 +232,7 @@ const artifact = {
     daClientGrpc,
     rpcUrl,
     daEntrance,
+    daEntranceCandidates,
     ports,
     sidecar,
     sidecarListening,
@@ -224,6 +240,7 @@ const artifact = {
     encoderListening,
     retrieverListening,
     daEntranceHasCode: daEntrance.hasCode,
+    anyDocumentedDaEntranceHasCode,
   },
   checks: {
     dockerInstalled: dockerVersion.ok,
@@ -241,6 +258,7 @@ const artifact = {
     daClientListening,
     encoderListening,
     retrieverListening,
+    documentedDaEntranceHasCode: anyDocumentedDaEntranceHasCode,
   },
   reason: blockedReason(),
   env: publicEnvSummary(),

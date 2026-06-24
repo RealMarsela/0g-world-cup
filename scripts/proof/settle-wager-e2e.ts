@@ -299,6 +299,10 @@ const settledEvent = settleReceipt
 const expectedFee = (afterSecondDeposit.escrow.totalDeposited * BigInt(before.feeBps)) / 10_000n;
 const expectedPayout = afterSecondDeposit.escrow.totalDeposited - expectedFee;
 const winnerDelta = afterSettlement.winnerBalance - before.winnerBalance;
+const payoutVerified =
+  before.escrow.settled
+    ? Boolean(settledEvent && settledEvent.args.payout === expectedPayout)
+    : winnerDelta >= expectedPayout;
 
 const checks = {
   ownerMatchesProjectWallet: sameHex(before.owner, account.address),
@@ -318,7 +322,7 @@ const checks = {
   settledFeeMatches: settledEvent ? settledEvent.args.fee === expectedFee : before.escrow.settled,
   escrowSettledState: afterSettlement.escrow.settled,
   escrowDepositCountTwo: afterSettlement.escrow.depositCount >= 2n,
-  winnerReceivedPayout: winnerDelta >= expectedPayout,
+  winnerReceivedPayout: payoutVerified,
   canStartClosedAfterSettle: afterSettlement.canStart === false,
 };
 

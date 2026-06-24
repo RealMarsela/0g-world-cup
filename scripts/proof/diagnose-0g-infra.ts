@@ -1,37 +1,59 @@
 import { createHash } from "node:crypto";
+import { existsSync, readFileSync } from "node:fs";
 import net from "node:net";
+import { getComputeEnvCandidates } from "../../src/server/env";
 import { loadLocalEnv, publicEnvSummary, writeProofArtifact } from "./env";
 
 loadLocalEnv();
+await import("./diagnose-da-stack");
 
-const computeEndpoint =
-  process.env.OG_COMPUTE_ENDPOINT ||
-  process.env.VITE_OG_COMPUTE_ENDPOINT ||
-  "https://router-api-testnet.integratenetwork.work/v1";
-const computeKey = process.env.OG_COMPUTE_API_KEY || process.env.VITE_OG_COMPUTE_API_KEY || "";
+const computeCandidates = getComputeEnvCandidates();
 const sidecarUrl = process.env.OG_DA_SIDECAR_URL || "http://127.0.0.1:51080";
 const daClientGrpc = process.env.OG_DA_CLIENT_GRPC_URL || "";
+
+type DaStackArtifact = {
+  status?: string;
+  reason?: string;
+  officialDocs?: { maxBlobBytes?: number };
+  endpoints?: {
+    daEntrance?: {
+      address?: string;
+      hasCode?: boolean;
+      codeBytes?: number;
+      reason?: string;
+    };
+    daEntranceCandidates?: {
+      address?: string;
+      hasCode?: boolean;
+      codeBytes?: number;
+      reason?: string;
+    }[];
+    anyDocumentedDaEntranceHasCode?: boolean;
+  };
+};
 
 function fingerprint(value: string) {
   return value ? createHash("sha256").update(value).digest("hex").slice(0, 12) : null;
 }
 
-async function probeComputeModel(model: string) {
-  if (!computeKey) {
+async function probeComputeModel(candidate: { source: string; endpoint: string; apiKey: string }, model: string) {
+  if (!candidate.apiKey) {
     return {
+      source: candidate.source,
+      endpoint: candidate.endpoint,
       model,
       ok: false,
       statusCode: 0,
       errorCode: "missing_key",
       errorType: "configuration",
-      message: "Missing OG_COMPUTE_API_KEY or VITE_OG_COMPUTE_API_KEY.",
+      message: "Missing OG_COMPUTE_API_KEY, VITE_OG_COMPUTE_API_KEY, or ZEROG_ROUTER_API_KEY.",
     };
   }
   try {
-    const response = await fetch(`${computeEndpoint}/chat/completions`, {
+    const response = await fetch(`${candidate.endpoint}/chat/completions`, {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${computeKey}`,
+        Authorization: `Bearer ${candidate.apiKey}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
@@ -53,6 +75,8 @@ async function probeComputeModel(model: string) {
       x_0g_trace?: { provider?: string; request_id?: string; tee_verified?: boolean };
     };
     return {
+      source: candidate.source,
+      endpoint: candidate.endpoint,
       model,
       ok: response.ok,
       statusCode: response.status,
@@ -65,6 +89,8 @@ async function probeComputeModel(model: string) {
     };
   } catch (error) {
     return {
+      source: candidate.source,
+      endpoint: candidate.endpoint,
       model,
       ok: false,
       statusCode: 0,
@@ -106,12 +132,26 @@ async function probeSidecar() {
   }
 }
 
-const computeModels = Array.from(new Set([
-  process.env.OG_COMPUTE_MODEL || process.env.VITE_OG_COMPUTE_MODEL || "glm-5.1",
+function readDaStackArtifact(): DaStackArtifact | null {
+  if (!existsSync("proof-artifacts/da-stack-readiness-latest.json")) return null;
+  return JSON.parse(readFileSync("proof-artifacts/da-stack-readiness-latest.json", "utf8")) as DaStackArtifact;
+}
+
+const configuredModels = Array.from(new Set([
+  process.env.OG_COMPUTE_MODEL || process.env.VITE_OG_COMPUTE_MODEL || process.env.ZEROG_COMPUTE_MODEL || "glm-5.1",
+  ...computeCandidates.map((candidate) => candidate.model),
   "glm-5.2",
   "glm-5.1",
-]));
-const computeProbes = await Promise.all(computeModels.map(probeComputeModel));
+].filter(Boolean)));
+const computeProbeInputs = computeCandidates.length
+  ? computeCandidates.flatMap((candidate) =>
+      Array.from(new Set([candidate.model || configuredModels[0] || "glm-5.1", ...configuredModels])).map((model) => ({
+        candidate,
+        model,
+      })),
+    )
+  : [{ candidate: { source: "missing", endpoint: publicEnvSummary().computeEndpoint, apiKey: "" }, model: "glm-5.1" }];
+const computeProbes = await Promise.all(computeProbeInputs.map((input) => probeComputeModel(input.candidate, input.model)));
 const daPorts = await Promise.all([
   probeTcp("127.0.0.1", 51080),
   probeTcp("127.0.0.1", 51001),
@@ -119,19 +159,28 @@ const daPorts = await Promise.all([
   probeTcp("127.0.0.1", 34005),
 ]);
 const sidecar = await probeSidecar();
+const daStack = readDaStackArtifact();
 
 const computeLive = computeProbes.some((probe) => probe.ok);
 const daClientListening = daPorts.some((probe) => probe.port === 51001 && probe.listening);
 const encoderListening = daPorts.some((probe) => probe.port === 34000 && probe.listening);
 const retrieverListening = daPorts.some((probe) => probe.port === 34005 && probe.listening);
+const daEntranceHasCode = Boolean(daStack?.endpoints?.daEntrance?.hasCode);
+const daStackReady = daStack?.status === "ready";
 
 const artifact = {
-  status: computeLive && daClientGrpc && daClientListening ? "live" : "blocked",
+  status: computeLive && daClientGrpc && daClientListening && encoderListening && retrieverListening && daStackReady ? "live" : "blocked",
   generatedAt: new Date(0).toISOString(),
   compute: {
-    endpoint: computeEndpoint,
-    hasKey: Boolean(computeKey),
-    keyFingerprint: fingerprint(computeKey),
+    endpoint: computeCandidates[0]?.endpoint ?? publicEnvSummary().computeEndpoint,
+    candidates: computeCandidates.map((candidate) => ({
+      source: candidate.source,
+      endpoint: candidate.endpoint,
+      model: candidate.model,
+      keyFingerprint: fingerprint(candidate.apiKey),
+    })),
+    hasKey: computeCandidates.length > 0,
+    keyFingerprint: fingerprint(computeCandidates[0]?.apiKey ?? ""),
     probes: computeProbes,
     live: computeLive,
     reason: computeLive
@@ -145,14 +194,23 @@ const artifact = {
     sidecarUrl,
     sidecar,
     daClientGrpc,
+    stackStatus: daStack?.status ?? "missing",
+    stackReason: daStack?.reason ?? "DA stack readiness artifact is missing.",
+    daEntrance: daStack?.endpoints?.daEntrance ?? null,
+    daEntranceCandidates: daStack?.endpoints?.daEntranceCandidates ?? [],
+    anyDocumentedDaEntranceHasCode: Boolean(daStack?.endpoints?.anyDocumentedDaEntranceHasCode),
+    daEntranceHasCode,
+    officialMaxBlobBytes: daStack?.officialDocs?.maxBlobBytes ?? 32_505_852,
     localPorts: daPorts,
     hasDaClientGrpc: Boolean(daClientGrpc),
     daClientListening,
     encoderListening,
     retrieverListening,
-    reason: daClientGrpc && daClientListening
-      ? "DA Client endpoint configured and reachable."
-      : "No reachable OG_DA_CLIENT_GRPC_URL/51001 DA Client was found. Live DA submission remains blocked.",
+    reason: daStack?.reason
+      ? daStack.reason
+      : daClientGrpc && daClientListening && encoderListening && retrieverListening && daEntranceHasCode
+        ? "DA Client, Encoder, Retriever, sidecar, and DAEntrance are reachable."
+        : "No complete DA Client/Encoder/Retriever/DAEntrance path was found. Live DA submission remains blocked.",
   },
   env: publicEnvSummary(),
 };

@@ -2,12 +2,14 @@ import { Link, useParams } from "react-router-dom";
 import { Download, Share2 } from "lucide-react";
 import { Badge, Button, Panel } from "../components/ui";
 import { ZeroGProofStack } from "../components/ZeroGProofStack";
+import { ZeroGRuntimeGate } from "../components/ZeroGRuntimeGate";
 import { completeDraft, createRoomFromId, simulate } from "../worldcup/game";
 
 export function Result() {
   const { roomId = "room-free-1v1" } = useParams();
   const room = completeDraft(createRoomFromId(roomId));
   const result = simulate(room);
+  const needsComputeResult = room.teams.some((team) => team.kind === "human" || team.kind === "agent") && result.computeAuthority !== "compute";
   const scoreText = result.type === "tournament" ? `${result.homeScore} pts` : `${result.homeScore}-${result.awayScore}`;
   const shareText = encodeURIComponent(`I drafted ${result.winner} in 0G World Cup: ${scoreText}. Proof ${result.simulationHash}`);
   const shareUrl = encodeURIComponent(window.location.href);
@@ -52,6 +54,26 @@ export function Result() {
     link.href = canvas.toDataURL("image/png");
     link.click();
   };
+
+  if (needsComputeResult) {
+    return (
+      <div className="grid gap-5">
+        <Panel className="p-5 sm:p-6" data-testid="result-compute-locked">
+          <Badge tone="warn">Compute result required</Badge>
+          <h1 className="mt-3 text-4xl font-black">Result locked until 0G Compute kickoff</h1>
+          <p className="mt-2 max-w-3xl text-muted">
+            This room includes a human or registered agent, so the app will not render a winner, MVP, share card, Storage URI, or Chain result from local deterministic simulation.
+          </p>
+          <div className="mt-5 flex flex-wrap gap-3">
+            <Link to={`/simulate/${room.id}`}><Button>Open kickoff</Button></Link>
+            <Link to={`/proof/${room.id}`}><Button variant="secondary">Open proof</Button></Link>
+          </div>
+        </Panel>
+        <ZeroGRuntimeGate />
+      </div>
+    );
+  }
+
   return (
     <div className="grid gap-5">
       <Panel className="overflow-hidden">

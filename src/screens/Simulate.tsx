@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import { AlertTriangle, Cpu, Database, Play, ShieldCheck, SkipForward } from "lucide-react";
 import { Badge, Button, Panel } from "../components/ui";
 import { ZeroGProofStack } from "../components/ZeroGProofStack";
+import { ZeroGRuntimeGate } from "../components/ZeroGRuntimeGate";
 import { completeDraft, createRoomFromId } from "../worldcup/game";
 import type { DraftRoom, MatchResult } from "../worldcup/types";
 
@@ -46,10 +47,10 @@ export function Simulate() {
       {error && (
         <Panel className="border-amber-300/30 bg-amber-300/10 p-4" data-testid="compute-error">
           <div className="flex items-start gap-3">
-            <AlertTriangle className="mt-0.5 text-amber-200" size={20} />
-            <div>
+            <AlertTriangle className="mt-0.5 shrink-0 text-amber-200" size={20} />
+            <div className="min-w-0">
               <h2 className="font-bold text-amber-100">0G Compute did not produce a match result</h2>
-              <p className="mt-1 text-sm text-amber-50/80">{error}</p>
+              <p className="mt-1 break-all text-sm text-amber-50/80">{error}</p>
             </div>
           </div>
         </Panel>
@@ -61,7 +62,10 @@ export function Simulate() {
           <Receipt room={room} result={result} />
         </>
       ) : (
-        <PendingKickoff room={room} onStart={startSimulation} loading={loading} />
+        <>
+          <ZeroGRuntimeGate />
+          <PendingKickoff room={room} onStart={startSimulation} loading={loading} />
+        </>
       )}
     </div>
   );

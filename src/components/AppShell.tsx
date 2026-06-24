@@ -40,7 +40,7 @@ export function AppShell({ children }: { children: ReactNode }) {
           </div>
         </div>
       </header>
-      <main className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:py-8">{children}</main>
+      <main className="mx-auto max-w-7xl px-4 pb-52 pt-6 sm:px-6 md:pb-8 lg:pt-8">{children}</main>
       <nav className="fixed inset-x-3 bottom-3 z-40 grid grid-cols-4 rounded-md border border-white/10 bg-black/80 p-1 backdrop-blur-xl md:hidden">
         {[
           ["/solo", "Solo", Trophy],

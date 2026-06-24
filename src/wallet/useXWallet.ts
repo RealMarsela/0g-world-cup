@@ -7,6 +7,7 @@ import {
   type WalletClient,
 } from "viem";
 import { zeroGGalileo, HAS_PRIVY } from "../config/chain";
+import { canUseBrowserEmbeddedWallets } from "../config/runtimeOrigin";
 
 export type XWallet = {
   ready: boolean;
@@ -73,8 +74,10 @@ function useStubWallet(): XWallet {
   };
 }
 
-// Bound once at module load — HAS_PRIVY is a build-time constant, so the hook
-// identity is stable across renders (no rules-of-hooks violation).
-export const useXWallet: () => XWallet = HAS_PRIVY
+const CAN_USE_PRIVY = HAS_PRIVY && canUseBrowserEmbeddedWallets();
+
+// Bound once at module load — origin and HAS_PRIVY are stable for the page, so
+// the hook identity does not change across renders.
+export const useXWallet: () => XWallet = CAN_USE_PRIVY
   ? usePrivyWallet
   : useStubWallet;

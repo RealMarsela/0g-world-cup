@@ -1,15 +1,53 @@
 {
-  "status": "blocked",
-  "reason": "0G Compute Router request failed: 402 {\"error\":{\"message\":\"Insufficient balance\",\"type\":\"payment_error\",\"code\":\"insufficient_balance\"},\"request_id\":\"9af5bf2e-4f9d-475a-86ee-eb50221654ec\"}",
-  "endpoint": "https://router-api.0g.ai/v1",
-  "model": "glm-5.1",
-  "env": {
-    "rpc": "https://evmrpc-testnet.0g.ai",
-    "storageIndexer": "https://indexer-storage-testnet-turbo.0g.ai",
-    "computeEndpoint": "https://router-api.0g.ai/v1",
-    "daClientGrpc": "",
-    "hasStorageSigner": true,
-    "hasComputeKey": true,
-    "hasDaClient": false
-  }
+  "status": "live",
+  "source": "ZEROG_ROUTER_API_KEY",
+  "endpoint": "https://router-api-testnet.integratenetwork.work/v1",
+  "model": "qwen2.5-omni",
+  "response": {
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"minute\": 45,\n  \"team\": \"Team A\",\n  \"player\": \"John Doe\",\n  \"type\": \"Pass\",\n  \"narration\": \"John Doe makes a precise through-ball to Jane Smith, setting up a scoring opportunity.\"\n}",
+          "role": "assistant"
+        }
+      }
+    ],
+    "created": 1782310958,
+    "id": "chatcmpl-08a1d005-170d-440c-af50-1b2bf5493719",
+    "model": "qwen2.5-omni",
+    "object": "chat.completion",
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 59,
+      "completion_tokens_details": {
+        "text_tokens": 59
+      },
+      "prompt_tokens": 53,
+      "prompt_tokens_details": {
+        "text_tokens": 53
+      },
+      "total_tokens": 112
+    },
+    "x_0g_trace": {
+      "billing": {
+        "input_cost": "39591000000000",
+        "output_cost": "176410000000000",
+        "total_cost": "216001000000000"
+      },
+      "provider": "0xa48f01287233509FD694a22Bf840225062E67836",
+      "request_id": "e52ed01e-a21b-4807-bc3d-9ae7fcf9ba4a",
+      "tee_verified": true
+    }
+  },
+  "failedCandidates": [
+    {
+      "source": "OG_COMPUTE_API_KEY",
+      "endpoint": "https://router-api.0g.ai/v1",
+      "model": "glm-5.1",
+      "reason": "0G Compute Router request failed: 402 {\"error\":{\"message\":\"Insufficient balance\",\"type\":\"payment_error\",\"code\":\"insufficient_balance\"},\"request_id\":\"67100cbe-48d7-41c3-8c1f-ccec261fbb26\"}"
+    }
+  ]
 }

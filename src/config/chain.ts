@@ -35,12 +35,13 @@ export const ZERO_G = {
     envValue("VITE_OG_STORAGE_INDEXER_URL") ||
     envValue("OG_STORAGE_INDEXER_URL") ||
     "https://indexer-storage-testnet-turbo.0g.ai",
-  computeMode: hasEnv("VITE_OG_COMPUTE_API_KEY") || hasEnv("OG_COMPUTE_API_KEY")
+  computeMode: hasEnv("VITE_OG_COMPUTE_API_KEY") || hasEnv("OG_COMPUTE_API_KEY") || hasEnv("ZEROG_ROUTER_API_KEY")
     ? "0G Compute Router"
     : "deterministic fallback",
   computeEndpoint:
     envValue("VITE_OG_COMPUTE_ENDPOINT") ||
     envValue("OG_COMPUTE_ENDPOINT") ||
+    envValue("ZEROG_COMPUTE_ROUTER") ||
     "https://router-api-testnet.integratenetwork.work/v1",
 };
 

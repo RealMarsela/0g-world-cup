@@ -1,4 +1,5 @@
 import { Badge, DataTable, Panel } from "../components/ui";
+import { ZeroGLeaderboardProof } from "../components/ZeroGLeaderboardProof";
 import { completeDraft, createRoom, simulate } from "../worldcup/game";
 
 const modes = [
@@ -22,9 +23,11 @@ export function Leaderboard() {
       <Panel className="p-5 sm:p-6">
         <Badge tone="accent">Leaderboard</Badge>
         <h1 className="mt-3 text-4xl font-black">Proof-ranked rooms</h1>
-        <p className="mt-2 text-muted">Sorted by completed room proof. On deployment this table reads 0G Chain events.</p>
+        <p className="mt-2 text-muted">Sorted by completed room proof. Live proof entries read the current 0G Chain, escrow, and Storage artifacts.</p>
       </Panel>
+      <ZeroGLeaderboardProof />
       <Panel className="p-4">
+        <Badge tone="warn">Local demo ranking</Badge>
         <DataTable
           columns={["Mode", "Winner", "Score", "Snapshot", "Result hash"]}
           rows={rows.map(({ mode, room, result }) => [

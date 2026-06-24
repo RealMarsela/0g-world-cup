@@ -35,7 +35,7 @@ function storageProof(result: MatchResult): ZeroGServiceProof {
     status: live ? "live" : "ready",
     summary: live
       ? "Receipt payload is mirrored to 0G Storage."
-      : "Receipt payload is deterministic and ready for the live storage upload script.",
+      : "Receipt payload is local and deterministic; live 0G Storage proof is shown in the artifact matrix.",
     artifact: result.storageUri,
   };
 }
@@ -61,7 +61,7 @@ function daProof(result: MatchResult): ZeroGServiceProof {
     name: "da",
     label: "0G DA",
     status: "ready",
-    summary: "Match and tournament receipts are shaped into a DA-ready blob; live submission requires a running DA Client.",
+    summary: "Match and tournament receipts are shaped into a byte-ready blob; live DA submission status is shown in the artifact matrix.",
     artifact: `events:${result.events.length}`,
   };
 }

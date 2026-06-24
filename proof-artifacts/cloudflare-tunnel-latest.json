@@ -1,0 +1,57 @@
+{
+  "schema": "0g-world-cup-cloudflare-tunnel-proof-v1",
+  "status": "local-only",
+  "generatedAt": "1970-01-01T00:00:00.000Z",
+  "cloudflared": {
+    "installed": true,
+    "version": "cloudflared version 2025.8.1 (built 2025-08-21T09:53:31Z)"
+  },
+  "tunnel": {
+    "docsUrl": "https://developers.cloudflare.com/pages/how-to/preview-with-cloudflare-tunnel/",
+    "role": "Optional public bridge for local app/DA sidecar demos. 0G Chain, 0G Storage, and 0G DA artifacts remain the source of truth.",
+    "recommendedCommand": "cloudflared tunnel --url http://127.0.0.1:51080",
+    "sidecarUrl": "http://127.0.0.1:51080",
+    "sidecarUrlFingerprint": "c332c79e28e5",
+    "appUrl": "http://localhost:3022",
+    "appUrlFingerprint": "8fbe927a352a",
+    "configuredPublicSidecar": false,
+    "configuredPublicApp": false,
+    "sidecarHealth": {
+      "reachable": true,
+      "statusCode": 200,
+      "contentType": "application/json"
+    },
+    "appHealth": {
+      "reachable": true,
+      "statusCode": 200,
+      "contentType": "text/html"
+    }
+  },
+  "costModel": {
+    "tunnel": "Cloudflare Tunnel is suitable for lightweight demo ingress; Workers/Durable Object usage is billed separately.",
+    "workersPaidMinimumUsdPerMonth": 5,
+    "requestsIncludedPerMonth": 10000000,
+    "requestsOverageUsdPerMillion": 0.3,
+    "cpuIncludedMsPerMonth": 30000000,
+    "cpuOverageUsdPerMillionMs": 0.02,
+    "staticAssetRequests": "free and unlimited under Workers pricing docs"
+  },
+  "checks": {
+    "cloudflaredInstalled": true,
+    "sidecarReachable": true,
+    "appReachable": true,
+    "publicSidecarConfigured": false,
+    "publicAppConfigured": false,
+    "noSecretsInArtifact": true
+  },
+  "reason": "No public tunnel URL is configured; proofs are using localhost. This is fine for local testing, but use OG_DA_SIDECAR_URL=https://... or OG_APP_PUBLIC_URL=https://... for judge/cross-app access.",
+  "env": {
+    "rpc": "https://evmrpc-testnet.0g.ai",
+    "storageIndexer": "https://indexer-storage-testnet-turbo.0g.ai",
+    "computeEndpoint": "https://router-api.0g.ai/v1",
+    "daClientGrpc": "",
+    "hasStorageSigner": true,
+    "hasComputeKey": true,
+    "hasDaClient": false
+  }
+}
