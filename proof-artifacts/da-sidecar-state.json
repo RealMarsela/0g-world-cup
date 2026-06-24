@@ -167,10 +167,12 @@
       "blobBytes": 28209,
       "maxBlobBytes": 32505852,
       "receivedAt": "2026-06-24T08:00:17.358Z",
-      "status": "submitted",
+      "status": "live",
       "daClientGrpc": "127.0.0.1:51001",
       "daStatus": "PROCESSING",
-      "reason": "Blob accepted by the configured 0G DA Client Disperser endpoint."
+      "reason": "Blob accepted by the configured 0G DA Client Disperser endpoint.",
+      "blobInfo": null,
+      "checkedAt": "2026-06-24T08:01:42.469Z"
     }
   }
 }
