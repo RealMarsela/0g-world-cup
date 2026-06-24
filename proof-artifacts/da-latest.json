@@ -1,18 +1,18 @@
 {
-  "status": "blocked",
+  "status": "ready",
   "blobReady": true,
-  "blobBytes": 28327,
+  "blobBytes": 28209,
   "maxBlobBytes": 32505852,
-  "blobHash": "0xca8232a0f36f7f67e3e8004117459b6f845df918bdfb8111ac9f9b0d12cc48e2",
-  "daClientGrpc": "",
-  "reason": "Missing OG_DA_CLIENT_GRPC_URL. 0G DA live submission requires a DA Client plus Encoder/Retriever.",
+  "blobHash": "0x9e0f1b6e33319d84f60413e74fa81ed835ea6e8baacc5239c54621ef66b36618",
+  "daClientGrpc": "127.0.0.1:51001",
+  "reason": "DA client endpoint configured; submit through the running 0G DA Client.",
   "env": {
     "rpc": "https://evmrpc-testnet.0g.ai",
     "storageIndexer": "https://indexer-storage-testnet-turbo.0g.ai",
     "computeEndpoint": "https://router-api.0g.ai/v1",
-    "daClientGrpc": "",
+    "daClientGrpc": "127.0.0.1:51001",
     "hasStorageSigner": true,
     "hasComputeKey": true,
-    "hasDaClient": false
+    "hasDaClient": true
   }
 }

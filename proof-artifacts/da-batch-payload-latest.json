@@ -648,13 +648,13 @@
           "mvpPlayerId": "WC-1970:SLV:P-10096:97",
           "highlights": [],
           "tacticalSummary": "0G Compute is blocked.",
-          "winExplanation": "0G Compute Router failed: 0G Compute request failed: 402 {\"error\":{\"message\":\"Insufficient balance\",\"type\":\"payment_error\",\"code\":\"insufficient_balance\"},\"request_id\":\"859e44f4-a81f-4b61-954b-a49ad154160a\"} | Direct 0G Compute broker failed: Direct 0G Compute broker ledger is not ready and OG_COMPUTE_BROKER_AUTOFUND is not enabled: Account does not exist. Please create an account first using \"add-account\". (Address: 0x3D325E51934AE5c7EBf9f37a8Ddf772F48F766Fb)",
+          "winExplanation": "0G Compute Router failed: 0G Compute request failed: 402 {\"error\":{\"message\":\"Insufficient balance\",\"type\":\"payment_error\",\"code\":\"insufficient_balance\"},\"request_id\":\"ff5b97b3-a473-4476-a846-4b84a9433c06\"} | Direct 0G Compute broker failed: Direct 0G Compute broker ledger is not ready and OG_COMPUTE_BROKER_AUTOFUND is not enabled: Account does not exist. Please create an account first using \"add-account\". (Address: 0x3D325E51934AE5c7EBf9f37a8Ddf772F48F766Fb)",
           "resultHash": "",
           "storageUri": "",
           "computeMode": "0G Compute blocked",
-          "blocker": "0G Compute Router failed: 0G Compute request failed: 402 {\"error\":{\"message\":\"Insufficient balance\",\"type\":\"payment_error\",\"code\":\"insufficient_balance\"},\"request_id\":\"859e44f4-a81f-4b61-954b-a49ad154160a\"} | Direct 0G Compute broker failed: Direct 0G Compute broker ledger is not ready and OG_COMPUTE_BROKER_AUTOFUND is not enabled: Account does not exist. Please create an account first using \"add-account\". (Address: 0x3D325E51934AE5c7EBf9f37a8Ddf772F48F766Fb)"
+          "blocker": "0G Compute Router failed: 0G Compute request failed: 402 {\"error\":{\"message\":\"Insufficient balance\",\"type\":\"payment_error\",\"code\":\"insufficient_balance\"},\"request_id\":\"ff5b97b3-a473-4476-a846-4b84a9433c06\"} | Direct 0G Compute broker failed: Direct 0G Compute broker ledger is not ready and OG_COMPUTE_BROKER_AUTOFUND is not enabled: Account does not exist. Please create an account first using \"add-account\". (Address: 0x3D325E51934AE5c7EBf9f37a8Ddf772F48F766Fb)"
         },
-        "reason": "0G Compute Router failed: 0G Compute request failed: 402 {\"error\":{\"message\":\"Insufficient balance\",\"type\":\"payment_error\",\"code\":\"insufficient_balance\"},\"request_id\":\"859e44f4-a81f-4b61-954b-a49ad154160a\"} | Direct 0G Compute broker failed: Direct 0G Compute broker ledger is not ready and OG_COMPUTE_BROKER_AUTOFUND is not enabled: Account does not exist. Please create an account first using \"add-account\". (Address: 0x3D325E51934AE5c7EBf9f37a8Ddf772F48F766Fb)",
+        "reason": "0G Compute Router failed: 0G Compute request failed: 402 {\"error\":{\"message\":\"Insufficient balance\",\"type\":\"payment_error\",\"code\":\"insufficient_balance\"},\"request_id\":\"ff5b97b3-a473-4476-a846-4b84a9433c06\"} | Direct 0G Compute broker failed: Direct 0G Compute broker ledger is not ready and OG_COMPUTE_BROKER_AUTOFUND is not enabled: Account does not exist. Please create an account first using \"add-account\". (Address: 0x3D325E51934AE5c7EBf9f37a8Ddf772F48F766Fb)",
         "env": {
           "rpc": "https://evmrpc-testnet.0g.ai",
           "storageIndexer": "https://indexer-storage-testnet-turbo.0g.ai",
@@ -765,7 +765,7 @@
       "kind": "da-stack-readiness",
       "value": {
         "schema": "0g-world-cup-da-stack-readiness-v1",
-        "status": "blocked",
+        "status": "ready",
         "generatedAt": "1970-01-01T00:00:00.000Z",
         "officialDocs": {
           "url": "https://docs.0g.ai/developer-hub/building-on-0g/da-integration",
@@ -785,13 +785,18 @@
           "compose": "Docker Compose version 5.2.0",
           "composeStandalone": "Docker Compose version 5.2.0",
           "colima": "",
-          "containers": "supabase_db_zencampus public.ecr.aws/supabase/postgres:17.6.1.071 0.0.0.0:54322->5432/tcp, [::]:54322->5432/tcp\nsupabase_studio_zencampus public.ecr.aws/supabase/studio:2026.01.12-sha-4e9b718 0.0.0.0:54323->3000/tcp, [::]:54323->3000/tcp\nsupabase_pg_meta_zencampus public.ecr.aws/supabase/postgres-meta:v0.95.2 8080/tcp\nsupabase_storage_zencampus public.ecr.aws/supabase/storage-api:v1.33.5 5000/tcp\nsupabase_rest_zencampus public.ecr.aws/supabase/postgrest:v14.3 3000/tcp\nsupabase_realtime_zencampus"
+          "containers": "0g-da-client 0g-da-client:local 0.0.0.0:51001->51001/tcp, [::]:51001->51001/tcp\n0g-da-retriever 0g-da-retriever:local 0.0.0.0:34005->34005/tcp, [::]:34005->34005/tcp\nsupabase_db_zencampus public.ecr.aws/supabase/postgres:17.6.1.071 0.0.0.0:54322->5432/tcp, [::]:54322->5432/tcp\nsupabase_studio_zencampus public.ecr.aws/supabase/studio:2026.01.12-sha-4e9b718 0.0.0.0:54323->3000/tcp, [::]:54323->3000/tcp\nsupabase_pg_meta_zencampus public.ecr.aws/supabase/postgres-meta:v0.95.2 8080/tcp\nsupabase_stora",
+          "images": {
+            "daClient": true,
+            "encoder": false,
+            "retriever": true
+          }
         },
         "generatedFiles": {
           "envfile": {
             "path": ".da-stack/envfile.env",
             "exists": true,
-            "bytes": 1139,
+            "bytes": 1185,
             "hasPrivateKey": true
           },
           "retrieverConfig": {
@@ -815,7 +820,7 @@
         },
         "endpoints": {
           "sidecarUrl": "http://127.0.0.1:51080",
-          "daClientGrpc": "",
+          "daClientGrpc": "127.0.0.1:51001",
           "ports": [
             {
               "host": "127.0.0.1",
@@ -825,20 +830,17 @@
             {
               "host": "127.0.0.1",
               "port": 51001,
-              "listening": false,
-              "reason": "connect ECONNREFUSED 127.0.0.1:51001"
+              "listening": true
             },
             {
               "host": "127.0.0.1",
               "port": 34000,
-              "listening": false,
-              "reason": "connect ECONNREFUSED 127.0.0.1:34000"
+              "listening": true
             },
             {
               "host": "127.0.0.1",
               "port": 34005,
-              "listening": false,
-              "reason": "connect ECONNREFUSED 127.0.0.1:34005"
+              "listening": true
             }
           ],
           "sidecar": {
@@ -854,9 +856,9 @@
             }
           },
           "sidecarListening": true,
-          "daClientListening": false,
-          "encoderListening": false,
-          "retrieverListening": false
+          "daClientListening": true,
+          "encoderListening": true,
+          "retrieverListening": true
         },
         "checks": {
           "dockerInstalled": true,
@@ -867,20 +869,23 @@
           "generatedRetrieverConfig": true,
           "generatedComposeTemplate": true,
           "envfileHasPrivateKey": true,
+          "daClientImageBuilt": true,
+          "encoderImageBuilt": false,
+          "retrieverImageBuilt": true,
           "sidecarReachable": true,
-          "daClientListening": false,
-          "encoderListening": false,
-          "retrieverListening": false
+          "daClientListening": true,
+          "encoderListening": true,
+          "retrieverListening": true
         },
-        "reason": "0G DA stack is not live yet: OG_DA_CLIENT_GRPC_URL is unset; 0G DA Client gRPC port 51001 is not listening; 0G DA Encoder port 34000 is not listening; 0G DA Retriever port 34005 is not listening.",
+        "reason": "0G DA Client, Encoder, Retriever, and sidecar are all reachable.",
         "env": {
           "rpc": "https://evmrpc-testnet.0g.ai",
           "storageIndexer": "https://indexer-storage-testnet-turbo.0g.ai",
           "computeEndpoint": "https://router-api.0g.ai/v1",
-          "daClientGrpc": "",
+          "daClientGrpc": "127.0.0.1:51001",
           "hasStorageSigner": true,
           "hasComputeKey": true,
-          "hasDaClient": false
+          "hasDaClient": true
         }
       }
     },

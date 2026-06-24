@@ -1,23 +1,23 @@
 {
   "schema": "0g-world-cup-da-sidecar-proof-v1",
-  "status": "blocked",
+  "status": "submitted",
   "sidecarUrl": "http://127.0.0.1:51080",
-  "statusCode": 503,
-  "requestId": "712a17f1-d9bb-4ade-bbbb-8caa181821ce",
-  "blobHash": "0xca8232a0f36f7f67e3e8004117459b6f845df918bdfb8111ac9f9b0d12cc48e2",
-  "expectedBlobHash": "0xca8232a0f36f7f67e3e8004117459b6f845df918bdfb8111ac9f9b0d12cc48e2",
-  "blobBytes": 28327,
+  "statusCode": 200,
+  "requestId": "0x396530663162366533333331396438346636303431336537346661383165643833356561366538626161636335323339633534363231656636366233363631382d3331333733383332333233383338333033313337333433353333333633353338333333343336326665336230633434323938666331633134396166626634633839393666623932343237616534316534363439623933346361343935393931623738353262383535",
+  "blobHash": "0x9e0f1b6e33319d84f60413e74fa81ed835ea6e8baacc5239c54621ef66b36618",
+  "expectedBlobHash": "0x9e0f1b6e33319d84f60413e74fa81ed835ea6e8baacc5239c54621ef66b36618",
+  "blobBytes": 28209,
   "blobReady": true,
   "maxBlobBytes": 32505852,
-  "daStatus": "",
-  "reason": "Missing OG_DA_CLIENT_GRPC_URL. 0G DA live submission requires a DA Client plus Encoder/Retriever.",
+  "daStatus": "PROCESSING",
+  "reason": "Blob accepted by the configured 0G DA Client Disperser endpoint.",
   "env": {
     "rpc": "https://evmrpc-testnet.0g.ai",
     "storageIndexer": "https://indexer-storage-testnet-turbo.0g.ai",
     "computeEndpoint": "https://router-api.0g.ai/v1",
-    "daClientGrpc": "",
+    "daClientGrpc": "127.0.0.1:51001",
     "hasStorageSigner": true,
     "hasComputeKey": true,
-    "hasDaClient": false
+    "hasDaClient": true
   }
 }
