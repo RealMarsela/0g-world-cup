@@ -139,6 +139,26 @@
       "receivedAt": "2026-06-23T20:01:19.276Z",
       "status": "blocked",
       "reason": "Missing OG_DA_CLIENT_GRPC_URL. 0G DA live submission requires a DA Client plus Encoder/Retriever."
+    },
+    "c73eec77-642c-4b81-8f18-77d6bb6c10ce": {
+      "schema": "0g-da-sidecar-submit-v1",
+      "requestId": "c73eec77-642c-4b81-8f18-77d6bb6c10ce",
+      "blobHash": "0x8b405791d421ba1d88ccc11a395d869090853e2fa5b42e6d7b2783d4efd8b7b7",
+      "blobBytes": 28532,
+      "maxBlobBytes": 32505852,
+      "receivedAt": "2026-06-24T06:54:13.041Z",
+      "status": "blocked",
+      "reason": "Missing OG_DA_CLIENT_GRPC_URL. 0G DA live submission requires a DA Client plus Encoder/Retriever."
+    },
+    "712a17f1-d9bb-4ade-bbbb-8caa181821ce": {
+      "schema": "0g-da-sidecar-submit-v1",
+      "requestId": "712a17f1-d9bb-4ade-bbbb-8caa181821ce",
+      "blobHash": "0xca8232a0f36f7f67e3e8004117459b6f845df918bdfb8111ac9f9b0d12cc48e2",
+      "blobBytes": 28327,
+      "maxBlobBytes": 32505852,
+      "receivedAt": "2026-06-24T07:02:14.008Z",
+      "status": "blocked",
+      "reason": "Missing OG_DA_CLIENT_GRPC_URL. 0G DA live submission requires a DA Client plus Encoder/Retriever."
     }
   }
 }

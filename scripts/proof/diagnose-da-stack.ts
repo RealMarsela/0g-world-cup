@@ -80,6 +80,9 @@ const dockerContainers = await command("docker", [
   "--format",
   "{{.Names}} {{.Image}} {{.Ports}}",
 ]);
+const daClientImage = await command("docker", ["image", "inspect", "0g-da-client:local", "--format", "{{.Id}}"]);
+const encoderImage = await command("docker", ["image", "inspect", "0g-da-encoder:local", "--format", "{{.Id}}"]);
+const retrieverImage = await command("docker", ["image", "inspect", "0g-da-retriever:local", "--format", "{{.Id}}"]);
 
 const ports = await Promise.all([
   probeTcp("127.0.0.1", 51080),
@@ -107,6 +110,22 @@ const ready =
   sidecarListening &&
   sidecar.reachable;
 
+function blockedReason() {
+  if (ready) return "0G DA Client, Encoder, Retriever, and sidecar are all reachable.";
+  const missing = [];
+  if (!dockerInfo.ok) missing.push("Docker daemon is not reachable");
+  if (!colimaStatus.ok) missing.push("Colima is not running");
+  if (!dockerCompose.ok && !dockerComposeStandalone.ok) missing.push("Docker Compose is unavailable");
+  if (!generatedFiles.envfile.exists) missing.push(".da-stack/envfile.env is missing");
+  if (!generatedFiles.retrieverConfig.exists) missing.push(".da-stack/retriever-config.toml is missing");
+  if (!sidecar.reachable) missing.push("local DA sidecar is not reachable on 51080");
+  if (!daClientGrpc) missing.push("OG_DA_CLIENT_GRPC_URL is unset");
+  if (!daClientListening) missing.push("0G DA Client gRPC port 51001 is not listening");
+  if (!encoderListening) missing.push("0G DA Encoder port 34000 is not listening");
+  if (!retrieverListening) missing.push("0G DA Retriever port 34005 is not listening");
+  return `0G DA stack is not live yet: ${missing.join("; ")}.`;
+}
+
 const artifact = {
   schema: "0g-world-cup-da-stack-readiness-v1",
   status: ready ? "ready" : "blocked",
@@ -131,6 +150,11 @@ const artifact = {
     composeStandalone: dockerComposeStandalone.ok ? dockerComposeStandalone.stdout : dockerComposeStandalone.stderr,
     colima: colimaStatus.ok ? colimaStatus.stdout : colimaStatus.stderr,
     containers: dockerContainers.ok ? dockerContainers.stdout : dockerContainers.stderr,
+    images: {
+      daClient: daClientImage.ok,
+      encoder: encoderImage.ok,
+      retriever: retrieverImage.ok,
+    },
   },
   generatedFiles,
   endpoints: {
@@ -152,14 +176,15 @@ const artifact = {
     generatedRetrieverConfig: generatedFiles.retrieverConfig.exists,
     generatedComposeTemplate: generatedFiles.composeTemplate.exists,
     envfileHasPrivateKey: Boolean(generatedFiles.envfile.hasPrivateKey),
+    daClientImageBuilt: daClientImage.ok,
+    encoderImageBuilt: encoderImage.ok,
+    retrieverImageBuilt: retrieverImage.ok,
     sidecarReachable: sidecar.reachable,
     daClientListening,
     encoderListening,
     retrieverListening,
   },
-  reason: ready
-    ? "0G DA Client, Encoder, Retriever, and sidecar are all reachable."
-    : "0G DA stack is not live yet. Generated .da-stack files exist, but Docker/Colima and/or compose/DA processes are not ready. Start Colima or Docker, ensure Docker Compose is available, build official DA images, run the compose stack, and set OG_DA_CLIENT_GRPC_URL=127.0.0.1:51001.",
+  reason: blockedReason(),
   env: publicEnvSummary(),
 };
 

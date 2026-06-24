@@ -9,18 +9,23 @@
   },
   "docker": {
     "installed": true,
-    "daemonReachable": false,
-    "composeAvailable": false,
-    "composePluginAvailable": false,
-    "composeStandaloneAvailable": false,
+    "daemonReachable": true,
+    "composeAvailable": true,
+    "composePluginAvailable": true,
+    "composeStandaloneAvailable": true,
     "colimaAvailable": true,
-    "colimaRunning": false,
+    "colimaRunning": true,
     "version": "Docker version 29.6.0, build fb59821d45",
-    "daemon": "failed to connect to the docker API at unix:///Users/gabrielantonyxaviour/.colima/default/docker.sock; check if the path is correct and if the daemon is running: dial unix /Users/gabrielantonyxaviour/.colima/default/docker.sock: connect: no such file or directory",
-    "compose": "docker: unknown command: docker compose\n\nRun 'docker --help' for more information",
-    "composeStandalone": "",
-    "colima": "time=\"2026-06-24T03:01:04+07:00\" level=fatal msg=\"colima is not running\"",
-    "containers": "failed to connect to the docker API at unix:///Users/gabrielantonyxaviour/.colima/default/docker.sock; check if the path is correct and if the daemon is running: dial unix /Users/gabrielantonyxaviour/.colima/default/docker.sock: connect: no such file or directory"
+    "daemon": "\"29.5.2\"",
+    "compose": "Docker Compose version 5.2.0",
+    "composeStandalone": "Docker Compose version 5.2.0",
+    "colima": "",
+    "containers": "supabase_db_zencampus public.ecr.aws/supabase/postgres:17.6.1.071 0.0.0.0:54322->5432/tcp, [::]:54322->5432/tcp\nsupabase_studio_zencampus public.ecr.aws/supabase/studio:2026.01.12-sha-4e9b718 0.0.0.0:54323->3000/tcp, [::]:54323->3000/tcp\nsupabase_pg_meta_zencampus public.ecr.aws/supabase/postgres-meta:v0.95.2 8080/tcp\nsupabase_storage_zencampus public.ecr.aws/supabase/storage-api:v1.33.5 5000/tcp\nsupabase_rest_zencampus public.ecr.aws/supabase/postgrest:v14.3 3000/tcp\nsupabase_realtime_zencampus",
+    "images": {
+      "daClient": true,
+      "encoder": false,
+      "retriever": true
+    }
   },
   "generatedFiles": {
     "envfile": {
@@ -95,19 +100,22 @@
   },
   "checks": {
     "dockerInstalled": true,
-    "dockerDaemonReachable": false,
-    "dockerComposeAvailable": false,
-    "colimaRunning": false,
+    "dockerDaemonReachable": true,
+    "dockerComposeAvailable": true,
+    "colimaRunning": true,
     "generatedEnvfile": true,
     "generatedRetrieverConfig": true,
     "generatedComposeTemplate": true,
     "envfileHasPrivateKey": true,
+    "daClientImageBuilt": true,
+    "encoderImageBuilt": false,
+    "retrieverImageBuilt": true,
     "sidecarReachable": true,
     "daClientListening": false,
     "encoderListening": false,
     "retrieverListening": false
   },
-  "reason": "0G DA stack is not live yet. Generated .da-stack files exist, but Docker/Colima and/or compose/DA processes are not ready. Start Colima or Docker, ensure Docker Compose is available, build official DA images, run the compose stack, and set OG_DA_CLIENT_GRPC_URL=127.0.0.1:51001.",
+  "reason": "0G DA stack is not live yet: OG_DA_CLIENT_GRPC_URL is unset; 0G DA Client gRPC port 51001 is not listening; 0G DA Encoder port 34000 is not listening; 0G DA Retriever port 34005 is not listening.",
   "env": {
     "rpc": "https://evmrpc-testnet.0g.ai",
     "storageIndexer": "https://indexer-storage-testnet-turbo.0g.ai",

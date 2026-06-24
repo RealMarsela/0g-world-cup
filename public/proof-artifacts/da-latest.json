@@ -1,9 +1,9 @@
 {
   "status": "blocked",
   "blobReady": true,
-  "blobBytes": 28532,
+  "blobBytes": 28327,
   "maxBlobBytes": 32505852,
-  "blobHash": "0x2a4955216d8615c99f80bdfc732f9d5dc82ba4f8d5beb96b65e56d13efdf0ee0",
+  "blobHash": "0xca8232a0f36f7f67e3e8004117459b6f845df918bdfb8111ac9f9b0d12cc48e2",
   "daClientGrpc": "",
   "reason": "Missing OG_DA_CLIENT_GRPC_URL. 0G DA live submission requires a DA Client plus Encoder/Retriever.",
   "env": {
