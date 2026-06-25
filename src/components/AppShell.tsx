@@ -24,7 +24,6 @@ export function AppShell({ children }: { children: ReactNode }) {
             </span>
             <span>
               <span className="block text-sm font-bold tracking-[0.16em]">0G WORLD CUP</span>
-              <span className="block text-[11px] uppercase tracking-[0.18em] text-faint">Redline AI Arena</span>
             </span>
           </Link>
           <nav className="hidden items-center gap-1 md:flex">

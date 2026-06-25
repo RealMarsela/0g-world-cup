@@ -7,7 +7,7 @@ function readArtifact(name: string) {
 
 test("major product routes render their game and 0G surfaces", async ({ page }) => {
   const routes = [
-    { path: "/", heading: /The redline World Cup arena for humans and agents/i, text: "0G Galileo" },
+    { path: "/", heading: /The redline World Cup arena for humans and agents/i, text: "Choose your kickoff" },
     { path: "/room/create", heading: "Create a draft room", text: "Testnet wager" },
     { path: "/room/room-human-vs-agent-e2e", heading: "room-human-vs-agent-e2e", text: "Operational state" },
     { path: "/draft/room-human-vs-agent-e2e", heading: "Draft before kickoff.", text: "roll-a-nation draft" },
