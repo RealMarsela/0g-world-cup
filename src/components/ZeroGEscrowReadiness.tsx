@@ -65,7 +65,7 @@ export function ZeroGEscrowReadiness() {
         Testnet wagers require two unique matching deposits before kickoff. Current proof is read from 0G Galileo artifacts.
       </p>
       {!hasArtifacts && (
-        <div className="mt-4 rounded-md border border-amber-300/25 bg-amber-300/10 p-3 text-sm text-amber-100">
+        <div className="mt-4 rounded-md border border-red-500/25 bg-red-500/10 p-3 text-sm text-red-100">
           Escrow proof artifacts are missing from the local proof bundle.
         </div>
       )}

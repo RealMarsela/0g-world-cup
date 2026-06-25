@@ -61,7 +61,7 @@ export function ZeroGRuntimeGate() {
           <ShieldCheck className="text-accent" size={18} />
           <p className="mt-2 text-xs uppercase text-faint">Broker wallet</p>
           <p className="mt-1 break-all text-sm font-semibold">{text(brokerWallet?.address || "waiting")}</p>
-          {brokerWallet?.requiredTopUpOg && <p className="mt-1 text-xs text-amber-100">top up {brokerWallet.requiredTopUpOg} 0G</p>}
+          {brokerWallet?.requiredTopUpOg && <p className="mt-1 text-xs text-red-100">top up {brokerWallet.requiredTopUpOg} 0G</p>}
         </div>
         <div className="rounded-md border border-white/10 bg-white/[0.035] p-3">
           <Database className="text-accent" size={18} />
@@ -72,9 +72,9 @@ export function ZeroGRuntimeGate() {
       </div>
 
       {blocker && (
-        <div className="mt-4 flex gap-3 rounded-md border border-amber-300/25 bg-amber-300/10 p-3" data-testid="runtime-gate-blocker">
-          <AlertTriangle className="mt-0.5 shrink-0 text-amber-200" size={18} />
-          <p className="break-all text-sm text-amber-50/85">{blocker}</p>
+        <div className="mt-4 flex gap-3 rounded-md border border-red-500/25 bg-red-500/10 p-3" data-testid="runtime-gate-blocker">
+          <AlertTriangle className="mt-0.5 shrink-0 text-red-200" size={18} />
+          <p className="break-all text-sm text-red-50/85">{blocker}</p>
         </div>
       )}
       {daSidecar?.reason && <p className="mt-3 break-all text-xs text-muted">{daSidecar.reason}</p>}

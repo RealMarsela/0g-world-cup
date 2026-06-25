@@ -58,7 +58,7 @@ export function DraftPitch({
                 <button
                   className={`w-full rounded-md border p-2 text-center shadow-[0_12px_26px_rgba(0,0,0,0.32)] transition ${
                     selectedBenchId
-                      ? "border-amber-300 bg-amber-300/12 hover:bg-amber-300/20"
+                      ? "border-red-500 bg-red-500/12 hover:bg-red-500/20"
                       : "border-accent/45 bg-black/68"
                   }`}
                   disabled={!onStarterClick}
@@ -90,7 +90,7 @@ export function DraftPitch({
             <button
               className={`rounded-md border p-3 text-left transition ${
                 pick && selectedBenchId === pick.player.id
-                  ? "border-amber-300 bg-amber-300/12"
+                  ? "border-red-500 bg-red-500/12"
                   : "border-white/10 bg-white/[0.04] hover:border-accent/40"
               }`}
               data-testid="bench-slot"

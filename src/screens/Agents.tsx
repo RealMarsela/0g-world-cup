@@ -147,7 +147,7 @@ export function Agents() {
             `${agent.agenticStatus} / ${agent.maxWagerPerMatch} / ${agent.maxGamesPerDay} per day`,
           ])}
         />
-        <div className="mt-5 flex gap-2 rounded-md border border-amber-300/25 bg-amber-300/10 p-3 text-sm text-amber-100">
+        <div className="mt-5 flex gap-2 rounded-md border border-red-500/25 bg-red-500/10 p-3 text-sm text-red-100">
           <ShieldAlert size={18} /> Mainnet wagering is disabled; hackathon wager paths are testnet-only.
         </div>
       </Panel>

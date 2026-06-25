@@ -17,8 +17,8 @@ export function Badge({
   const tones = {
     default: "border-white/12 bg-white/[0.04] text-muted",
     accent: "border-accent/40 bg-accent/10 text-accent",
-    ok: "border-gold/40 bg-gold/10 text-gold",
-    warn: "border-amber-300/35 bg-amber-300/10 text-amber-100",
+    ok: "border-accent/40 bg-accent/10 text-accent-2",
+    warn: "border-red-500/35 bg-red-500/10 text-red-100",
   };
   return (
     <span className={`inline-flex items-center gap-1.5 rounded-md border px-2.5 py-1 text-[11px] font-medium ${tones[tone]}`}>

@@ -250,9 +250,9 @@ function HighlightCard({ event }: { event: LiveMatch["events"][number] }) {
     <div
       className={`rounded-md border p-3 transition ${
         isGoal
-          ? "animate-pulse border-gold/45 bg-gold/10 shadow-[0_0_22px_rgba(246,199,96,0.18)]"
+          ? "animate-pulse border-accent/45 bg-accent/10 shadow-[0_0_22px_rgba(242,13,34,0.18)]"
           : isMiss
-            ? "border-amber-300/35 bg-amber-300/8"
+            ? "border-red-500/35 bg-red-500/8"
             : "border-white/10 bg-white/[0.035]"
       }`}
     >
@@ -260,7 +260,7 @@ function HighlightCard({ event }: { event: LiveMatch["events"][number] }) {
         <Badge tone={isGoal ? "ok" : isMiss ? "warn" : "accent"}>{event.minute}'</Badge>
         <div className="min-w-0">
           <div className="flex flex-wrap items-center gap-2">
-            <span className={`text-xs font-black uppercase tracking-[0.16em] ${isGoal ? "text-gold" : isMiss ? "text-amber-100" : "text-accent"}`}>
+            <span className={`text-xs font-black uppercase tracking-[0.16em] ${isGoal ? "text-accent-2" : isMiss ? "text-red-100" : "text-accent"}`}>
               {event.kind ?? "info"}
             </span>
             {event.team && <span className="truncate text-xs text-faint">{event.team}</span>}

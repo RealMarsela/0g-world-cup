@@ -10,7 +10,6 @@
   --color-faint: #8d625f;
   --color-accent: #f20d22;
   --color-accent-2: #ff4150;
-  --color-gold: #f6c760;
   --color-surface: #120f14;
   --color-surface-2: #211219;
   --color-border: #3c181e;
@@ -32,7 +31,7 @@
     min-width: 320px;
     background:
       radial-gradient(circle at 18% 0%, rgba(242, 13, 34, 0.24), transparent 29rem),
-      radial-gradient(circle at 90% 10%, rgba(246, 199, 96, 0.12), transparent 25rem),
+      radial-gradient(circle at 90% 10%, rgba(255, 65, 80, 0.16), transparent 25rem),
       linear-gradient(180deg, rgba(30, 4, 8, 0.7), transparent 22rem),
       var(--color-page);
     color: var(--color-strong);
@@ -133,7 +132,7 @@
     border-radius: 8px;
     background:
       linear-gradient(135deg, rgba(242, 13, 34, 0.18), transparent 34%),
-      linear-gradient(220deg, rgba(246, 199, 96, 0.12), transparent 42%),
+      linear-gradient(220deg, rgba(255, 65, 80, 0.12), transparent 42%),
       rgba(16, 13, 18, 0.94);
   }
 

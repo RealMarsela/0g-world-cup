@@ -45,12 +45,12 @@ export function Simulate() {
       </Panel>
 
       {error && (
-        <Panel className="border-amber-300/30 bg-amber-300/10 p-4" data-testid="compute-error">
+        <Panel className="border-red-500/30 bg-red-500/10 p-4" data-testid="compute-error">
           <div className="flex items-start gap-3">
-            <AlertTriangle className="mt-0.5 shrink-0 text-amber-200" size={20} />
+            <AlertTriangle className="mt-0.5 shrink-0 text-red-200" size={20} />
             <div className="min-w-0">
-              <h2 className="font-bold text-amber-100">0G Compute did not produce a match result</h2>
-              <p className="mt-1 break-all text-sm text-amber-50/80">{error}</p>
+              <h2 className="font-bold text-red-100">0G Compute did not produce a match result</h2>
+              <p className="mt-1 break-all text-sm text-red-50/80">{error}</p>
             </div>
           </div>
         </Panel>
@@ -179,9 +179,9 @@ function Receipt({ result, room }: { result: MatchResult; room: DraftRoom }) {
       {result.highlights?.length ? <Highlights result={result} /> : null}
       <Panel className="p-5" data-testid="simulation-receipt">
         {result.computeAuthority === "external-ai-fallback" && (
-          <div className="mb-5 rounded-md border border-amber-300/25 bg-amber-300/10 p-3">
-            <p className="text-xs font-black uppercase tracking-[0.14em] text-amber-100">0G Compute unavailable</p>
-            <p className="mt-1 break-all text-sm text-amber-50/85">
+          <div className="mb-5 rounded-md border border-red-500/25 bg-red-500/10 p-3">
+            <p className="text-xs font-black uppercase tracking-[0.14em] text-red-100">0G Compute unavailable</p>
+            <p className="mt-1 break-all text-sm text-red-50/85">
               {result.blocker || "Sarvam AI generated this playable fallback result. It is not a 0G Compute-authoritative settlement result."}
             </p>
           </div>
@@ -197,7 +197,7 @@ function Receipt({ result, room }: { result: MatchResult; room: DraftRoom }) {
           </Link>
         </div>
         {finalizeResult && <p className="mt-3 break-all text-sm text-accent" data-testid="runtime-finalize-ok">{finalizeResult}</p>}
-        {finalizeError && <p className="mt-3 break-all text-sm text-amber-100" data-testid="runtime-finalize-error">{finalizeError}</p>}
+        {finalizeError && <p className="mt-3 break-all text-sm text-red-100" data-testid="runtime-finalize-error">{finalizeError}</p>}
       </Panel>
       {result.type === "tournament" && <Fixtures result={result} />}
     </>
@@ -214,9 +214,9 @@ function Highlights({ result }: { result: MatchResult }) {
             <div
               className={`rounded-md border p-3 ${
                 highlight.kind === "goal"
-                  ? "border-gold/40 bg-gold/10"
+                  ? "border-accent/40 bg-accent/10"
                   : highlight.kind === "miss"
-                    ? "border-amber-300/30 bg-amber-300/10"
+                    ? "border-red-500/30 bg-red-500/10"
                     : "border-white/10 bg-white/[0.035]"
               }`}
               key={highlight.id}
